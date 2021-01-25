@@ -1,0 +1,5 @@
+maxQueueLength
+numServicePoints
+closingTime
+mean
+standardDeviation

@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.pl": "prolog",
+        "queue": "c",
+        "__split_buffer": "c",
+        "array": "c",
+        "string_view": "c",
+        "vector": "c"
+    }
+}
