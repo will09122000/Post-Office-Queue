@@ -62,6 +62,6 @@ void runSim()
         }
     }
 
-
-    printf("Front item is %d, %d\n", front(queue).waitLimit, front(queue).currentWait);
+    CUSTOMER test = front(queue);
+    printf("Front item is %d, %d\n", test.waitLimit, test.currentWait);
 }
