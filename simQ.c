@@ -3,12 +3,14 @@
 #include <gsl/gsl_randist.h>
 #include "queue.c"
 
-typedef struct Queue QUEUE;
-typedef struct Customer CUSTOMER;
+
 
 struct Customer {
     int waitLimit, currentWait;
 };
+
+typedef struct Queue QUEUE;
+typedef struct Customer CUSTOMER;
 
 void runSim();
 
