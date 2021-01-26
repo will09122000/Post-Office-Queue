@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <gsl/gsl_rng.h>
+#include <gsl/gsl_randist.h>
 #include "queue.c"
 
 typedef struct Queue QUEUE;
@@ -38,7 +40,8 @@ void runSim()
 
     while (time < closingTime)
     {
-        
+        int randomTime = rand() % 5;
+        printf("Random num: %d\n", randomTime);
         time++;
     }
 
@@ -48,6 +51,5 @@ void runSim()
     enqueue(queue, 40);
     dequeue(queue);
 
-    printf("is %d\n", isEmpty(queue));
     printf("Front item is %d\n", front(queue));
 }
