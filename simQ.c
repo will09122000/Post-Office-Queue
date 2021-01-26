@@ -31,7 +31,7 @@ int main (int argc, char **argv)
 
 void runSim()
 {
-    unsigned int maxQueueLength = 5;
+    unsigned int maxQueueLength = 20;
     unsigned int numServicePoints = 3;
     unsigned int closingTime = 20;
     float mean = 5;
@@ -53,12 +53,18 @@ void runSim()
         printf("%d:\n", currentTime);
 
         /* New Customer */
-        if (gsl_ran_flat(r,0,2) < 1 && queue->size < maxQueueLength)
+        if (gsl_ran_flat(r,0,2) < 1)
         {
-            CUSTOMER newCustomer;
-            newCustomer.waitLimit = (int)gsl_ran_flat(r,5,20);
-            enqueue(queue, newCustomer);
-            printf("Customer Arrived, Wait Limit: %d\n", newCustomer.waitLimit);
+            if (queue->size < maxQueueLength)
+            {
+                CUSTOMER newCustomer;
+                newCustomer.waitLimit = (int)gsl_ran_flat(r,5,20);
+                enqueue(queue, newCustomer);
+                printf("Customer Arrived, Wait Limit: %d\n", newCustomer.waitLimit);
+            }
+            else {
+                printf("Customer Rejected.");
+            }
         }
 
         /* Increment the wait time of all customers in the queue by 1 */
