@@ -47,9 +47,9 @@ void runSim()
     /* seed it – equivalent of srand(time(0)) */
     gsl_rng_set(r,time(0));
 
-    while (time < closingTime)
+    while (currentTime < closingTime)
     {
-        printf("%2d: %lf\n", i, gsl_ran_flat(r,2,5));
+        printf("%lf\n", gsl_ran_flat(r,2,5));
         currentTime++;
     }
 

@@ -4,7 +4,6 @@ struct Customer {
     int waitLimit, currentWait;
 };
 
-// Create customer
 CUSTOMER* createQueue(unsigned maxLength)
 {
     CUSTOMER* customer = (CUSTOMER*)malloc(sizeof(CUSTOMER));
