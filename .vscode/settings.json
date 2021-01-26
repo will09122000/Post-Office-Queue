@@ -5,6 +5,9 @@
         "__split_buffer": "c",
         "array": "c",
         "string_view": "c",
-        "vector": "c"
+        "vector": "c",
+        "initializer_list": "c",
+        "ranges": "c",
+        "utility": "c"
     }
 }

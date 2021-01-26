@@ -60,13 +60,17 @@ void runSim()
             newCustomer.waitLimit = (int)gsl_ran_flat(r,5,20);
             enqueue(queue, newCustomer);
         }
+
+        /* Update the wait time of all customers in the queue */
+        updateWait(queue);
     }
 
     int i;
-    for (i=0; i < queue->size; i++)
+    int queueSize = queue->size;
+    for (i=0; i < queueSize; i++)
     {
-    CUSTOMER customer = dequeue(queue);
-    printf("Customer: Wait Limit: %d, Current Wait: %d\n", customer.waitLimit, customer.currentWait);
+        CUSTOMER customer = dequeue(queue);
+        printf("Customer: Wait Limit: %d, Current Wait: %d\n", customer.waitLimit, customer.currentWait);
     }
     
 }

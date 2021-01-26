@@ -77,3 +77,13 @@ CUSTOMER front(QUEUE* queue)
     */
     return queue->array[queue->front];
 }
+
+void updateWait(QUEUE* queue)
+{
+    int i;
+    int queueSize = queue->size;
+    for (i=0; i < queueSize; i++)
+    {
+        queue->array[i].currentWait++;
+    }
+}
