@@ -63,7 +63,7 @@ void runSim()
     }
 
     int i;
-    for (i=0; i < size(queue); i++)
+    for (i=0; i < queue->size; i++)
     {
     CUSTOMER customer = dequeue(queue);
     printf("Customer: Wait Limit: %d, Current Wait: %d\n", customer.waitLimit, customer.currentWait);
