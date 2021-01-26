@@ -96,7 +96,7 @@ void waitLimitReached(QUEUE* queue)
     {
         if (queue->array[i].currentWait == queue->array[i].waitLimit)
         {
-            printf("Bored Customer");
+            printf("Bored Customer\n");
             for(j=i-1; j<queue->size-1; j++)
                 queue->array[j] = queue->array[j + 1];
 
