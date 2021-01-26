@@ -26,7 +26,7 @@ QUEUE* createQueue(unsigned maxLength)
 
     /* This is important, see the enqueue */
     queue->rear = maxLength - 1;
-    queue->array = (int*)malloc(queue->maxLength * sizeof(int));
+    queue->array = (CUSTOMER*)malloc(queue->maxLength * sizeof(CUSTOMER));
     return queue;
 }
 
