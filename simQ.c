@@ -57,11 +57,16 @@ void runSim()
         {
             printf("Customer Arrived.\n");
             CUSTOMER newCustomer;
-            newCustomer.waitLimit = 30;
+            newCustomer.waitLimit = (int)gsl_ran_flat(r,5,20);
             enqueue(queue, newCustomer);
         }
     }
 
-    CUSTOMER test = front(queue);
-    printf("Front item is %d, %d\n", test.waitLimit, test.currentWait);
+    int i;
+    for (i=0; i < size(queue); i++)
+    {
+    CUSTOMER customer = dequeue(queue);
+    printf("Customer: Wait Limit: %d, Current Wait: %d\n", customer.waitLimit, customer.currentWait);
+    }
+    
 }
