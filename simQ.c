@@ -33,16 +33,24 @@ void runSim()
     unsigned int closingTime = 100;
     float mean = 5;
     float standardDeviation = 2;
-    unsigned int time = 0;
+    unsigned int currentTime = 0;
 
     struct Queue* queue = createQueue(maxQueueLength);
     struct Queue* servicePoints = createQueue(numServicePoints);
 
+    const gsl_rng_type *T;
+    gsl_rng *r;
+    /* create a random number generator */
+    gsl_rng_env_setup();
+    T = gsl_rng_default;
+    r = gsl_rng_alloc(T);
+    /* seed it – equivalent of srand(time(0)) */
+    gsl_rng_set(r,time(0));
+
     while (time < closingTime)
     {
-        int randomTime = rand() % 5;
-        printf("Random num: %d\n", randomTime);
-        time++;
+        printf("%2d: %lf\n", i, gsl_ran_flat(r,2,5));
+        currentTime++;
     }
 
     enqueue(queue, 10);
