@@ -52,13 +52,16 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
-        /* New Customer */
+        /* Customer reaches wait limit */
+        waitLimitReached(queue);
+
+        /* New Customers */
         if (gsl_ran_flat(r,0,2) < 1)
         {
             if (queue->size < maxQueueLength)
             {
                 CUSTOMER newCustomer;
-                newCustomer.waitLimit = (int)gsl_ran_flat(r,5,20);
+                newCustomer.waitLimit = (int)gsl_ran_flat(r,1,5);
                 enqueue(queue, newCustomer);
                 printf("Customer Arrived, Wait Limit: %d\n", newCustomer.waitLimit);
             }

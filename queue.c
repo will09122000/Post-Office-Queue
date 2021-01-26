@@ -87,3 +87,25 @@ void updateWait(QUEUE* queue)
         queue->array[i].currentWait++;
     }
 }
+
+void waitLimitReached(QUEUE* queue)
+{
+    int i, j;
+    int queueSize = queue->size;
+    for (i=0; i < queueSize; i++)
+    {
+        if (queue->array[i].currentWait == queue->array[i].waitLimit)
+        {
+            printf("Bored Customer");
+            for(j=i-1; j<queue->size-1; j++)
+                queue->array[j] = queue->array[j + 1];
+
+            if (queue->rear == i)
+                queue->rear = (queue->rear + 1) % queue->maxLength;
+            else if ((queue->front == i))
+                queue->front = (queue->front + 1) % queue->maxLength;
+
+            queue->size = queue->size - 1;
+        }
+    }
+}
