@@ -65,6 +65,8 @@ void runSim()
         updateWait(queue);
     }
 
+    printf("Size of Queue: %d\n", queue->size);
+
     int i;
     int queueSize = queue->size;
     for (i=0; i < queueSize; i++)
