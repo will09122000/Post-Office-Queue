@@ -5,12 +5,8 @@
 
 
 
-struct Customer {
-    int waitLimit, currentWait;
-};
-
 typedef struct Queue QUEUE;
-typedef struct Customer CUSTOMER;
+
 
 void runSim();
 
