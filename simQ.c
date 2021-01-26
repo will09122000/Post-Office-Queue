@@ -40,16 +40,17 @@ void runSim()
 
     const gsl_rng_type *T;
     gsl_rng *r;
-    /* create a random number generator */
     gsl_rng_env_setup();
     T = gsl_rng_default;
     r = gsl_rng_alloc(T);
-    /* seed it – equivalent of srand(time(0)) */
     gsl_rng_set(r,time(0));
 
     while (currentTime < closingTime)
     {
-        printf("%lf\n", gsl_ran_flat(r,2,5));
+        float test = gsl_ran_flat(r,0,2);
+        printf("%f\n", test);
+        if (test < 1)
+            printf("Arrived.");
         currentTime++;
     }
 
