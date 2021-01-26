@@ -4,6 +4,11 @@
 #include "queue.c"
 
 typedef struct Queue QUEUE;
+typedef struct Customer CUSTOMER;
+
+struct Customer {
+    int waitLimit, currentWait;
+};
 
 void runSim();
 
@@ -30,7 +35,7 @@ void runSim()
 {
     unsigned int maxQueueLength = 10;
     unsigned int numServicePoints = 3;
-    unsigned int closingTime = 10;
+    unsigned int closingTime = 20;
     float mean = 5;
     float standardDeviation = 2;
     unsigned int currentTime;
@@ -49,15 +54,16 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
+        /* New Customer */
         if (gsl_ran_flat(r,0,2) < 1)
+        {
             printf("Customer Arrived.\n");
+            CUSTOMER newCustomer;
+            newCustomer.waitLimit = 30;
+            enqueue(queue, newCustomer);
+        }
     }
 
-    enqueue(queue, 10);
-    enqueue(queue, 20);
-    enqueue(queue, 30);
-    enqueue(queue, 40);
-    dequeue(queue);
 
-    printf("Front item is %d\n", front(queue));
+    printf("Front item is %d, %d\n", front(queue).waitLimit, front(queue).currentWait);
 }

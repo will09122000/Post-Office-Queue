@@ -3,12 +3,17 @@
 #include <stdlib.h>
 
 typedef struct Queue QUEUE;
+typedef struct Customer CUSTOMER;
+
+struct Customer {
+    int waitLimit, currentWait;
+};
 
 /* A structure to represent a queue */
 struct Queue {
     int front, rear, size;
     unsigned maxLength;
-    int* array;
+    CUSTOMER* array;
 };
 
 /* function to create a queue of given maxLength.
@@ -40,7 +45,7 @@ int isFull(QUEUE* queue)
 
 /* Function to add an item to the queue.
 It changes rear and size */
-void enqueue(QUEUE* queue, int item)
+void enqueue(QUEUE* queue, CUSTOMER item)
 {
     if (isFull(queue))
         return;
@@ -51,20 +56,24 @@ void enqueue(QUEUE* queue, int item)
 
 /* Function to remove an item from queue.
 It changes front and size  */
-int dequeue(QUEUE* queue)
+CUSTOMER dequeue(QUEUE* queue)
 {
+    /*
     if (isEmpty(queue))
         return INT_MIN;
-    int item = queue->array[queue->front];
+    */
+    CUSTOMER item = queue->array[queue->front];
     queue->front = (queue->front + 1) % queue->maxLength;
     queue->size = queue->size - 1;
     return item;
 }
 
 /* Function to get front of queue */
-int front(QUEUE* queue)
+CUSTOMER front(QUEUE* queue)
 {
+    /*
     if (isEmpty(queue))
         return INT_MIN;
+    */
     return queue->array[queue->front];
 }
