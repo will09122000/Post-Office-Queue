@@ -30,7 +30,7 @@ void runSim()
 {
     unsigned int maxQueueLength = 10;
     unsigned int numServicePoints = 3;
-    unsigned int closingTime = 100;
+    unsigned int closingTime = 10;
     float mean = 5;
     float standardDeviation = 2;
     unsigned int currentTime = 0;
