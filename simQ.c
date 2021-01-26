@@ -50,7 +50,7 @@ void runSim()
         printf("%d:\n", currentTime);
 
         if (gsl_ran_flat(r,0,2) < 1)
-            printf("Customer Arrived.");
+            printf("Customer Arrived.\n");
     }
 
     enqueue(queue, 10);
