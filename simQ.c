@@ -53,7 +53,7 @@ void runSim()
         printf("%d:\n", currentTime);
 
         /* New Customer */
-        if (gsl_ran_flat(r,0,2) < 1)
+        if (gsl_ran_flat(r,0,2) < 1 && queue->size < maxQueueLength)
         {
             CUSTOMER newCustomer;
             newCustomer.waitLimit = (int)gsl_ran_flat(r,5,20);
