@@ -33,7 +33,7 @@ void runSim()
     unsigned int closingTime = 10;
     float mean = 5;
     float standardDeviation = 2;
-    unsigned int currentTime = 0;
+    unsigned int currentTime;
 
     struct Queue* queue = createQueue(maxQueueLength);
     struct Queue* servicePoints = createQueue(numServicePoints);
@@ -45,13 +45,12 @@ void runSim()
     r = gsl_rng_alloc(T);
     gsl_rng_set(r,time(0));
 
-    while (currentTime < closingTime)
+    for (currentTime=0; currentTime < closingTime; currentTime++)
     {
-        float test = gsl_ran_flat(r,0,2);
-        printf("%f\n", test);
-        if (test < 1)
-            printf("Arrived.");
-        currentTime++;
+        printf("%d:\n", currentTime);
+
+        if (gsl_ran_flat(r,0,2) < 1)
+            printf("Customer Arrived.");
     }
 
     enqueue(queue, 10);
