@@ -11,7 +11,7 @@ typedef struct Node NODE;
 void enqueue(NODE* root, int waitLimit)
 {
     NODE *newNode;
-    if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) != NULL )
+    if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) == NULL )
     {
         newNode->waitLimit = waitLimit; 
         newNode->currentWait = 0; 
