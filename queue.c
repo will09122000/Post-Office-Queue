@@ -80,7 +80,6 @@ CUSTOMER front(QUEUE* queue)
 
 void updateWait(QUEUE* queue)
 {
-    printf("Updating Wait\n");
     int i;
     int queueSize = queue->size;
     for (i=0; i < queueSize; i++)
