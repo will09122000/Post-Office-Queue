@@ -26,8 +26,8 @@ void enqueue(NODE** head_ref, int waitLimit)
 
 int size(NODE* head) 
 { 
-    int count = 0;  // Initialize count 
-    NODE* current = head;  // Initialize current 
+    int count = 0;
+    NODE* current = head;
     while (current != NULL) 
     { 
         count++; 
