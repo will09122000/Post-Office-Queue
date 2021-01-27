@@ -22,6 +22,10 @@ void enqueue(NODE** head_ref, int waitLimit)
         newNode->next = (*head_ref); 
         (*head_ref)    = newNode;
     }
+    else
+    {
+        printf("NULL");
+    }
 }
 
 int size(NODE* head) 
