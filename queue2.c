@@ -10,6 +10,7 @@ typedef struct Node NODE;
 
 void enqueue(NODE* head, int waitLimit)
 {
+    /*
     NODE *newNode;
     if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) == NULL )
     {
@@ -18,6 +19,15 @@ void enqueue(NODE* head, int waitLimit)
         newNode->next = NULL;
         head->next = newNode;
     }
+    */
+    NODE * newNode = head;
+    while (newNode->next != NULL) {
+        newNode = newNode->next;
+    }
+    newNode->next = (NODE *) malloc(sizeof(NODE));
+    newNode->waitLimit = waitLimit; 
+    newNode->currentWait = 0; 
+    newNode->next->next = NULL;
 
 }
 
