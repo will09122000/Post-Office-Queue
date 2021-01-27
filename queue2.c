@@ -13,6 +13,8 @@ void enqueue(NODE* root, int waitLimit)
     NODE *newNode;
     if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) == NULL )
     {
+        
+    } else {
         newNode->waitLimit = waitLimit; 
         newNode->currentWait = 0; 
         newNode->next = NULL;
