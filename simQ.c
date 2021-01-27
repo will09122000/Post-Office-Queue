@@ -73,6 +73,7 @@ void runSim()
                 */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
                 enqueue(&root, waitLimit);
+                printf("Customer Arrived, Wait Limit: %d\n", waitLimit);
             }
             else {
                 printf("Customer Rejected.");
