@@ -123,5 +123,10 @@ void waitLimitReached(QUEUE* queue)
             }
             */
         }
+        else
+        {
+            printf("Bored Customer\n");
+        }
+        
     }
 }
