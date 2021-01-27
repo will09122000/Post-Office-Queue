@@ -92,10 +92,10 @@ void waitLimitReached(QUEUE* queue)
 {
     int i, j;
     int queueSize = queue->size;
+    queue->front = queue->size = 0;
+    queue->rear = queue->maxLength - 1;
     for (i=0; i < queueSize; i++)
     {
-        queue->front = queue->size = 0;
-        queue->rear = queue->maxLength - 1;
         if (queue->array[i].currentWait < queue->array[i].waitLimit)
         {
             enqueue(queue, queue->array[i]);
