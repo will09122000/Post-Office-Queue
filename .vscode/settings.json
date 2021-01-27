@@ -8,6 +8,7 @@
         "vector": "c",
         "initializer_list": "c",
         "ranges": "c",
-        "utility": "c"
+        "utility": "c",
+        "string": "c"
     }
 }
