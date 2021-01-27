@@ -1,9 +1,5 @@
 #include <limits.h>
 #include <stdlib.h>
-#include <gsl/gsl_rng.h>
-#include <gsl/gsl_randist.h>
-
-
 
 struct Node 
 { 
@@ -12,15 +8,15 @@ struct Node
 }; 
 typedef struct Node NODE;
 
-void enqueue(NODE** head_ref, int waitLimit)
+void enqueue(NODE* root, int waitLimit)
 {
     NODE *newNode;
     if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) != NULL )
     {
         newNode->waitLimit = waitLimit; 
         newNode->currentWait = 0; 
-        newNode->next = (*head_ref); 
-        (*head_ref)    = newNode;
+
+        root->next = newNode;
     }
 
 }
