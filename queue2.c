@@ -25,8 +25,8 @@ void enqueue(NODE* head, int waitLimit)
         newNode = newNode->next;
     }
     newNode->next = (NODE *) malloc(sizeof(NODE));
-    newNode->waitLimit = waitLimit; 
-    newNode->currentWait = 0; 
+    newNode->next->waitLimit = waitLimit; 
+    newNode->next->currentWait = 0; 
     newNode->next->next = NULL;
 
 }
