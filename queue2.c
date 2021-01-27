@@ -36,3 +36,12 @@ int size(NODE* head)
     } 
     return count; 
 }
+
+void updateWait(NODE* head)
+{
+    NODE * current = head;
+    while (current != NULL) {
+        current->currentWait++;
+        current = current->next;
+    }
+}
