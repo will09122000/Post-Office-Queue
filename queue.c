@@ -96,7 +96,7 @@ void waitLimitReached(QUEUE* queue)
     {
         if (queue->array[i].currentWait == queue->array[i].waitLimit)
         {
-            
+            printf("Position: %d\n", i);
 
             if ((queue->front == i))
             {
