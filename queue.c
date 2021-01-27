@@ -97,15 +97,23 @@ void waitLimitReached(QUEUE* queue)
         if (queue->array[i].currentWait == queue->array[i].waitLimit)
         {
             printf("Bored Customer\n");
-            for(j=i-1; j<queue->size-1; j++)
-                queue->array[j] = queue->array[j + 1];
 
-            if (queue->rear == i)
-                queue->rear = (queue->rear + 1) % queue->maxLength;
-            else if ((queue->front == i))
-                queue->front = (queue->front + 1) % queue->maxLength;
-
-            queue->size = queue->size - 1;
+            if ((queue->front == i))
+            {
+                CUSTOMER boredCustomer = dequeue(queue);
+            }
+            else if (queue->rear == i)
+            {
+                CUSTOMER boredCustomer = queue->array[i];
+                queue->rear = (queue->rear - 1) % queue->maxLength;
+                queue->size = queue->size - 1;
+            } else {
+                CUSTOMER boredCustomer = queue->array[i];
+                queue->rear = (queue->rear - 1) % queue->maxLength;
+                queue->size = queue->size - 1;
+                for(j=i; j<queue->size-1; j++)
+                    queue->array[j] = queue->array[j + 1];
+            }
         }
     }
 }
