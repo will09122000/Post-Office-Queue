@@ -8,18 +8,16 @@ struct Node
 }; 
 typedef struct Node NODE;
 
-void enqueue(NODE* root, int waitLimit)
+void enqueue(NODE** headMemory, int waitLimit)
 {
     NODE *newNode;
-    if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) == NULL )
+    if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) != NULL )
     {
-        
+        newNode->waitLimit = waitLimit; 
+        newNode->currentWait = 0; 
+        newNode->next = (*headMemory); 
+        (*headMemory)    = newNode;
     }
-    newNode->waitLimit = waitLimit; 
-    newNode->currentWait = 0; 
-    newNode->next = NULL;
-    root->next = newNode;
-
 
 }
 
