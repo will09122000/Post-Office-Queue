@@ -92,7 +92,7 @@ void waitLimitReached(QUEUE* queue)
 {
     int i, j;
     int queueSize = queue->size;
-    for (i=0; i < queue->size; i++)
+    for (i=0; i < queueSize; i++)
     {
         queue->front = queue->size = 0;
         queue->rear = queue->maxLength - 1;
