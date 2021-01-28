@@ -10,12 +10,11 @@ typedef struct Node NODE;
 
 void enqueueFirst(NODE *root, int waitLimit)
 {
-        printf("First Customer Arrived, Wait Limit: %d\n", waitLimit);
-
     root = (NODE*) malloc(sizeof(NODE));
     (*root).waitLimit = waitLimit;
     (*root).currentWait = 0;
     (*root).next = NULL;
+    printf("First Customer Arrived, Wait Limit: %d\n", waitLimit);
 }
 
 void enqueue(NODE *root, int waitLimit)
@@ -36,8 +35,10 @@ int size(NODE *root)
 { 
     int count = 0;
     NODE *current = root;
+    printf("In size\n");
     while (current != NULL) 
     { 
+    printf("In size loop\n");
         count++; 
         current = current->next; 
     } 
