@@ -42,7 +42,7 @@ int size(NODE *root)
     printf("In size\n");
     while (current != NULL) 
     { 
-    printf("In size loop\n");
+
         count++; 
         current = current->next; 
     } 
