@@ -63,7 +63,7 @@ void runSim()
         /* New Customers */
         if (gsl_ran_flat(r,0,2) < 1)
         {
-            if (size(&root) < maxQueueLength)
+            if (size(root) < maxQueueLength)
             {
                 /*
                 CUSTOMER newCustomer;
@@ -72,7 +72,7 @@ void runSim()
                 printf("Customer Arrived, Wait Limit: %d\n", newCustomer.waitLimit);
                 */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
-                if (size(&root) == 0)
+                if (size(root) == 0)
                     enqueueFirst(&root, waitLimit);
                 else
                     enqueue(&root, waitLimit);
