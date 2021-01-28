@@ -77,7 +77,7 @@ void runSim()
                 */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
                 if (size(root) == 0)
-                    enqueueFirst(*root, waitLimit);
+                    enqueueFirst(root, waitLimit);
                 else
                     enqueue(root, waitLimit);
             }
