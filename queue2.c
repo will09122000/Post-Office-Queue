@@ -35,7 +35,7 @@ int size(NODE *root)
 { 
     int count = 0;
     NODE *current = root;
-    while (current->next != NULL) 
+    while (current != NULL) 
     { 
         count++; 
         current = current->next; 
