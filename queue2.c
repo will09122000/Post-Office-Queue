@@ -25,6 +25,7 @@ void enqueue(NODE *root, int waitLimit)
     NODE *currentNode = root;
     while (root->next != NULL) {
         currentNode = currentNode->next;
+        printf("Looping");
     }
     NODE* nextNode = (NODE*) malloc(sizeof(NODE));
     (*nextNode).waitLimit = waitLimit;
