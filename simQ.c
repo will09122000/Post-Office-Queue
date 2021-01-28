@@ -76,10 +76,14 @@ void runSim()
                 printf("Customer Arrived, Wait Limit: %d\n", newCustomer.waitLimit);
                 */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
+                NODE *rootCopy = root;
                 if (size(root) == 0)
                     enqueueFirst(root, waitLimit);
                 else
                     enqueue(root, waitLimit);
+
+                if (root->next == rootCopy->next)
+                    printf("Equal");
             }
             else {
                 printf("Customer Rejected.");
