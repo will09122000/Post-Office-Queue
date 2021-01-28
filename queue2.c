@@ -12,9 +12,11 @@ void enqueueFirst(NODE *root, int waitLimit)
 {
     root = (NODE*) malloc(sizeof(NODE));
     root->waitLimit = waitLimit;
-    (*root).waitLimit = waitLimit;
+    root->currentWait = 0;
+    root->next = NULL;
+/*    (*root).waitLimit = waitLimit;
     (*root).currentWait = 0;
-    (*root).next = NULL;
+    (*root).next = NULL; */
     printf("First Customer Arrived, Wait Limit: %d\n", waitLimit);
 }
 
