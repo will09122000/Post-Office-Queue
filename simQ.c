@@ -43,7 +43,7 @@ void runSim()
     struct Queue* queue = createQueue(maxQueueLength);
     struct Queue* servicePoints = createQueue(numServicePoints);
     */
-    NODE *root = NULL;
+    NODE *root = (NODE*) malloc(sizeof(NODE));
 
     const gsl_rng_type *T;
     gsl_rng *r;
