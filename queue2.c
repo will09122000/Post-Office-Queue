@@ -14,6 +14,7 @@ void enqueueFirst(NODE *root, int waitLimit)
     (*root).waitLimit = waitLimit;
     (*root).currentWait = 0;
     (*root).next = NULL;
+    printf("First Customer Arrived, Wait Limit: %d\n", waitLimit);
 }
 
 void enqueue(NODE *root, int waitLimit)
@@ -27,6 +28,7 @@ void enqueue(NODE *root, int waitLimit)
     (*nextNode).currentWait = 0;
     (*nextNode).next = NULL;
     (*currentNode).next = currentNode;
+    printf("Customer Arrived, Wait Limit: %d\n", waitLimit);
 }
 
 int size(NODE *root) 

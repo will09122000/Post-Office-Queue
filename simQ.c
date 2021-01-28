@@ -76,7 +76,6 @@ void runSim()
                     enqueueFirst(root, waitLimit);
                 else
                     enqueue(root, waitLimit);
-                printf("Customer Arrived, Wait Limit: %d\n", waitLimit);
             }
             else {
                 printf("Customer Rejected.");
