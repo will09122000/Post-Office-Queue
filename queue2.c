@@ -8,33 +8,31 @@ struct Node
 }; 
 typedef struct Node NODE;
 
-void enqueue(NODE* head, int waitLimit)
+void enqueueFirst(NODE *root, int waitLimit)
 {
-    /*
-    NODE *newNode;
-    if ( ( newNode = (NODE *)malloc(sizeof(NODE)) ) == NULL )
-    {
-        newNode->waitLimit = waitLimit; 
-        newNode->currentWait = 0; 
-        newNode->next = NULL;
-        head->next = newNode;
-    }
-    */
-    NODE * newNode = head;
-    while (newNode->next != NULL) {
-        newNode = newNode->next;
-    }
-    newNode->next = (NODE *) malloc(sizeof(NODE));
-    newNode->waitLimit = waitLimit; 
-    newNode->currentWait = 0; 
-    newNode->next->next = NULL;
-
+    root = (NODE*) malloc(sizeof(NODE));
+    (*root).waitLimit = waitLimit;
+    (*root).currentWait = 0;
+    (*root).next = NULL;
 }
 
-int size(NODE* head) 
+void enqueue(NODE *root, int waitLimit)
+{
+    NODE *currentNode = root;
+    while (root->next != NULL) {
+        currentNode = currentNode->next;
+    }
+    NODE* nextNode = (NODE*) malloc(sizeof(NODE));
+    (*nextNode).waitLimit = waitLimit;
+    (*nextNode).currentWait = 0;
+    (*nextNode).next = NULL;
+    (*currentNode).next = currentNode;
+}
+
+int size(NODE *root) 
 { 
     int count = 0;
-    NODE* current = head;
+    NODE *current = root;
     while (current != NULL) 
     { 
         count++; 
@@ -43,9 +41,9 @@ int size(NODE* head)
     return count; 
 }
 
-void updateWait(NODE* head)
+void updateWait(NODE *root)
 {
-    NODE * current = head;
+    NODE *current = root;
     while (current != NULL) {
         current->currentWait++;
         current = current->next;
