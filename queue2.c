@@ -10,7 +10,6 @@ typedef struct Node NODE;
 
 void enqueueFirst(NODE *root, int waitLimit)
 {
-    root = (NODE*) malloc(sizeof(NODE));
     root->waitLimit = waitLimit;
     root->currentWait = 0;
     root->next = NULL;

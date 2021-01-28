@@ -43,7 +43,7 @@ void runSim()
     struct Queue* queue = createQueue(maxQueueLength);
     struct Queue* servicePoints = createQueue(numServicePoints);
     */
-    NODE *root = NULL;
+    NODE *root = (NODE*) malloc(sizeof(NODE));
 
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -73,9 +73,9 @@ void runSim()
                 */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
                 if (size(root) == 0)
-                    enqueueFirst(&root, waitLimit);
+                    enqueueFirst(root, waitLimit);
                 else
-                    enqueue(&root, waitLimit);
+                    enqueue(root, waitLimit);
             }
             else {
                 printf("Customer Rejected.");
