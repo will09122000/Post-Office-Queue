@@ -86,8 +86,8 @@ void runSim()
             }
         }
 
-        /* Increment the wait time of all customers in the queue by 1 */
-        updateWait(root);
+        /* Increment the wait time of all customers in the queue by 1
+        updateWait(root); */
     }
 
     printf("Size of Queue: %d\n", size(root));
