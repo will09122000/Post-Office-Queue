@@ -43,7 +43,11 @@ void runSim()
     struct Queue* queue = createQueue(maxQueueLength);
     struct Queue* servicePoints = createQueue(numServicePoints);
     */
-    NODE *root = (NODE*) malloc(sizeof(NODE));
+    NODE *root = NULL;
+    root = (NODE*) malloc(sizeof(NODE));
+    (*root).waitLimit = 5;
+    (*root).currentWait = 0;
+    (*root).next = NULL;
 
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -73,7 +77,7 @@ void runSim()
                 */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
                 if (size(root) == 0)
-                    enqueueFirst(root, waitLimit);
+                    enqueueFirst(*root, waitLimit);
                 else
                     enqueue(root, waitLimit);
             }
