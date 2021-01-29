@@ -80,12 +80,12 @@ void runSim()
                 NODE * customer = dequeue(&customerQueue);
                 if (customer) {
                     printf("b\n");
-                    SERVICEPOINT * servicePoint;
-                    servicePoint->timeTaken = 0;
-                    servicePoint->timeDone = 5;
-                    servicePoint->id = 1;
+                    SERVICEPOINT servicePoint;
+                    servicePoint.timeTaken = 0;
+                    servicePoint.timeDone = 5;
+                    servicePoint.id = 1;
                     printf("c\n");
-                    servicePoints[i] = *servicePoint;
+                    servicePoints[i] = servicePoint;
                     printf("d\n");
                 }
             }
