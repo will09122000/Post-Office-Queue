@@ -56,11 +56,11 @@ int size(NODE * head)
 void print_list(NODE * head) {
     NODE * current = head;
 
-/*
+
     if (current->waitLimit == INT_MIN) {
-        NODE * current = current->next;
+        current = current->next;
     }
-    */
+
 
     while (current != NULL) {
         printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->currentWait);
@@ -131,12 +131,12 @@ void updateWait(NODE * head)
 {
     NODE * current = head;
 
-/*
+
     if (current->waitLimit == INT_MIN)
     {
-        NODE * current = current->next;
+        current = current->next;
     }
-    */
+
 
     while (current != NULL)
     {
