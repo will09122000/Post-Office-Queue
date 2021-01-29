@@ -161,9 +161,6 @@ void checkWaitLimit(NODE * head)
             remove_by_index(&head, count);
         }
 
-        if (current == NULL)
-            break;
-
         current = current->next;
         count++;
     }
