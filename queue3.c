@@ -7,7 +7,7 @@ struct node
     int waitLimit, currentWait;
     struct node * previous;
     struct node * next;
-}
+};
 typedef struct node NODE;
 
 int size(NODE * head)
