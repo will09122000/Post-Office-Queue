@@ -108,7 +108,7 @@ void runSim()
         printf("Service Points:\n");
         for (i=0; i < numServicePoints; i++)
         {
-            printf("%d, ", servicePoints[i]);
+            printf("%d, ", servicePoints[i].id);
         }
 
         /* Increment the wait time of all customers in the queue by 1*/
