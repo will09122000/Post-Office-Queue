@@ -74,7 +74,7 @@ NODE* dequeue(NODE ** head)
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
         next_node->previous = *head;
-        free((*head)->next);
+        free(nodeRemoved);
         printf("c");
     }
     
