@@ -118,7 +118,8 @@ void runSim()
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
-            customerAtServicePoints++;
+            if (servicePoints[i].id == 1)
+                customerAtServicePoints++;
         }
         printf("\n\n");
 
