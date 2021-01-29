@@ -8,40 +8,6 @@ typedef struct node {
     struct node * next;
 } NODE;
 
-/*
-int size(NODE * head);
-void print_list(NODE * head);
-void enqueue(NODE * head, int val);
-int pop(NODE ** head);
-int remove_by_index(NODE ** head, int n);
-
-int main()
-{
-    NODE * head = NULL;
-    head = (NODE *) malloc(sizeof(NODE));
-    head->next = NULL;
-    head->waitLimit = INT_MIN;
-    head->currentWait = INT_MIN;
-    
-    printf("Size: %d\n", size(head));
-    enqueue(head, 3);
-    enqueue(head, 4);
-    enqueue(head, 5);
-    enqueue(head, 6);
-    enqueue(head, 7);
-    printf("Size: %d\n", size(head));
-    print_list(head);
-    printf("Popped: %d\n", pop(&head));
-    printf("Size: %d\n", size(head));
-    print_list(head);
-    printf("Removed: %d\n", remove_by_index(&head, 2));
-    print_list(head);
-    printf("Size: %d\n", size(head));
-
-    return 0;
-}
-*/
-
 int size(NODE * head)
 {
     int count = 0;
@@ -182,34 +148,6 @@ void checkWaitLimit(NODE ** head)
             free(current);
             printf("Customer Removed.\n");
         }
-
-
         current = current->next;
     }
-
 }
-
-void deleteNode(NODE** head, NODE* nodeToRemove) 
-    { 
-        /* base case */
-        if (*head == NULL || nodeToRemove == NULL) 
-            return; 
-    
-        /* If node to be deleted is head node */
-        if (*head == nodeToRemove) 
-            *head = nodeToRemove->next; 
-    
-        /* Change next only if node to be 
-        deleted is NOT the last node */
-        if (nodeToRemove->next != NULL) 
-            nodeToRemove->next->previous = nodeToRemove->previous; 
-    
-        /* Change previous only if node to be 
-        deleted is NOT the first node */
-        if (nodeToRemove->previous != NULL) 
-            nodeToRemove->previous->next = nodeToRemove->next; 
-    
-        /* Finally, free the memory occupied by del*/
-        free(nodeToRemove); 
-        return; 
-    } 
