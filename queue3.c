@@ -144,10 +144,10 @@ void updateWait(NODE * head)
 
 }
 
-void checkWaitLimit(NODE * head)
+void checkWaitLimit(NODE ** head)
 {
-    NODE * current = head;
-    int count = 1;
+    NODE * current = *head;
+    NODE * temp_node = NULL;
 
     if (current->waitLimit == INT_MIN)
     {
@@ -158,11 +158,12 @@ void checkWaitLimit(NODE * head)
     {
         if (current->currentWait >= current->waitLimit)
         {
-            remove_by_index(&head, count);
+            temp_node = current->next;
+            current->next = temp_node->next;
+            free(temp_node);
         }
 
         current = current->next;
-        count++;
     }
 
 }
