@@ -26,6 +26,7 @@ int size(NODE * head)
 void print_list(NODE * head)
 {
     NODE * current = head;
+    printf("Queue:\n");
 
     if (current->waitLimit == INT_MIN)
         current = current->next;
