@@ -1,139 +1,55 @@
+#include <limits.h>
 #include <stdlib.h>
-#include <stdio.h>
 
-struct node
+typedef struct node {
+    int val;
+    struct node * next;
+} node_t;
+
+void print_list(node_t * head);
+void push(node_t * head, int val);
+
+int main()
 {
-        int info;
-        struct node *next;
-};
-typedef struct Node NODE;
-NODE *start=NULL;
-
-
-void create()
-{
-    NODE *temp,*ptr;
-    temp=(NODE *)malloc(sizeof(NODE));
-    if(temp==NULL)
-    {
-        printf("nOut of Memory Space:n");
-        exit(0);
+    node_t * head = NULL;
+    node_t * head = (node_t *) malloc(sizeof(node_t));
+    if (head == NULL) {
+        return 1;
     }
-    printf("nEnter the data value for the node:t");
-    scanf("%d",&temp->info);
-    temp->next=NULL;
-    if(start==NULL)
-    {
-        start=temp;
-    }
-    else
-    {
-        ptr=start;
-        while(ptr->next!=NULL)
-        {
-                ptr=ptr->next;
-        }
-        ptr->next=temp;
+
+    head->val = 1;
+    head->next = NULL;
+
+    node_t * head = NULL;
+    head = (node_t *) malloc(sizeof(node_t));
+    head->val = 1;
+    head->next = (node_t *) malloc(sizeof(node_t));
+    head->next->val = 2;
+    head->next->next = NULL;
+
+    push(head, 42);
+    print_list(head);
+
+    return 0;
+}
+
+void print_list(node_t * head) {
+    node_t * current = head;
+
+    while (current != NULL) {
+        printf("%d\n", current->val);
+        current = current->next;
     }
 }
 
-void display()
-{
-    struct node *ptr;
-    if(start==NULL)
-    {
-        printf("nList is empty:n");
-        return;
+void push(node_t * head, int val) {
+    node_t * current = head;
+    while (current->next != NULL) {
+        current = current->next;
     }
-    else
-    {
-        ptr=start;
-        printf("nThe List elements are:n");
-        while(ptr!=NULL)
-        {
-                printf("%dt",ptr->info );
-                ptr=ptr->next ;
-        }
-    }
-}
 
-void insert_end()
-{
-    struct node *temp,*ptr;
-    temp=(struct node *)malloc(sizeof(struct node));
-    if(temp==NULL)
-    {
-        printf("nOut of Memory Space:n");
-        return;
-    }
-    printf("nEnter the data value for the node:t" );
-    scanf("%d",&temp->info );
-    temp->next =NULL;
-    if(start==NULL)
-    {
-            start=temp;
-    }
-    else
-    {
-        ptr=start;
-        while(ptr->next !=NULL)
-        {
-            ptr=ptr->next ;
-        }
-        ptr->next =temp;
-    }
-}
-
-void delete_begin()
-{
-    struct node *ptr;
-    if(ptr==NULL)
-    {
-            printf("nList is Empty:n");
-            return;
-    }
-    else
-    {
-        ptr=start;
-        start=start->next ;
-        printf("nThe deleted element is :%dt",ptr->info);
-        free(ptr);
-    }
-}
-
-void delete_pos()
-{
-    int i,pos;
-    struct node *temp,*ptr;
-    if(start==NULL)
-    {
-        printf("nThe List is Empty:n");
-        exit(0);
-    }
-    else
-    {
-        printf("nEnter the position of the node to be deleted:t");
-        scanf("%d",&pos);
-        if(pos==0)
-        {
-            ptr=start;
-            start=start->next ;
-            printf("nThe deleted element is:%dt",ptr->info  );
-            free(ptr);
-        }
-        else
-        {
-            ptr=start;
-            for(i=0;i<pos;i++) { temp=ptr; ptr=ptr->next ;
-                if(ptr==NULL)
-                {
-                    printf("nPosition not Found:n");
-                    return;
-                }
-            }
-            temp->next =ptr->next ;
-            printf("nThe deleted element is:%dt",ptr->info );
-            free(ptr);
-        }
-    }
+    /* now we can add a new variable */
+    current->next = (node_t *) malloc(sizeof(node_t));
+    current->next->val = val;
+    current->next->next = NULL;
 }
