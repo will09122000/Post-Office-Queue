@@ -12,7 +12,7 @@ void push(node_t * head, int val);
 int main()
 {
     node_t * head = NULL;
-    node_t * head = (node_t *) malloc(sizeof(node_t));
+    head = (node_t *) malloc(sizeof(node_t));
     if (head == NULL) {
         return 1;
     }
