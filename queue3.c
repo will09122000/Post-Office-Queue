@@ -61,11 +61,21 @@ NODE* dequeue(NODE ** head)
     if (size(*head) == 0)
         return;
 
+    if (size(*head) == 1)
+    {
+        (*head)->next = NULL;
+        free((*head)->next);
+    }
+    else
+    {
+        next_node = (*head)->next->next;
+        nodeRemoved = (*head)->next;
+        (*head)->next = nodeRemoved->next;
+        next_node->previous = *head;
+        free((*head)->next);
+    }
+    
 
-    next_node = (*head)->next;
-    nodeRemoved = *head;
-    free(*head);
-    *head = next_node;
 
     return nodeRemoved;
 }
