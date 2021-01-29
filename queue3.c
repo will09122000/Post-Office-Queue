@@ -8,15 +8,19 @@ typedef struct node {
 
 void print_list(node_t * head);
 void push(node_t * head, int val);
+int pop(node_t ** head);
 
 int main()
 {
     node_t * head = NULL;
     head = (node_t *) malloc(sizeof(node_t));
+    head->next = NULL;
+    /*
     head->val = 1;
     head->next = (node_t *) malloc(sizeof(node_t));
     head->next->val = 2;
     head->next->next = NULL;
+    */
 
     push(head, 42);
     print_list(head);
@@ -43,4 +47,20 @@ void push(node_t * head, int val) {
     current->next = (node_t *) malloc(sizeof(node_t));
     current->next->val = val;
     current->next->next = NULL;
+}
+
+int pop(node_t ** head) {
+    int retval = -1;
+    node_t * next_node = NULL;
+
+    if (*head == NULL) {
+        return -1;
+    }
+
+    next_node = (*head)->next;
+    retval = (*head)->val;
+    free(*head);
+    *head = next_node;
+
+    return retval;
 }
