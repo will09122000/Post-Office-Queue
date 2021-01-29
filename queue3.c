@@ -162,7 +162,7 @@ void checkWaitLimit(NODE ** head)
 
         while (nextNode != NULL)
         {
-            printf("c\n");
+            printf(nextNode);
             if (nextNode->currentWait >= nextNode->waitLimit)
             {
                 current->next = nextNode->next;
