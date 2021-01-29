@@ -110,6 +110,7 @@ void runSim()
         {
             printf("%d, ", servicePoints[i].id);
         }
+        printf("\n");
 
         /* Increment the wait time of all customers in the queue by 1*/
         updateWait(customerQueue);
