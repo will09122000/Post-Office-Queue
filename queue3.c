@@ -148,7 +148,7 @@ void checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
     NODE * nextNode = *head;
-    NODE * temp_node = NULL;
+
 
     if (size(*head) > 0)
         {
@@ -164,7 +164,7 @@ void checkWaitLimit(NODE ** head)
             if (nextNode->currentWait >= nextNode->waitLimit)
             {
                 current->next = nextNode->next;
-                free(nextNode);
+
                 printf("Customer Removed.\n");
             }
 
