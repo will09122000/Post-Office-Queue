@@ -41,6 +41,11 @@ void runSim()
     float standardDeviation = 2;
     unsigned int currentTime;
 
+    int customersTotal = 0;
+    int customersServed = 0;
+    int customersBored = 0;
+    int customerAtServicePoints;
+
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
 
@@ -68,14 +73,17 @@ void runSim()
             if (servicePoints[i].timeTaken == servicePoints[i].timeDone)
             {
                 printf("Customer Served.\n");
+                customersServed++;
                 servicePoints[i].id = 0;
             }
         }
 
         for (i=0; i < numServicePoints; i++)
         {
+            customerAtServicePoints = numServicePoints;
             if (servicePoints[i].id != 1)
             {
+                customerAtServicePoints--;
                 NODE * customer = dequeue(&customerQueue);
                 if (customer) {
                     SERVICEPOINT servicePoint;
@@ -88,7 +96,7 @@ void runSim()
         }
 
         /* Customer reaches wait limit */
-        checkWaitLimit(&customerQueue);
+        customersBored += checkWaitLimit(&customerQueue, customersBored);
 
         /* New Customers */
         if (gsl_ran_flat(r,0,2) < 1)
@@ -97,6 +105,7 @@ void runSim()
             {
                 int waitLimit = (int)gsl_ran_flat(r,3,7);
                 enqueue(customerQueue, waitLimit);
+                customersTotal++;
                 /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
             }
             else {
@@ -121,6 +130,11 @@ void runSim()
                 servicePoints[i].timeTaken++;
         }
     }
+
+    printf("Total Customers: %d\n", customersTotal);
+    printf("Customers Served: %d\n", customersServed);
+    printf("Customers Bored: %d\n", customersBored);
+    printf("Customers at Service Points: %d\n", customerAtServicePoints);
 
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
