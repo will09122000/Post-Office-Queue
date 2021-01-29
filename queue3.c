@@ -110,7 +110,7 @@ int remove_by_index(NODE ** head, int n) {
     NODE * current = *head;
     NODE * temp_node = NULL;
 
-    if (n == 0) {
+    if (n == 1) {
         return pop(head);
     }
 
@@ -150,7 +150,6 @@ void updateWait(NODE * head)
 void checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
-    NODE * nextNode = *head;
     printf("a\n");
 
     if (size(*head) > 0)
@@ -158,18 +157,16 @@ void checkWaitLimit(NODE ** head)
         if (current->waitLimit == INT_MIN)
         {
             current = current->next;
-            nextNode = nextNode->next;
         }
         printf("b\n");
-        nextNode = nextNode->next;
 
-        while (nextNode != NULL)
+        while (current != NULL)
         {
-            printf(nextNode);
-            if (nextNode->currentWait >= nextNode->waitLimit)
+            if (current->currentWait >= current->waitLimit)
             {
-                current->next = nextNode->next;
-                free(nextNode);
+                NODE * previousNode = current->previous;
+                previousNode->next = current->next;
+                free(current);
                 printf("Customer Removed.\n");
             }
             printf("d\n");
