@@ -164,7 +164,25 @@ void checkWaitLimit(NODE ** head)
         {
             if (current->currentWait >= current->waitLimit)
             {
-                deleteNode(&head, current);
+                if (*head == NULL || current == NULL) 
+                    return; 
+            
+                /* If node to be deleted is head node */
+                if (*head == current) 
+                    *head = current->next; 
+            
+                /* Change next only if node to be 
+                deleted is NOT the last node */
+                if (current->next != NULL) 
+                    current->next->previous = current->previous; 
+            
+                /* Change previous only if node to be 
+                deleted is NOT the first node */
+                if (current->previous != NULL) 
+                    current->previous->next = current->next; 
+            
+                /* Finally, free the memory occupied by del*/
+                free(current);
                 printf("Customer Removed.\n");
             }
 
