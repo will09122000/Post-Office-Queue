@@ -61,16 +61,18 @@ NODE* dequeue(NODE ** head)
     switch (size(*head))
     {
     case 0:
+        printf("a\n");
         return;
-        break;
 
     case 1:
+        printf("b\n");
         nodeRemoved = (*head)->next;
         free((*head)->next);
         (*head)->next = NULL;
         return nodeRemoved;
 
     case 2:
+        printf("c\n");
         nextNode = (*head)->next->next;
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
