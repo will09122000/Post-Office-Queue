@@ -68,7 +68,6 @@ void runSim()
             if (servicePoints[i].timeTaken == servicePoints[i].timeDone)
             {
                 printf("Customer Served.");
-                free(&servicePoints[i]);
             }
         }
 
