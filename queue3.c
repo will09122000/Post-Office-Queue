@@ -147,7 +147,7 @@ void updateWait(NODE * head)
 void checkWaitLimit(NODE * head)
 {
     NODE * current = head;
-    int count = 0;
+    int count = 1;
 
     if (current->waitLimit == INT_MIN)
     {
