@@ -77,7 +77,6 @@ void runSim()
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
     NODE * test = dequeue(&customerQueue);
-    NODE * tests = dequeue(&customerQueue);
     print_list(customerQueue);
 
 }
