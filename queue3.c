@@ -4,6 +4,7 @@
 
 typedef struct node {
     int waitLimit, currentWait;
+    struct node * previous;
     struct node * next;
 } NODE;
 
@@ -80,6 +81,7 @@ void enqueue(NODE * head, int waitLimit) {
     current->next->waitLimit = waitLimit;
     current->next->currentWait = 0;
     current->next->next = NULL;
+    current->next->previous = current;
 }
 
 int pop(NODE ** head) {

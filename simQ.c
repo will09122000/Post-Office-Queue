@@ -41,6 +41,7 @@ void runSim()
     NODE *root = NULL;
     root = (NODE *) malloc(sizeof(NODE));
     root->next = NULL;
+    root->previous = NULL;
     root->waitLimit = INT_MIN;
     root->currentWait = INT_MIN;
 
