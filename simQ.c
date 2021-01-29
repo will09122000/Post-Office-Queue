@@ -78,6 +78,7 @@ void runSim()
             }
         }
 
+        customerAtServicePoints = 0;
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id != 1)
