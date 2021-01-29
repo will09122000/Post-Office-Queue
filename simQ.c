@@ -68,6 +68,7 @@ void runSim()
             if (servicePoints[i].timeTaken == servicePoints[i].timeDone)
             {
                 printf("Customer Served.\n");
+                servicePoints[i].id = 0;
             }
         }
 
@@ -104,6 +105,12 @@ void runSim()
         }
 
         print_list(customerQueue);
+        printf("Service Points:\n");
+        for (i=0; i < numServicePoints; i++)
+        {
+            printf("%d, ", servicePoints[i]);
+        }
+
         /* Increment the wait time of all customers in the queue by 1*/
         updateWait(customerQueue);
 
