@@ -44,7 +44,7 @@ void runSim()
     int customersTotal = 0;
     int customersServed = 0;
     int customersBored = 0;
-    int customerAtServicePoints;
+    int customerAtServicePoints = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
@@ -80,10 +80,8 @@ void runSim()
 
         for (i=0; i < numServicePoints; i++)
         {
-            customerAtServicePoints = numServicePoints;
             if (servicePoints[i].id != 1)
             {
-                customerAtServicePoints--;
                 NODE * customer = dequeue(&customerQueue);
                 if (customer) {
                     SERVICEPOINT servicePoint;
@@ -92,6 +90,8 @@ void runSim()
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
+            } else {
+                customerAtServicePoints++;
             }
         }
 
