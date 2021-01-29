@@ -99,6 +99,7 @@ void updateWait(NODE * head)
 int checkWaitLimit(NODE ** head, int customersBored)
 {
     NODE * current = *head;
+    printf("Customers Bored: %d\n", customersBored);
 
     if (size(*head) == 0)
         return;
