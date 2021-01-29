@@ -7,6 +7,7 @@ typedef struct node {
     struct node * next;
 } NODE;
 
+/*
 int size(NODE * head);
 void print_list(NODE * head);
 void enqueue(NODE * head, int val);
@@ -38,6 +39,7 @@ int main()
 
     return 0;
 }
+*/
 
 int size(NODE * head)
 {
