@@ -3,6 +3,14 @@
 #include <gsl/gsl_randist.h>
 #include "queue3.c"
 
+struct servicePoint
+{
+    int timeTaken;
+    int timeDone;
+    int id;
+};
+typedef struct servicePoint SERVICEPOINT;
+
 void runSim();
 
 int main (int argc, char **argv)
@@ -33,6 +41,9 @@ void runSim()
     float standardDeviation = 2;
     unsigned int currentTime;
 
+    SERVICEPOINT servicePoints[numServicePoints];
+    int busyServicePoints = 0;
+
     NODE *customerQueue = NULL;
     customerQueue = (NODE *) malloc(sizeof(NODE));
     customerQueue->next = NULL;
@@ -51,9 +62,33 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
+        int i;
+        for (i=0; i < numServicePoints; i++)
+        {
+            if (servicePoints[i].timeTaken == servicePoints[i].timeDone)
+            {
+                printf("Customer Served.");
+                free(&servicePoints[i]);
+            }
+        }
+
+        for (i=0; i < numServicePoints; i++)
+        {
+            if (servicePoints[i].id != 1)
+            {
+                NODE * customer = dequeue(&customerQueue);
+                if (customer) {
+                    SERVICEPOINT * servicePoint;
+                    servicePoint->timeTaken = 0;
+                    servicePoint->timeDone = 5;
+                    servicePoint->id = 1;
+                    servicePoints[i] = *servicePoint;
+                }
+            }
+        }
+
         /* Customer reaches wait limit */
         checkWaitLimit(&customerQueue);
-        
 
         /* New Customers */
         if (gsl_ran_flat(r,0,2) < 1)
@@ -71,12 +106,16 @@ void runSim()
 
         print_list(customerQueue);
         /* Increment the wait time of all customers in the queue by 1*/
-        updateWait(customerQueue); 
+        updateWait(customerQueue);
+
+        for (i=0; i < numServicePoints; i++)
+        {
+            if (servicePoints[i].id == 1)
+                servicePoints[i].timeTaken++;
+        }
     }
 
     printf("Size of Queue: %d\n", size(customerQueue));
-    print_list(customerQueue);
-    NODE * test = dequeue(&customerQueue);
     print_list(customerQueue);
 
 }
