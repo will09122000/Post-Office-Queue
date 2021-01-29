@@ -144,7 +144,7 @@ void updateWait(NODE * head)
 
 }
 
-void updateWait(NODE * head)
+void checkWaitLimit(NODE * head)
 {
     NODE * current = head;
     int count = 1;

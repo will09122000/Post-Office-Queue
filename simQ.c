@@ -55,9 +55,9 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
-        /* Customer reaches wait limit 
-        checkWaitLimit(queue);
-        */
+        /* Customer reaches wait limit */
+        checkWaitLimit(root);
+        
 
         /* New Customers */
         if (gsl_ran_flat(r,0,2) < 1)
