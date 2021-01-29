@@ -72,33 +72,6 @@ NODE* dequeue(NODE ** head)
     return nodeRemoved;
 }
 
-int remove_by_index(NODE ** head, int n) {
-    n++;
-    int i = 0;
-    int retval = -1;
-    NODE * current = *head;
-    NODE * temp_node = NULL;
-
-    if (n == 1) {
-        return pop(head);
-    }
-
-    for (i = 0; i < n-1; i++) {
-        if (current->next == NULL) {
-            return -1;
-        }
-        current = current->next;
-    }
-
-    temp_node = current->next;
-    retval = temp_node->waitLimit;
-    current->next = temp_node->next;
-    free(temp_node);
-
-    return retval;
-
-}
-
 void updateWait(NODE * head)
 {
     NODE * current = head;
