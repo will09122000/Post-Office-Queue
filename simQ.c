@@ -78,7 +78,7 @@ void runSim()
             }
         }
 
-        customerAtServicePoints = 0;
+
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id != 1)
@@ -91,8 +91,6 @@ void runSim()
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
-            } else {
-                customerAtServicePoints++;
             }
         }
 
@@ -116,9 +114,11 @@ void runSim()
 
         print_list(customerQueue);
         printf("Service Points:\n");
+        customerAtServicePoints = 0;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
+            customerAtServicePoints++;
         }
         printf("\n\n");
 
