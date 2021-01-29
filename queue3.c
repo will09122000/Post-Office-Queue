@@ -150,6 +150,7 @@ void updateWait(NODE * head)
 void checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
+    
     printf("a\n");
 
     if (size(*head) > 0)
@@ -160,7 +161,9 @@ void checkWaitLimit(NODE ** head)
         }
         printf("b\n");
 
-        while (current != NULL)
+        NODE * nextNode = current->next;
+
+        while (nextNode != NULL)
         {
             if (current->currentWait >= current->waitLimit)
             {
@@ -171,7 +174,7 @@ void checkWaitLimit(NODE ** head)
             }
             printf("d\n");
 
-            current = current->next;
+            nextNode = nextNode->next;
         }
     }
 
