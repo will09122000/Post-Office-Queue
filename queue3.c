@@ -56,31 +56,28 @@ void enqueue(NODE * head, int waitLimit)
 NODE* dequeue(NODE ** head)
 {
     NODE* nodeRemoved;
-    NODE * next_node = NULL;
-    printf("a");
+    NODE * nextNode = NULL;
 
-    if (size(*head) == 0)
+    switch (size(*head))
+    {
+    case 0:
         return;
+        break;
 
-    if (size(*head) == 1)
-    {
-        (*head)->next = NULL;
+    case 1:
+        nodeRemoved = (*head)->next;
         free((*head)->next);
-        printf("b");
-    }
-    else
-    {
-        next_node = (*head)->next->next;
+        (*head)->next = NULL;
+        return nodeRemoved;
+
+    case 2:
+        nextNode = (*head)->next->next;
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
-        next_node->previous = *head;
+        nextNode->previous = *head;
         free(nodeRemoved);
-        printf("c");
+        return nodeRemoved;
     }
-    
-
-
-    return nodeRemoved;
 }
 
 void updateWait(NODE * head)
