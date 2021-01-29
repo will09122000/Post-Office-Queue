@@ -131,17 +131,37 @@ void updateWait(NODE * head)
 {
     NODE * current = head;
 
+    if (current->waitLimit == INT_MIN)
+    {
+        current = current->next;
+    }
+
+    while (current != NULL)
+    {
+        current->currentWait++;
+        current = current->next;
+    }
+
+}
+
+void updateWait(NODE * head)
+{
+    NODE * current = head;
+    int count = 1;
 
     if (current->waitLimit == INT_MIN)
     {
         current = current->next;
     }
 
-
     while (current != NULL)
     {
-        current->currentWait++;
+        if (current->currentWait >= current->waitLimit)
+        {
+            remove_by_index(&head, count);
+        }
         current = current->next;
+        count++;
     }
 
 }
