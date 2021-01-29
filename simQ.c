@@ -84,8 +84,9 @@ void runSim()
                     servicePoint->timeTaken = 0;
                     servicePoint->timeDone = 5;
                     servicePoint->id = 1;
-                    servicePoints[i] = *servicePoint;
                     printf("c\n");
+                    servicePoints[i] = *servicePoint;
+                    printf("d\n");
                 }
             }
         }
