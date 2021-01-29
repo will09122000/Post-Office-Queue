@@ -36,7 +36,6 @@ void print_list(NODE * head)
         printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->waitCurrent);
         current = current->next;
     }
-    printf("\n");
 }
 
 void enqueue(NODE * head, int waitLimit)
