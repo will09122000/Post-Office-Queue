@@ -67,7 +67,7 @@ void runSim()
         {
             if (servicePoints[i].timeTaken == servicePoints[i].timeDone)
             {
-                printf("Customer Served.");
+                printf("Customer Served.\n");
             }
         }
 
@@ -75,17 +75,13 @@ void runSim()
         {
             if (servicePoints[i].id != 1)
             {
-                printf("a\n");
                 NODE * customer = dequeue(&customerQueue);
                 if (customer) {
-                    printf("b\n");
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
                     servicePoint.timeDone = 5;
                     servicePoint.id = 1;
-                    printf("c\n");
                     servicePoints[i] = servicePoint;
-                    printf("d\n");
                 }
             }
         }
