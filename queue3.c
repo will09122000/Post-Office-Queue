@@ -4,7 +4,8 @@
 
 struct node
 {
-    int waitLimit, currentWait;
+    int waitCurrent;
+    int waitLimit;
     struct node * previous;
     struct node * next;
 };
@@ -22,53 +23,53 @@ int size(NODE * head)
     return count-1; 
 }
 
-void print_list(NODE * head) {
+void print_list(NODE * head)
+{
     NODE * current = head;
 
-
-    if (current->waitLimit == INT_MIN) {
+    if (current->waitLimit == INT_MIN)
         current = current->next;
-    }
 
-
-    while (current != NULL) {
-        printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->currentWait);
+    while (current != NULL)
+    {
+        printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->waitCurrent);
         current = current->next;
     }
     printf("\n");
 }
 
-void enqueue(NODE * head, int waitLimit) {
+void enqueue(NODE * head, int waitLimit)
+{
     NODE * current = head;
-    while (current->next != NULL) {
+
+    while (current->next != NULL)
         current = current->next;
-    }
 
     /* now we can add a new variable */
     current->next = (NODE *) malloc(sizeof(NODE));
     current->next->waitLimit = waitLimit;
-    current->next->currentWait = 0;
+    current->next->waitCurrent = 0;
     current->next->next = NULL;
     current->next->previous = current;
 }
 
-int pop(NODE ** head) {
-    int retval = -1;
+NODE* dequeue(NODE ** head)
+{
+    NODE* nodeRemoved;
     NODE * next_node = NULL;
 
-    if (*head == NULL) {
+    if (*head == NULL)
         return -1;
-    }
 
     if ((*head)->waitLimit == INT_MIN)
         *head = (*head)->next;
 
     next_node = (*head)->next;
-    retval = (*head)->waitLimit;
+    nodeRemoved = *head;
     free(*head);
     *head = next_node;
 
-    return retval;
+    return nodeRemoved;
 }
 
 int remove_by_index(NODE ** head, int n) {
@@ -109,7 +110,7 @@ void updateWait(NODE * head)
 
     while (current != NULL)
     {
-        current->currentWait++;
+        current->waitCurrent++;
         current = current->next;
     }
 
@@ -127,7 +128,7 @@ void checkWaitLimit(NODE ** head)
 
     while (current != NULL)
     {
-        if (current->currentWait >= current->waitLimit)
+        if (current->waitCurrent >= current->waitLimit)
         {
             if (*head == NULL || current == NULL) 
                 return; 

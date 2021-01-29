@@ -38,7 +38,7 @@ void runSim()
     customerQueue->next = NULL;
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
-    customerQueue->currentWait = INT_MIN;
+    customerQueue->waitCurrent = INT_MIN;
 
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -75,6 +75,8 @@ void runSim()
     }
 
     printf("Size of Queue: %d\n", size(customerQueue));
+    print_list(customerQueue);
+    NODE * test = dequeue(&customerQueue);
     print_list(customerQueue);
 
 }
