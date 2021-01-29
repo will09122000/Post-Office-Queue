@@ -57,6 +57,7 @@ NODE* dequeue(NODE ** head)
 {
     NODE* nodeRemoved;
     NODE * next_node = NULL;
+    printf("a");
 
     if (size(*head) == 0)
         return;
@@ -65,6 +66,7 @@ NODE* dequeue(NODE ** head)
     {
         (*head)->next = NULL;
         free((*head)->next);
+        printf("b");
     }
     else
     {
@@ -73,6 +75,7 @@ NODE* dequeue(NODE ** head)
         (*head)->next = nodeRemoved->next;
         next_node->previous = *head;
         free((*head)->next);
+        printf("c");
     }
     
 
