@@ -147,16 +147,19 @@ void updateWait(NODE * head)
 void checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
+    NODE * nextNode = *head;
     NODE * temp_node = NULL;
 
     if (current->waitLimit == INT_MIN)
     {
         current = current->next;
+        nextNode = nextNode->next;
     }
+    nextNode = nextNode->next;
 
-    while (current != NULL)
+    while (nextNode != NULL)
     {
-        if (current->currentWait >= current->waitLimit)
+        if (nextNode->currentWait >= nextNode->waitLimit)
         {
             temp_node = current->next;
             current->next = temp_node->next;
