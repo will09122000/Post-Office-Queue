@@ -56,6 +56,10 @@ int size(NODE * head)
 void print_list(NODE * head) {
     NODE * current = head;
 
+    if (current->waitLimit == INT_MIN) {
+        NODE * current = current->next;
+    }
+
     while (current != NULL) {
         printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->currentWait);
         current = current->next;
@@ -118,5 +122,22 @@ int remove_by_index(NODE ** head, int n) {
     free(temp_node);
 
     return retval;
+
+}
+
+void updateWait(NODE * head)
+{
+    NODE * current = head;
+
+    if (current->waitLimit == INT_MIN)
+    {
+        NODE * current = current->next;
+    }
+
+    while (current != NULL)
+    {
+        current->currentWait++;
+        current = current->next;
+    }
 
 }
