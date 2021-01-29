@@ -55,8 +55,8 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
-        /* Customer reaches wait limit */
-        checkWaitLimit(&root);
+        /* Customer reaches wait limit 
+        checkWaitLimit(&root);*/
         
 
         /* New Customers */
@@ -80,6 +80,7 @@ void runSim()
         /* Increment the wait time of all customers in the queue by 1*/
         updateWait(root); 
     }
+    remove_by_index(&root, 3);
 
     printf("Size of Queue: %d\n", size(root));
 
