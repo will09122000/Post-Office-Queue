@@ -16,18 +16,18 @@ int main()
     node_t * head = NULL;
     head = (node_t *) malloc(sizeof(node_t));
     head->next = NULL;
-    /*
+    
     head->val = 1;
     head->next = (node_t *) malloc(sizeof(node_t));
     head->next->val = 2;
     head->next->next = NULL;
-    */
-    pop(head);
-    push(head, 1);
-    push(head, 2);
+    
+
     push(head, 3);
     push(head, 4);
     push(head, 5);
+    push(head, 6);
+    push(head, 7);
     print_list(head);
     printf("Popped: %d\n", pop(head));
     print_list(head);
