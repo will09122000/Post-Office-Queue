@@ -58,7 +58,7 @@ NODE* dequeue(NODE ** head)
     NODE* nodeRemoved;
     NODE * next_node = NULL;
 
-    if (size(*head) == 0)
+    if (size(*head) == 1)
         return;
 
     if ((*head)->waitLimit == INT_MIN)
