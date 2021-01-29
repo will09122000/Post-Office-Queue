@@ -76,13 +76,16 @@ void runSim()
         {
             if (servicePoints[i].id != 1)
             {
+                printf("a\n");
                 NODE * customer = dequeue(&customerQueue);
                 if (customer) {
+                    printf("b\n");
                     SERVICEPOINT * servicePoint;
                     servicePoint->timeTaken = 0;
                     servicePoint->timeDone = 5;
                     servicePoint->id = 1;
                     servicePoints[i] = *servicePoint;
+                    printf("c\n");
                 }
             }
         }
