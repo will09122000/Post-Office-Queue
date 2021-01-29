@@ -71,7 +71,7 @@ NODE* dequeue(NODE ** head)
         (*head)->next = NULL;
         return nodeRemoved;
 
-    case 2:
+    default:
         printf("c\n");
         nextNode = (*head)->next->next;
         nodeRemoved = (*head)->next;
