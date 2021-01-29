@@ -83,6 +83,7 @@ void runSim()
     remove_by_index(&root, 3);
 
     printf("Size of Queue: %d\n", size(root));
+    print_list(root);
 
     /*
     int i;
