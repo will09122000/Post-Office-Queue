@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct node {
+struct node
+{
     int waitLimit, currentWait;
     struct node * previous;
     struct node * next;
-} NODE;
+}
+typedef struct node NODE;
 
 int size(NODE * head)
 {

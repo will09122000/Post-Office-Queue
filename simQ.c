@@ -3,7 +3,6 @@
 #include <gsl/gsl_randist.h>
 #include "queue3.c"
 
-
 void runSim();
 
 int main (int argc, char **argv)
@@ -34,16 +33,12 @@ void runSim()
     float standardDeviation = 2;
     unsigned int currentTime;
 
-    /*
-    struct Queue* queue = createQueue(maxQueueLength);
-    struct Queue* servicePoints = createQueue(numServicePoints);
-    */
-    NODE *root = NULL;
-    root = (NODE *) malloc(sizeof(NODE));
-    root->next = NULL;
-    root->previous = NULL;
-    root->waitLimit = INT_MIN;
-    root->currentWait = INT_MIN;
+    NODE *customerQueue = NULL;
+    customerQueue = (NODE *) malloc(sizeof(NODE));
+    customerQueue->next = NULL;
+    customerQueue->previous = NULL;
+    customerQueue->waitLimit = INT_MIN;
+    customerQueue->currentWait = INT_MIN;
 
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -57,16 +52,16 @@ void runSim()
         printf("%d:\n", currentTime);
 
         /* Customer reaches wait limit */
-        checkWaitLimit(&root);
+        checkWaitLimit(&customerQueue);
         
 
         /* New Customers */
         if (gsl_ran_flat(r,0,2) < 1)
         {
-            if (size(root) < maxQueueLength)
+            if (size(customerQueue) < maxQueueLength)
             {
                 int waitLimit = (int)gsl_ran_flat(r,3,7);
-                enqueue(root, waitLimit);
+                enqueue(customerQueue, waitLimit);
                 printf("Customer Arrived, Wait Limit: %d\n", waitLimit);
             }
             else {
@@ -74,24 +69,12 @@ void runSim()
             }
         }
 
-
-        
-
-        print_list(root);
+        print_list(customerQueue);
         /* Increment the wait time of all customers in the queue by 1*/
-        updateWait(root); 
+        updateWait(customerQueue); 
     }
 
-    printf("Size of Queue: %d\n", size(root));
-    print_list(root);
+    printf("Size of Queue: %d\n", size(customerQueue));
+    print_list(customerQueue);
 
-    /*
-    int i;
-    int queueSize = size(root);
-    for (i=0; i < queueSize; i++)
-    {
-        NODE customer = dequeue(queue);
-        printf("Customer: Wait Limit: %d, Current Wait: %d\n", customer.waitLimit, customer.currentWait);
-    }
-    */
 }
