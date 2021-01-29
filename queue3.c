@@ -160,7 +160,7 @@ void checkWaitLimit(NODE ** head)
         }
         printf("b\n");
 
-        while (current != NULL)
+        while (current->next != NULL)
         {
             if (current->currentWait >= current->waitLimit)
             {
