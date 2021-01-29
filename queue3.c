@@ -50,7 +50,7 @@ int size(NODE * head)
         count++; 
         current = current->next; 
     } 
-    return count; 
+    return count-1; 
 }
 
 void print_list(NODE * head) {
@@ -83,6 +83,9 @@ int pop(NODE ** head) {
     if (*head == NULL) {
         return -1;
     }
+
+    if ((*head)->waitLimit == INT_MIN)
+        *head = (*head)->next;
 
     next_node = (*head)->next;
     retval = (*head)->waitLimit;
