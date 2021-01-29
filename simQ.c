@@ -43,6 +43,7 @@ void runSim()
     root->next = NULL;
     root->waitLimit = INT_MIN;
     root->currentWait = INT_MIN;
+    pop(&root);
 
     const gsl_rng_type *T;
     gsl_rng *r;
