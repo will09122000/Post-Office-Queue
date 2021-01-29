@@ -102,6 +102,7 @@ int pop(NODE ** head) {
 }
 
 int remove_by_index(NODE ** head, int n) {
+    n++;
     int i = 0;
     int retval = -1;
     NODE * current = *head;
