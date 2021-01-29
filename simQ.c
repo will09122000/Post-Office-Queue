@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
-#include "queue2.c"
-
-
-/*
-typedef struct Queue QUEUE;
-*/
+#include "queue3.c"
 
 
 void runSim();
@@ -44,6 +39,10 @@ void runSim()
     struct Queue* servicePoints = createQueue(numServicePoints);
     */
     NODE *root = NULL;
+    root = (NODE *) malloc(sizeof(NODE));
+    root->next = NULL;
+    root->waitLimit = INT_MIN;
+    root->currentWait = INT_MIN;
 
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -65,19 +64,9 @@ void runSim()
         {
             if (size(root) < maxQueueLength)
             {
-                /*
-                CUSTOMER newCustomer;
-                newCustomer.waitLimit = (int)gsl_ran_flat(r,2,5);
-                enqueue(queue, newCustomer);
-                printf("Customer Arrived, Wait Limit: %d\n", newCustomer.waitLimit);
-                */
                 int waitLimit = (int)gsl_ran_flat(r,2,5);
-                if (size(root) == 0)
-                    enqueueFirst(&root, waitLimit);
-                else
-                    enqueue(&root, waitLimit);
-
-            
+                enqueue(root, waitLimit);
+                printf("Customer Arrived, Wait Limit: %d\n", waitLimit);
             }
             else {
                 printf("Customer Rejected.");

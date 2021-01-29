@@ -1,85 +1,100 @@
 #include <limits.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct node {
-    int val;
+    int waitLimit, currentWait;
     struct node * next;
-} node_t;
+} NODE;
 
-void print_list(node_t * head);
-void push(node_t * head, int val);
-int pop(node_t ** head);
-int remove_by_index(node_t ** head, int n);
+int size(NODE * head);
+void print_list(NODE * head);
+void enqueue(NODE * head, int val);
+int pop(NODE ** head);
+int remove_by_index(NODE ** head, int n);
 
 int main()
 {
-    node_t * head = NULL;
-    head = (node_t *) malloc(sizeof(node_t));
+    NODE * head = NULL;
+    head = (NODE *) malloc(sizeof(NODE));
     head->next = NULL;
+    head->waitLimit = INT_MIN;
+    head->currentWait = INT_MIN;
     
-    head->val = 1;
-    head->next = (node_t *) malloc(sizeof(node_t));
-    head->next->val = 2;
-    head->next->next = NULL;
-    
-
-    push(head, 3);
-    push(head, 4);
-    push(head, 5);
-    push(head, 6);
-    push(head, 7);
+    printf("Size: %d\n", size(head));
+    enqueue(head, 3);
+    enqueue(head, 4);
+    enqueue(head, 5);
+    enqueue(head, 6);
+    enqueue(head, 7);
+    printf("Size: %d\n", size(head));
     print_list(head);
-    printf("Popped: %d\n", pop(head));
+    printf("Popped: %d\n", pop(&head));
+    printf("Size: %d\n", size(head));
     print_list(head);
-    printf("Popped: %d", remove_by_index(head, 2));
+    printf("Removed: %d\n", remove_by_index(&head, 2));
     print_list(head);
+    printf("Size: %d\n", size(head));
 
     return 0;
 }
 
-void print_list(node_t * head) {
-    node_t * current = head;
+int size(NODE * head)
+{
+    int count = 0;
+    NODE *current = head;
+    while (current != NULL) 
+    { 
+        count++; 
+        current = current->next; 
+    } 
+    return count; 
+}
+
+void print_list(NODE * head) {
+    NODE * current = head;
 
     while (current != NULL) {
-        printf("%d, ", current->val);
+        printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->currentWait);
         current = current->next;
     }
     printf("\n");
 }
 
-void push(node_t * head, int val) {
-    node_t * current = head;
+void enqueue(NODE * head, int waitLimit) {
+    NODE * current = head;
     while (current->next != NULL) {
         current = current->next;
     }
 
     /* now we can add a new variable */
-    current->next = (node_t *) malloc(sizeof(node_t));
-    current->next->val = val;
+    current->next = (NODE *) malloc(sizeof(NODE));
+    current->next->waitLimit = waitLimit;
+    current->next->currentWait = 0;
     current->next->next = NULL;
 }
 
-int pop(node_t ** head) {
+int pop(NODE ** head) {
     int retval = -1;
-    node_t * next_node = NULL;
+    NODE * next_node = NULL;
 
     if (*head == NULL) {
         return -1;
     }
 
     next_node = (*head)->next;
-    retval = (*head)->val;
+    retval = (*head)->waitLimit;
     free(*head);
     *head = next_node;
 
     return retval;
 }
 
-int remove_by_index(node_t ** head, int n) {
+int remove_by_index(NODE ** head, int n) {
     int i = 0;
     int retval = -1;
-    node_t * current = *head;
-    node_t * temp_node = NULL;
+    NODE * current = *head;
+    NODE * temp_node = NULL;
 
     if (n == 0) {
         return pop(head);
@@ -93,7 +108,7 @@ int remove_by_index(node_t ** head, int n) {
     }
 
     temp_node = current->next;
-    retval = temp_node->val;
+    retval = temp_node->waitLimit;
     current->next = temp_node->next;
     free(temp_node);
 
