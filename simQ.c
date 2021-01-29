@@ -56,8 +56,8 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
-        /* Customer reaches wait limit 
-        checkWaitLimit(&root);*/
+        /* Customer reaches wait limit */
+        checkWaitLimit(&root);
         
 
         /* New Customers */
