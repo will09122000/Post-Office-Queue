@@ -123,8 +123,8 @@ void runSim()
         }
         printf("\n\n");
 
-        /* Increment the wait time of all customers in the queue by 1
-        updateWait(customerQueue);*/
+        /* Increment the wait time of all customers in the queue by 1 */
+        updateWait(customerQueue);
 
         for (i=0; i < numServicePoints; i++)
         {
