@@ -22,14 +22,14 @@ int main()
     head->next->val = 2;
     head->next->next = NULL;
     */
-
+    pop(head);
     push(head, 1);
     push(head, 2);
     push(head, 3);
     push(head, 4);
     push(head, 5);
     print_list(head);
-    printf("Popped: %d", pop(head));
+    printf("Popped: %d\n", pop(head));
     print_list(head);
     printf("Popped: %d", remove_by_index(head, 2));
     print_list(head);
