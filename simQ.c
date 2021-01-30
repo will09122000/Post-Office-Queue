@@ -87,7 +87,7 @@ void runSim()
                 if (customer) {
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 8;
+                    servicePoint.timeDone = 6;
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
