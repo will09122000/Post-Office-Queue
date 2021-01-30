@@ -96,9 +96,10 @@ void updateWait(NODE * head)
 
 }
 
-int checkWaitLimit(NODE ** head, int customersBored)
+int checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
+    int newBoredCustomers = 0;
 
     if (size(*head) == 0)
         return;
@@ -130,9 +131,9 @@ int checkWaitLimit(NODE ** head, int customersBored)
             /* Finally, free the memory occupied by del*/
             free(current);
             printf("Customer Bored.\n");
-            customersBored++;
+            newBoredCustomers++;
         }
         current = current->next;
     }
-    return customersBored;
+    return newBoredCustomers;
 }
