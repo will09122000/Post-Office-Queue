@@ -147,6 +147,7 @@ void runSim()
         int i;
         for (i=0; i < numServicePoints; i++)
         {
+            printf("%d, %d\n", servicePoints[i].timeTaken, servicePoints[i].timeDone);
             if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
             {
                 printf("Customer Served.\n");
