@@ -200,6 +200,10 @@ void runSim()
 void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed)
 {
     int i;
+    for (i=0; i < numServicePoints; i++)
+        {
+            printf("%d, ", servicePoints[i].id);
+        }
     printf("%d\n", *customersServed);
     for (i=0; i < *numServicePoints; i++)
     {
