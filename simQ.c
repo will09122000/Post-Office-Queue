@@ -69,6 +69,7 @@ void runSim()
         printf("%d:\n", currentTime);
 
         fulfillCustomers(&numServicePoints, &servicePoints, &customersServed);
+        printf("%d\n", customersServed);
 
         int i;
         for (i=0; i < numServicePoints; i++)
