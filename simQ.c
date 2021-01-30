@@ -38,7 +38,7 @@ int main (int argc, char **argv)
 void runSim()
 {
     unsigned int maxQueueLength = 20;
-    unsigned int numServicePoints = 4;
+    unsigned int numServicePoints = 5;
     unsigned int closingTime = 100;
     float mean = 5;
     float standardDeviation = 2;
