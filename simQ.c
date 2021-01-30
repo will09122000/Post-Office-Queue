@@ -133,6 +133,62 @@ void runSim()
         }
     }
 
+    while (size(customerQueue) > 0)
+    {
+        printf("Post Office Close\n");
+        printf("%d:\n", currentTime);
+
+        int i;
+        for (i=0; i < numServicePoints; i++)
+        {
+            if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
+            {
+                printf("Customer Served.\n");
+                customersServed++;
+                servicePoints[i].id = 0;
+            }
+        }
+
+
+        for (i=0; i < numServicePoints; i++)
+        {
+            if (servicePoints[i].id != 1)
+            {
+                NODE * customer = dequeue(&customerQueue);
+                if (customer) {
+                    SERVICEPOINT servicePoint;
+                    servicePoint.timeTaken = 0;
+                    servicePoint.timeDone = 5;
+                    servicePoint.id = 1;
+                    servicePoints[i] = servicePoint;
+                }
+            }
+        }
+
+        /* Customer reaches wait limit */
+        customersBored += checkWaitLimit(&customerQueue, customersBored);
+
+        print_list(customerQueue);
+        printf("Service Points:\n");
+        customerAtServicePoints = 0;
+        for (i=0; i < numServicePoints; i++)
+        {
+            printf("%d, ", servicePoints[i].id);
+            if (servicePoints[i].id == 1)
+                customerAtServicePoints++;
+        }
+        printf("\n\n");
+
+        /* Increment the wait time of all customers in the queue by 1 */
+        updateWait(customerQueue);
+
+        for (i=0; i < numServicePoints; i++)
+        {
+            if (servicePoints[i].id == 1)
+                servicePoints[i].timeTaken++;
+        }
+    }
+
     printf("Total Customers: %d\n", customersTotal);
     printf("Customers Served: %d\n", customersServed);
     printf("Customers Bored: %d\n", customersBored);
