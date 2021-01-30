@@ -165,7 +165,7 @@ void runSim()
                 if (customer) {
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 5;
+                    servicePoint.timeDone = gsl_ran_poisson(r, 3);
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
