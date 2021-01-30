@@ -199,9 +199,10 @@ void runSim()
 void fulfillCustomers(int *numServicePoints, SERVICEPOINT *servicePoints, int *customersServed)
 {
     int i;
-    
+    printf("%d\n", *customersServed);
     for (i=0; i < *numServicePoints; i++)
     {
+        printf("%d\n", *customersServed);
         if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
         {
             printf("Customer Served.\n");
