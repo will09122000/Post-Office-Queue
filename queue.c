@@ -1,104 +1,139 @@
-/* C program for array implementation of queue */
 #include <limits.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-typedef struct Queue QUEUE;
-typedef struct Customer CUSTOMER;
-
-struct Customer {
-    int waitLimit, currentWait;
+struct node
+{
+    int waitCurrent;
+    int waitLimit;
+    struct node * previous;
+    struct node * next;
 };
+typedef struct node NODE;
 
-/* A structure to represent a queue */
-struct Queue {
-    int front, rear, size;
-    unsigned maxLength;
-    CUSTOMER* array;
-};
-
-/* function to create a queue of given maxLength.
-It initializes size of queue as 0 */
-QUEUE* createQueue(unsigned maxLength)
+int size(NODE * head)
 {
-    QUEUE* queue = (QUEUE*)malloc(sizeof(QUEUE));
-    queue->maxLength = maxLength;
-    queue->front = queue->size = 0;
-
-    /* This is important, see the enqueue */
-    queue->rear = maxLength - 1;
-    queue->array = (CUSTOMER*)malloc(queue->maxLength * sizeof(CUSTOMER));
-    return queue;
+    int count = 0;
+    NODE *current = head;
+    while (current != NULL) 
+    { 
+        count++; 
+        current = current->next; 
+    } 
+    return count-1; 
 }
 
-/* Queue is empty when size is 0 */
-int isEmpty(QUEUE* queue)
+void print_list(NODE * head)
 {
-    return (queue->size == 0);
+    NODE * current = head;
+    printf("Queue:\n");
+
+    if (current->waitLimit == INT_MIN)
+        current = current->next;
+
+    while (current != NULL)
+    {
+        printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->waitCurrent);
+        current = current->next;
+    }
 }
 
-/* Queue is full when size becomes
-equal to the maxLength */
-int isFull(QUEUE* queue)
+void enqueue(NODE * head, int waitLimit)
 {
-    return (queue->size == queue->maxLength);
+    NODE * current = head;
+
+    while (current->next != NULL)
+        current = current->next;
+
+    /* now we can add a new variable */
+    current->next = (NODE *) malloc(sizeof(NODE));
+    current->next->waitLimit = waitLimit;
+    current->next->waitCurrent = 0;
+    current->next->next = NULL;
+    current->next->previous = current;
 }
 
-/* Function to add an item to the queue.
-It changes rear and size */
-void enqueue(QUEUE* queue, CUSTOMER item)
+NODE* dequeue(NODE ** head)
 {
-    if (isFull(queue))
+    NODE* nodeRemoved;
+    NODE * nextNode = NULL;
+
+    switch (size(*head))
+    {
+    case 0:
         return;
-    queue->rear = (queue->rear + 1) % queue->maxLength;
-    queue->array[queue->rear] = item;
-    queue->size = queue->size + 1;
-}
 
-/* Function to remove an item from queue.
-It changes front and size  */
-CUSTOMER dequeue(QUEUE* queue)
-{
-    /*
-    if (isEmpty(queue))
-        return INT_MIN;
-    */
-    CUSTOMER item = queue->array[queue->front];
-    queue->front = (queue->front + 1) % queue->maxLength;
-    queue->size = queue->size - 1;
-    return item;
-}
+    case 1:
+        nodeRemoved = (*head)->next;
+        free((*head)->next);
+        (*head)->next = NULL;
+        return nodeRemoved;
 
-/* Function to get front of queue */
-CUSTOMER front(QUEUE* queue)
-{
-    /*
-    if (isEmpty(queue))
-        return INT_MIN;
-    */
-    return queue->array[queue->front];
-}
-
-void updateWait(QUEUE* queue)
-{
-    int i;
-    int queueSize = queue->size;
-    for (i=0; i < queueSize; i++)
-    {
-        queue->array[i].currentWait++;
+    default:
+        nextNode = (*head)->next->next;
+        nodeRemoved = (*head)->next;
+        (*head)->next = nodeRemoved->next;
+        nextNode->previous = *head;
+        free(nodeRemoved);
+        return nodeRemoved;
     }
 }
 
-void checkWaitLimit(QUEUE* queue)
+void updateWait(NODE * head)
 {
-    int i;
-    int queueSize = queue->size;
-    queue->front = queue->size = 0;
-    queue->rear = queue->maxLength - 1;
-    for (i=0; i < queueSize; i++)
+    NODE * current = head;
+
+    if (current->waitLimit == INT_MIN)
     {
-        if (queue->array[i].currentWait < queue->array[i].waitLimit)
-            enqueue(queue, queue->array[i]);
-        else
-            printf("Bored Customer\n");
+        current = current->next;
     }
+
+    while (current != NULL)
+    {
+        current->waitCurrent++;
+        current = current->next;
+    }
+
+}
+
+int checkWaitLimit(NODE ** head)
+{
+    NODE * current = *head;
+    int newBoredCustomers = 0;
+
+    if (size(*head) == 0)
+        return;
+
+    if (current->waitLimit == INT_MIN)
+        current = current->next;
+
+    while (current != NULL)
+    {
+        if (current->waitCurrent >= current->waitLimit)
+        {
+            if (*head == NULL || current == NULL) 
+                return; 
+        
+            /* If node to be deleted is head node */
+            if (*head == current) 
+                *head = current->next; 
+        
+            /* Change next only if node to be 
+            deleted is NOT the last node */
+            if (current->next != NULL) 
+                current->next->previous = current->previous; 
+        
+            /* Change previous only if node to be 
+            deleted is NOT the first node */
+            if (current->previous != NULL) 
+                current->previous->next = current->next; 
+        
+            /* Finally, free the memory occupied by del*/
+            free(current);
+            printf("Customer Bored.\n");
+            newBoredCustomers++;
+        }
+        current = current->next;
+    }
+    return newBoredCustomers;
 }

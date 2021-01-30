@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
-#include "queue3.c"
+#include "queue.c"
 
 struct servicePoint
 {
