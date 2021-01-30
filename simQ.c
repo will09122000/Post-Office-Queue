@@ -13,8 +13,7 @@ typedef struct servicePoint SERVICEPOINT;
 
 /* Function Prototypes */
 void runSim();
-void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed);
-void newCustomers(gsl_rng *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal);
+
 
 int main (int argc, char **argv)
 {
@@ -22,15 +21,25 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
+    FILE *inputFile = fopen(inputFileName, "r");
+    char test[30];
+    if( fgets (test, 30, inputFile)!=NULL ) {
+        puts(test);
+    }
+    fclose(inputFile);
+    printf("%s\n", test);
+
     printf("%s\n", inputFileName);
     printf("%d\n", numSims);
     printf("%s\n", outputFileName);
 
+    /*
     int i;
     for (i=0; i < numSims; i++)
     {
         runSim();
     }
+    */
 
     return 0;
 }
@@ -147,7 +156,6 @@ void runSim()
         int i;
         for (i=0; i < numServicePoints; i++)
         {
-            printf("%d, %d\n", servicePoints[i].timeTaken, servicePoints[i].timeDone);
             if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
             {
                 printf("Customer Served.\n");
@@ -207,18 +215,4 @@ void runSim()
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
-}
-
-void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed)
-{
-    int i;
-    for (i=0; i < *numServicePoints; i++)
-    {
-        if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
-        {
-            printf("Customer Served.\n");
-            *customersServed++;
-            servicePoints[i].id = 0;
-        }
-    }
 }

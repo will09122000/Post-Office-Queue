@@ -9,6 +9,7 @@
         "initializer_list": "c",
         "ranges": "c",
         "utility": "c",
-        "string": "c"
+        "string": "c",
+        "sstream": "c"
     }
 }
