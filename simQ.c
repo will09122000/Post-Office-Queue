@@ -22,8 +22,8 @@ int main (int argc, char **argv)
     char * outputFileName = argv[3];
 
     FILE *inputFile = fopen(inputFileName, "r");
-    char test[30];
-    if( fgets (test, 30, inputFile)!=NULL ) {
+    char test[40];
+    if( fgets (test, 40, inputFile)!=NULL ) {
         puts(test);
     }
     fclose(inputFile);
