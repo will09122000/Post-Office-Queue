@@ -131,12 +131,10 @@ void runSim()
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
-        printf("%d\n", customersAtServicePoint);
     }
 
     while (customersAtServicePoint > 0)
     {
-        printf("%d\n", customersAtServicePoint);
         printf("Post Office Close\n");
         printf("%d:\n", currentTime);
 
