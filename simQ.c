@@ -101,7 +101,7 @@ void runSim()
         customersBored += checkWaitLimit(&customerQueue);
         
         /* New Customers */
-        unsigned int newCustomers = gsl_ran_poisson(r, 5);
+        unsigned int newCustomers = gsl_ran_poisson(r, 2);
         printf("POISSON: %d, ", newCustomers);
         if (gsl_ran_flat(r,0,2) < 1.5)
         {
