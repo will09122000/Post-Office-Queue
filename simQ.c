@@ -5,8 +5,8 @@
 
 struct servicePoint
 {
-    int timeTaken;
-    int timeDone;
+    unsigned int timeTaken;
+    unsigned int timeDone;
     int id;
 };
 typedef struct servicePoint SERVICEPOINT;
@@ -90,9 +90,7 @@ void runSim()
                 if (customer) {
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
-                    unsigned int test = gsl_ran_poisson(r, 2);
-
-                    servicePoint.timeDone = test;
+                    servicePoint.timeDone = gsl_ran_poisson(r, 3);
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
