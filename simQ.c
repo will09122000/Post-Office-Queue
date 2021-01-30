@@ -102,7 +102,7 @@ void runSim()
         {
             if (size(customerQueue) < maxQueueLength)
             {
-                int waitLimit = (int)gsl_ran_flat(r,3,6);
+                int waitLimit = (int)gsl_ran_flat(r,3,4);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
                 /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
