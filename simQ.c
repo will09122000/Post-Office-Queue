@@ -101,9 +101,7 @@ void runSim()
         customersBored += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        printf("Z");
-        newCustomers(&r, &customerQueue, &maxQueueLength, &customersTotal);
-        /*
+
         if (gsl_ran_flat(r,0,2) < 1.5)
         {
             if (size(customerQueue) < maxQueueLength)
@@ -111,14 +109,13 @@ void runSim()
                 int waitLimit = (int)gsl_ran_flat(r,2,3);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
-                /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);
+                /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
             }
             else {
                 printf("Customer Rejected.");
             }
         }
-        */
-        
+
 
         print_list(customerQueue);
         printf("Service Points:\n");
@@ -223,25 +220,4 @@ void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *
             servicePoints[i].id = 0;
         }
     }
-}
-
-void newCustomers(gsl_rng *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal)
-{
-    printf("A");
-    if (gsl_ran_flat(r,0,2) < 1.5)
-        {
-            printf("B");
-            if (size(customerQueue) < *maxQueueLength)
-            
-            {
-                int waitLimit = (int)gsl_ran_flat(r,2,3);
-                enqueue(customerQueue, waitLimit);
-                *customersTotal++;
-                printf("C");
-                /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
-            }
-            else {
-                printf("Customer Rejected.");
-            }
-        }
 }
