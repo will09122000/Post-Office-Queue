@@ -14,7 +14,7 @@ typedef struct servicePoint SERVICEPOINT;
 /* Function Prototypes */
 void runSim();
 void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed);
-void newCustomers(int *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal);
+void newCustomers(gsl_rng *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal);
 
 int main (int argc, char **argv)
 {
@@ -224,7 +224,7 @@ void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *
     }
 }
 
-void newCustomers(int *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal)
+void newCustomers(gsl_rng *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal)
 {
     if (gsl_ran_flat(*r,0,2) < 1.5)
         {
