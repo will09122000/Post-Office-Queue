@@ -90,7 +90,9 @@ void runSim()
                 if (customer) {
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 5;
+                    unsigned int test = gsl_ran_poisson(r, 2);
+
+                    servicePoint.timeDone = test;
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
