@@ -167,7 +167,7 @@ void runSim()
         }
 
         /* Customer reaches wait limit */
-        customersBored += checkWaitLimit(&customerQueue, customersBored);
+        customersBored = checkWaitLimit(&customerQueue, customersBored);
 
         print_list(customerQueue);
         printf("Service Points:\n");
