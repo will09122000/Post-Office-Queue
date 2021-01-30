@@ -44,7 +44,7 @@ void runSim()
     int customersTotal = 0;
     int customersServed = 0;
     int customersBored = 0;
-    int customerAtServicePoints = 0;
+    int customersAtServicePoint = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
@@ -114,12 +114,12 @@ void runSim()
 
         print_list(customerQueue);
         printf("Service Points:\n");
-        customerAtServicePoints = 0;
+        customersAtServicePoint = 0;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
             if (servicePoints[i].id == 1)
-                customerAtServicePoints++;
+                customersAtServicePoint++;
         }
         printf("\n\n");
 
@@ -133,7 +133,7 @@ void runSim()
         }
     }
 
-    while (size(customerQueue) > 0 && customerAtServicePoints > 0)
+    while (size(customerQueue) > 0 && customersAtServicePoint > 0)
     {
         printf("Post Office Close\n");
         printf("%d:\n", currentTime);
@@ -170,12 +170,12 @@ void runSim()
 
         print_list(customerQueue);
         printf("Service Points:\n");
-        customerAtServicePoints = 0;
+        customersAtServicePoint = 0;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
             if (servicePoints[i].id == 1)
-                customerAtServicePoints++;
+                customersAtServicePoint++;
         }
         printf("\n\n");
 
@@ -187,12 +187,15 @@ void runSim()
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
+
+        currentTime++;
     }
 
     printf("Total Customers: %d\n", customersTotal);
     printf("Customers Served: %d\n", customersServed);
     printf("Customers Bored: %d\n", customersBored);
-    printf("Customers at Service Points: %d\n", customerAtServicePoints);
+    printf("Customers at Service Points: %d\n", customersAtServicePoint);
+    printf("Total Time: %d\n", currentTime);
 
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
