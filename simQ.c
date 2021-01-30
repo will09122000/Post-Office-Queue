@@ -12,7 +12,6 @@ struct servicePoint
 typedef struct servicePoint SERVICEPOINT;
 
 void runSim();
-void fulfillCustomers(int *numServicePoints, SERVICEPOINT *servicePoints, int *customersServed);
 
 int main (int argc, char **argv)
 {
