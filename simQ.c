@@ -134,7 +134,7 @@ void runSim()
         printf("%d\n", customersAtServicePoint);
     }
 
-    while ((size(customerQueue) > 0) && (customersAtServicePoint > 0))
+    while (customersAtServicePoint > 0)
     {
         printf("%d\n", customersAtServicePoint);
         printf("Post Office Close\n");
