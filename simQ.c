@@ -21,6 +21,7 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
+    /*
     FILE *inputFile = fopen(inputFileName, "r");
     char test[40];
     if( fgets (test, 40, inputFile)!=NULL ) {
@@ -28,18 +29,19 @@ int main (int argc, char **argv)
     }
     fclose(inputFile);
     printf("%s\n", test);
+    */
 
     printf("%s\n", inputFileName);
     printf("%d\n", numSims);
     printf("%s\n", outputFileName);
 
-    /*
+
     int i;
     for (i=0; i < numSims; i++)
     {
         runSim();
     }
-    */
+
 
     return 0;
 }
