@@ -98,7 +98,7 @@ void runSim()
         customersBored += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        if (gsl_ran_flat(r,0,1) < 1)
+        if (gsl_ran_flat(r,0,2) < 1.5)
         {
             if (size(customerQueue) < maxQueueLength)
             {
