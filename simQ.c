@@ -226,7 +226,7 @@ void fulfillCustomers(int *numServicePoints, SERVICEPOINT servicePoints[], int *
 
 void newCustomers(gsl_rng *r, NODE *customerQueue, int *maxQueueLength, int *customersTotal)
 {
-    if (gsl_ran_flat(*r,0,2) < 1.5)
+    if (gsl_ran_flat(r,0,2) < 1.5)
         {
             if (size(customerQueue) < *maxQueueLength)
             {
