@@ -39,7 +39,7 @@ void runSim()
 {
     unsigned int maxQueueLength = 20;
     unsigned int numServicePoints = 3;
-    unsigned int closingTime = 20;
+    unsigned int closingTime = 100;
     float mean = 5;
     float standardDeviation = 2;
     unsigned int currentTime;
@@ -102,12 +102,11 @@ void runSim()
         
         /* New Customers */
         unsigned int newCustomers = gsl_ran_poisson(r, 2);
-        printf("POISSON: %d, ", newCustomers);
         for (i=0; i < newCustomers; i++)
         {
             if (size(customerQueue) < maxQueueLength)
             {
-                int waitLimit = (int)gsl_ran_flat(r,2,3);
+                int waitLimit = (int)gsl_ran_flat(r,3,5);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
                 /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
