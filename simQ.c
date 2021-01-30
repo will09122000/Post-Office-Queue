@@ -81,8 +81,6 @@ void runSim()
             }
         }
 
-
-        int i;
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id != 1)
