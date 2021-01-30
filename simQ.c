@@ -68,10 +68,21 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
-        fulfillCustomers(&numServicePoints, servicePoints, &customersServed);
-        
-
+        /*fulfillCustomers(&numServicePoints, servicePoints, &customersServed);*/
         int i;
+        printf("%d\n", customersServed);
+        for (i=0; i < numServicePoints; i++)
+        {
+            printf("%d\n", customersServed);
+            if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
+            {
+                printf("Customer Served.\n");
+                customersServed++;
+                printf("%d\n", customersServed);
+                servicePoints[i].id = 0;
+            }
+        }
+        
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id != 1)
