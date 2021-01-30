@@ -12,6 +12,7 @@ struct servicePoint
 typedef struct servicePoint SERVICEPOINT;
 
 void runSim();
+void fulfillCustomers(int *numServicePoints, SERVICEPOINT *servicePoints, int *customersServed);
 
 int main (int argc, char **argv)
 {
@@ -67,8 +68,8 @@ void runSim()
     {
         printf("%d:\n", currentTime);
 
-        fulfillCustomers(&numServicePoints, &servicePoints, &customersServed);
-        printf("%d\n", customersServed);
+        fulfillCustomers(&numServicePoints, servicePoints, &customersServed);
+        
 
         int i;
         for (i=0; i < numServicePoints; i++)
@@ -198,6 +199,7 @@ void runSim()
 void fulfillCustomers(int *numServicePoints, SERVICEPOINT *servicePoints, int *customersServed)
 {
     int i;
+    printf("%d\n", *customersServed);
     for (i=0; i < *numServicePoints; i++)
     {
         if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
