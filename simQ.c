@@ -133,9 +133,10 @@ void runSim()
         }
     }
 
+    printf("Post Office Close\n");
+
     while (customersAtServicePoint > 0)
     {
-        printf("Post Office Close\n");
         printf("%d:\n", currentTime);
 
         int i;
