@@ -101,6 +101,7 @@ void runSim()
         customersBored += checkWaitLimit(&customerQueue);
 
         /* New Customers */
+        printf("Z");
         newCustomers(&r, &customerQueue, &maxQueueLength, &customersTotal);
         /*
         if (gsl_ran_flat(r,0,2) < 1.5)
