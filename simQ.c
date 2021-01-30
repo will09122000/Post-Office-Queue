@@ -87,7 +87,7 @@ void runSim()
                 if (customer) {
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 2;
+                    servicePoint.timeDone = 5;
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
@@ -102,7 +102,7 @@ void runSim()
         {
             if (size(customerQueue) < maxQueueLength)
             {
-                int waitLimit = (int)gsl_ran_flat(r,2,4);
+                int waitLimit = (int)gsl_ran_flat(r,2,3);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
                 /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
