@@ -87,7 +87,7 @@ void runSim()
                 if (customer) {
                     SERVICEPOINT servicePoint;
                     servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 10;
+                    servicePoint.timeDone = 2;
                     servicePoint.id = 1;
                     servicePoints[i] = servicePoint;
                 }
@@ -98,7 +98,7 @@ void runSim()
         customersBored += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        if (gsl_ran_flat(r,0,2) < 1)
+        if (gsl_ran_flat(r,0,1) < 1)
         {
             if (size(customerQueue) < maxQueueLength)
             {
