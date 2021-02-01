@@ -16,7 +16,8 @@ int main (int argc, char **argv)
         exit(1);
     }
 
-    fscanf(fp, "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nstanDevNewCustomers: %d\nmeanWaitTolerance: %d\nstandDevWaitTolerance: %d\n", &maxQueueLength, &numServicePoints, &closingTime, &meanNewCustomers, &stanDevNewCustomers, &meanWaitTolerance, &standDevWaitTolerance);
+    fscanf(fp,
+           "%d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nstanDevNewCustomers: %d\nmeanWaitTolerance: %d\nstandDevWaitTolerance: %d\n", &maxQueueLength, &numServicePoints, &closingTime, &meanNewCustomers, &stanDevNewCustomers, &meanWaitTolerance, &standDevWaitTolerance);
 
 /*
     while ( !feof(fp) )
