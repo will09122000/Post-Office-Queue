@@ -30,6 +30,13 @@ int main (int argc, char **argv)
             
     }
     */
+    printf("%d\n", maxQueueLength);
+    printf("%d\n", numServicePoints);
+    printf("%d\n", closingTime);
+    printf("%d\n", meanNewCustomers);
+    printf("%d\n", stanDevNewCustomers);
+    printf("%d\n", meanWaitTolerance);
+    printf("%d\n", standDevWaitTolerance);
     printf("\n");
 
     /*
