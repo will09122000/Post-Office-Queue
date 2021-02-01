@@ -1,7 +1,6 @@
-#include <errno.h>
-#include <string.h>
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
+#include <fileIO.c>
 #include <queue.c>
 
 struct servicePoint
