@@ -21,6 +21,7 @@ int main (int argc, char **argv)
         if(fgets(str, 60, fp) != NULL);
             printf("%s",str);
     }
+    printf("\n");
     fclose(fp);
 
     /*
