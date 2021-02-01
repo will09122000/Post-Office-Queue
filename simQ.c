@@ -14,8 +14,14 @@ int main (int argc, char **argv)
     int meanWaitTolerance;
     int standDevWaitTolerance;
 
-    getSimParameters(inputFileName, &maxQueueLength);
+    getSimParameters(inputFileName, &maxQueueLength, &numServicePoints, &closingTime, &meanNewCustomers, &stanDevNewCustomers, &meanWaitTolerance, &standDevWaitTolerance);
     printf("%d\n", maxQueueLength);
+    printf("%d\n", numServicePoints);
+    printf("%d\n", closingTime);
+    printf("%d\n", meanNewCustomers);
+    printf("%d\n", stanDevNewCustomers);
+    printf("%d\n", meanWaitTolerance);
+    printf("%d\n", standDevWaitTolerance);
 
 
     int i;
