@@ -6,15 +6,23 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
-    /*
-    FILE *inputFile = fopen(inputFileName, "r");
-    char test[40];
-    if( fgets (test, 40, inputFile)!=NULL ) {
-        puts(test);
+
+    FILE *fp;
+    char ch;
+    if ( (fp = fopen(inputFileName, "r")) == NULL )
+    {
+        printf("Unable to open %s\n", inputFileName);
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+        exit(1);
     }
-    fclose(inputFile);
-    printf("%s\n", test);
-    */
+
+    while ( !feof(fp) )
+    {
+        ch = fgetc(fp);
+        printf("%3d: %c\n",ch,ch);
+    }
+    fclose(fp);
+
 
     printf("%s\n", inputFileName);
     printf("%d\n", numSims);
