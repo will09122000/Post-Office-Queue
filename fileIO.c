@@ -1,6 +1,6 @@
 #include <fileIO.h>
 
-void getSimParameters(char inputFileName)
+void getSimParameters(char inputFileName[])
 {
     FILE *fp;
     int maxQueueLength;
