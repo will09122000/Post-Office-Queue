@@ -1,9 +1,6 @@
-# The standard parameters, as described in the specification:
-maxQueueLength   20
-numServicePoints 3
-closingTime      100
-
-# Parameters added by you, for example:
-averageNewCustomersPerInterval 3
-mean 5
-standardDeviation 1
+maxQueueLength: 20
+numServicePoints: 3
+closingTime: 100
+avgNewCustomersPerInterval: 3
+mean: 5
+standardDeviation: 1

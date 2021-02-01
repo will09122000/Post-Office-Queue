@@ -23,17 +23,13 @@ int main (int argc, char **argv)
     }
     fclose(fp);
 
-
-    printf("%s\n", inputFileName);
-    printf("%d\n", numSims);
-    printf("%s\n", outputFileName);
-
-
+    /*
     int i;
     for (i=0; i < numSims; i++)
     {
         runSim();
     }
+    */
 
 
     return 0;
