@@ -1,9 +1,8 @@
 #include <fileIO.h>
 
-void getSimParameters(char inputFileName[])
+void getSimParameters(char inputFileName[], int *maxQueueLength)
 {
     FILE *fp;
-    int maxQueueLength;
     int numServicePoints;
     int closingTime;
     int meanNewCustomers;
@@ -21,19 +20,7 @@ void getSimParameters(char inputFileName[])
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nstanDevNewCustomers: %d\nmeanWaitTolerance: %d\nstandDevWaitTolerance: %d\n",
            &maxQueueLength, &numServicePoints, &closingTime, &meanNewCustomers, &stanDevNewCustomers, &meanWaitTolerance, &standDevWaitTolerance);
 
-/*
-    while ( !feof(fp) )
-    {
-        if(fgets(fileLine, 60, fp) != NULL);
-        {
-            printf("%s",fileLine);
-            sscanf(fileLine, "%d", parameters[i]);
-            i++;
-        }
-            
-    }
-    */
-    printf("%d\n", maxQueueLength);
+    printf("%d\n", &maxQueueLength);
     printf("%d\n", numServicePoints);
     printf("%d\n", closingTime);
     printf("%d\n", meanNewCustomers);

@@ -6,7 +6,16 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
-    getSimParameters(inputFileName);
+    int maxQueueLength;
+    int numServicePoints;
+    int closingTime;
+    int meanNewCustomers;
+    int stanDevNewCustomers;
+    int meanWaitTolerance;
+    int standDevWaitTolerance;
+
+    getSimParameters(inputFileName, &maxQueueLength);
+    printf("%d\n", maxQueueLength);
 
 
     int i;
