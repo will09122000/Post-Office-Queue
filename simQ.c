@@ -19,7 +19,7 @@ int main (int argc, char **argv)
     while ( !feof(fp) )
     {
         if(fgets(str, 60, fp) != NULL);
-            printf("%s\n",str);
+            printf("%s",str);
     }
     fclose(fp);
 
