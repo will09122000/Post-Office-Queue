@@ -8,7 +8,9 @@ int main (int argc, char **argv)
 
 
     FILE *fp;
-    char str[60];
+    char fileLine[60];
+    int parameters[6];
+    int i = 0;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
     {
         printf("Unable to open %s\n", inputFileName);
@@ -18,8 +20,13 @@ int main (int argc, char **argv)
 
     while ( !feof(fp) )
     {
-        if(fgets(str, 60, fp) != NULL);
-            printf("%s",str);
+        if(fgets(fileLine, 60, fp) != NULL);
+        {
+            printf("%s",fileLine);
+            sscanf(fileLine, "%d", parameters[i]);
+            i++;
+        }
+            
     }
     printf("\n");
     fclose(fp);
