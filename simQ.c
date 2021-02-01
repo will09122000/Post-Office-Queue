@@ -8,7 +8,7 @@ int main (int argc, char **argv)
 
 
     FILE *fp;
-    char ch;
+    char str[60];
     if ( (fp = fopen(inputFileName, "r")) == NULL )
     {
         printf("Unable to open %s\n", inputFileName);
@@ -18,8 +18,8 @@ int main (int argc, char **argv)
 
     while ( !feof(fp) )
     {
-        ch = fgetc(fp);
-        printf("%3d: %c\n",ch,ch);
+        if(fgets(str, 60, fp) != NULL);
+            printf("%s\n",str);
     }
     fclose(fp);
 
