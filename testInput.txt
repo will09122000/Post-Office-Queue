@@ -1,6 +1,7 @@
 maxQueueLength: 20
 numServicePoints: 3
 closingTime: 100
-avgNewCustomersPerInterval: 3
-mean: 5
-standardDeviation: 1
+meanNewCustomers: 3
+stanDevNewCustomers: 1
+meanWaitTolerance: 3
+standDevWaitTolerance: 1

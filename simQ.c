@@ -8,9 +8,7 @@ int main (int argc, char **argv)
 
 
     FILE *fp;
-    char fileLine[60];
-    int parameters[6];
-    int i = 0;
+    int maxQueueLength, numServicePoints, closingTime, meanNewCustomers, stanDevNewCustomers, meanWaitTolerance, standDevWaitTolerance;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
     {
         printf("Unable to open %s\n", inputFileName);
@@ -18,6 +16,9 @@ int main (int argc, char **argv)
         exit(1);
     }
 
+    fscanf(fp, "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nstanDevNewCustomers: %d\nmeanWaitTolerance: %d\nstandDevWaitTolerance: %d\n", maxQueueLength, numServicePoints, closingTime, meanNewCustomers, stanDevNewCustomers, meanWaitTolerance, standDevWaitTolerance);
+
+/*
     while ( !feof(fp) )
     {
         if(fgets(fileLine, 60, fp) != NULL);
@@ -28,11 +29,8 @@ int main (int argc, char **argv)
         }
             
     }
+    */
     printf("\n");
-    int loop;
-    for(loop = 0; loop < 6; loop++)
-        printf("%d ", parameters[loop]);
-    fclose(fp);
 
     /*
     int i;
