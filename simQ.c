@@ -8,13 +8,13 @@ int main (int argc, char **argv)
 
     getSimParameters(inputFileName);
 
-    /*
+
     int i;
     for (i=0; i < numSims; i++)
     {
         runSim();
     }
-    */
+
 
 
     return 0;
