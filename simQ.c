@@ -29,6 +29,9 @@ int main (int argc, char **argv)
             
     }
     printf("\n");
+    int loop;
+    for(loop = 0; loop < 6; loop++)
+        printf("%d ", parameters[loop]);
     fclose(fp);
 
     /*
