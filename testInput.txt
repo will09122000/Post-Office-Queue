@@ -1,6 +1,6 @@
-maxQueueLength: 20
+maxQueueLength: 10
 numServicePoints: 3
-closingTime: 100
+closingTime: 20
 meanNewCustomers: 3
 stanDevNewCustomers: 1
 meanWaitTolerance: 3
