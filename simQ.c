@@ -75,18 +75,9 @@ void runSim(int maxQueueLength,
     {
         printf("%d:\n", currentTime);
 
-        /*fulfillCustomers(&numServicePoints, servicePoints, &customersServed);*/
         /* Customers leave service point */
-        int i;
-        for (i=0; i < numServicePoints; i++)
-        {
-            if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
-            {
-                printf("Customer Served.\n");
-                customersServed++;
-                servicePoints[i].id = 0;
-            }
-        }
+        fulfillCustomer(&numServicePoints, servicePoints, &customersServed);
+
 
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
@@ -96,6 +87,7 @@ void runSim(int maxQueueLength,
         customersBored += checkWaitLimit(&customerQueue);
         
         /* New Customers */
+        int i;
         unsigned int newCustomers = gsl_ran_poisson(r, 1);
         for (i=0; i < newCustomers; i++)
         {
@@ -188,6 +180,20 @@ void runSim(int maxQueueLength,
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
+}
+
+void fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed)
+{
+    int i;
+    for (i=0; i < *numServicePoints; i++)
+    {
+        if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
+        {
+            printf("Customer Served.\n");
+            *customersServed++;
+            servicePoints[i].id = 0;
+        }
+    }
 }
 
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
