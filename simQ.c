@@ -135,7 +135,7 @@ void runSim(int maxQueueLength,
 
 
         /* Customers leave service point */
-        fulfillCustomer(&numServicePoints, servicePoints, &customersServed);
+        customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
