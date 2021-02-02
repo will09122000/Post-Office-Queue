@@ -201,7 +201,7 @@ int newCustomer(NODE customerQueue[], int *maxQueueLength, gsl_rng *r)
     {
         if (size(customerQueue) < *maxQueueLength)
         {
-            int waitLimit = (int)gsl_ran_flat(r,2,4);
+            int waitLimit = (int)gsl_ran_flat(&r,2,4);
             enqueue(customerQueue, waitLimit);
             customersTotal++;
         }
