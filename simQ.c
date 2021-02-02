@@ -85,7 +85,7 @@ void runSim(int maxQueueLength,
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
-
+        int i;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
@@ -120,10 +120,10 @@ void runSim(int maxQueueLength,
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
 
-        int i;
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
+        int i;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
