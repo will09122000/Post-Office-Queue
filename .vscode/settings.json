@@ -10,6 +10,8 @@
         "ranges": "c",
         "utility": "c",
         "string": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "deque": "c",
+        "iterator": "c"
     }
 }

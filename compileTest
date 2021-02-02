@@ -1,0 +1,4 @@
+gcc -ansi -I./ -c simQ.c -o simQ.o
+gcc -ansi -I./ -c queue.c -o queue.o
+gcc -ansi -I./ -c fileIO.c -o fileIO.o
+gcc simQ.o queue.o fileIO.o -lgsl -lgslcblas – -o myProgram

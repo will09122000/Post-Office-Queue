@@ -203,10 +203,10 @@ void runSim(int maxQueueLength,
 
 }
 
-void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
+void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
 {
     int i;
-    for (i=0; i < numServicePoints; i++)
+    for (i=0; i < *numServicePoints; i++)
     {
         if (servicePoints[i].id != 1)
         {
