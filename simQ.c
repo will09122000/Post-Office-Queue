@@ -78,30 +78,14 @@ void runSim(int maxQueueLength,
         /* Customers leave service point */
         fulfillCustomer(&numServicePoints, servicePoints, &customersServed);
 
-
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
-
 
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
         
         /* New Customers */
-        int i;
-        unsigned int newCustomers = gsl_ran_poisson(r, 1);
-        for (i=0; i < newCustomers; i++)
-        {
-            if (size(customerQueue) < maxQueueLength)
-            {
-                int waitLimit = (int)gsl_ran_flat(r,2,4);
-                enqueue(customerQueue, waitLimit);
-                customersTotal++;
-                /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
-            }
-            else {
-                printf("Customer Rejected.");
-            }
-        }
+        newCustomer(customerQueue, &customersTotal, &maxQueueLength);
 
 
         print_list(customerQueue);
@@ -131,16 +115,9 @@ void runSim(int maxQueueLength,
     {
         printf("%d:\n", currentTime);
 
-        int i;
-        for (i=0; i < numServicePoints; i++)
-        {
-            if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
-            {
-                printf("Customer Served.\n");
-                customersServed++;
-                servicePoints[i].id = 0;
-            }
-        }
+
+        /* Customers leave service point */
+        fulfillCustomer(&numServicePoints, servicePoints, &customersServed);
 
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
@@ -148,6 +125,7 @@ void runSim(int maxQueueLength,
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
 
+        int i;
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
@@ -211,6 +189,24 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
             }
+        }
+    }
+}
+
+void newCustomer(NODE customerQueue[], int *customersTotal, int *maxQueueLength)
+{
+    int i;
+    unsigned int newCustomers = gsl_ran_poisson(r, 1);
+    for (i=0; i < newCustomers; i++)
+    {
+        if (size(customerQueue) < *maxQueueLength)
+        {
+            int waitLimit = (int)gsl_ran_flat(r,2,4);
+            enqueue(customerQueue, waitLimit);
+            *customersTotal++;
+        }
+        else {
+            printf("Customer Rejected.");
         }
     }
 }
