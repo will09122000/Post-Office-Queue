@@ -191,7 +191,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
     }
 }
 
-int newCustomer(NODE customerQueue[], int *maxQueueLength, gsl_rng *r)
+int newCustomer(NODE customerQueue[], int *maxQueueLength, const *r)
 {
     int customersTotal = 0;
     unsigned int newCustomers = gsl_ran_poisson(r, 1);
