@@ -6,7 +6,7 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
-    // Simulation Parameters
+    /* Simulation Parameters */
     int maxQueueLength;
     int numServicePoints;
     int closingTime;
