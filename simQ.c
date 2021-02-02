@@ -64,12 +64,7 @@ void runSim(int maxQueueLength,
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
-    const gsl_rng_type *T;
-    gsl_rng *r;
-    gsl_rng_env_setup();
-    T = gsl_rng_default;
-    r = gsl_rng_alloc(T);
-    gsl_rng_set(r,time(0));
+
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
@@ -91,6 +86,7 @@ void runSim(int maxQueueLength,
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
+        int i;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
@@ -195,8 +191,14 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
 
 void newCustomer(NODE customerQueue[], int *customersTotal, int *maxQueueLength)
 {
-    int i;
+    const gsl_rng_type *T;
+    gsl_rng *r;
+    gsl_rng_env_setup();
+    T = gsl_rng_default;
+    r = gsl_rng_alloc(T);
+    gsl_rng_set(r,time(0));
     unsigned int newCustomers = gsl_ran_poisson(r, 1);
+    int i;
     for (i=0; i < newCustomers; i++)
     {
         if (size(customerQueue) < *maxQueueLength)
