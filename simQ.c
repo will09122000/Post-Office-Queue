@@ -35,7 +35,6 @@ int main (int argc, char **argv)
                meanWaitTolerance,
                standDevWaitTolerance);
     }
-
     return 0;
 }
 
@@ -48,7 +47,6 @@ void runSim(int maxQueueLength,
             int standDevWaitTolerance)
 {
     unsigned int currentTime;
-
     int customersTotal = 0;
     int customersServed = 0;
     int customersBored = 0;
@@ -63,8 +61,6 @@ void runSim(int maxQueueLength,
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
-
-
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
@@ -94,9 +90,9 @@ void runSim(int maxQueueLength,
         }
         printf("\n\n");
 
-        /* Increment the wait time of all customers in the queue by 1 */
+        /* Increment the wait time of all customers in the queue and
+        service points by 1 */
         updateWait(customerQueue);
-
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
@@ -109,7 +105,6 @@ void runSim(int maxQueueLength,
     while (customersAtServicePoint > 0)
     {
         printf("%d:\n", currentTime);
-
 
         /* Customers leave service point */
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
@@ -132,15 +127,16 @@ void runSim(int maxQueueLength,
         }
         printf("\n\n");
 
-        /* Increment the wait time of all customers in the queue by 1 */
+        /* Increment the wait time of all customers in the queue and
+        service points by 1 */
         updateWait(customerQueue);
-
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
 
+        /* Increment Time interval as this loops after the post office has closed */
         currentTime++;
     }
 
@@ -149,10 +145,8 @@ void runSim(int maxQueueLength,
     printf("Customers Bored: %d\n", customersBored);
     printf("Customers at Service Points: %d\n", customersAtServicePoint);
     printf("Total Time: %d\n", currentTime);
-
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
-
 }
 
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
