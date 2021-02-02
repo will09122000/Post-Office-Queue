@@ -105,12 +105,12 @@ void runSim(int maxQueueLength,
         customersBored += checkWaitLimit(&customerQueue);
         
         /* New Customers */
-        unsigned int newCustomers = gsl_ran_poisson(r, 2);
+        unsigned int newCustomers = gsl_ran_poisson(r, 1);
         for (i=0; i < newCustomers; i++)
         {
             if (size(customerQueue) < maxQueueLength)
             {
-                int waitLimit = (int)gsl_ran_flat(r,3,5);
+                int waitLimit = (int)gsl_ran_flat(r,2,4);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
                 /*printf("Customer Arrived, Wait Limit: %d\n", waitLimit);*/
