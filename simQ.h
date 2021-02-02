@@ -13,6 +13,6 @@ typedef struct servicePoint SERVICEPOINT;
 
 /* Function Prototypes */
 void runSim();
-void fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed);
+int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[]);
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[]);
 void newCustomer(NODE customerQueue[], int *customersTotal, int *maxQueueLength);

@@ -71,7 +71,7 @@ void runSim(int maxQueueLength,
         printf("%d:\n", currentTime);
 
         /* Customers leave service point */
-        fulfillCustomer(&numServicePoints, servicePoints, &customersServed);
+        customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
@@ -178,19 +178,20 @@ void runSim(int maxQueueLength,
 
 }
 
-void fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *customersServed)
+int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
 {
+    int customersServed = 0;
     int i;
     for (i=0; i < *numServicePoints; i++)
     {
         if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
         {
             printf("Customer Served.\n");
-            *customersServed++;
+            customersServed++;
             servicePoints[i].id = 0;
         }
     }
-    printf("Total Served: %d\n", *customersServed);
+    return customersServed;
 }
 
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
