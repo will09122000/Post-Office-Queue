@@ -14,7 +14,15 @@ int main (int argc, char **argv)
     int meanWaitTolerance;
     int standDevWaitTolerance;
 
-    getSimParameters(inputFileName, &maxQueueLength, &numServicePoints, &closingTime, &meanNewCustomers, &stanDevNewCustomers, &meanWaitTolerance, &standDevWaitTolerance);
+    getSimParameters(inputFileName,
+                     &maxQueueLength,
+                     &numServicePoints,
+                     &closingTime,
+                     &meanNewCustomers,
+                     &stanDevNewCustomers,
+                     &meanWaitTolerance,
+                     &standDevWaitTolerance);
+
     printf("%d\n", maxQueueLength);
     printf("%d\n", numServicePoints);
     printf("%d\n", closingTime);
@@ -27,7 +35,7 @@ int main (int argc, char **argv)
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim();
+        runSim(maxQueueLength);
     }
 
 
@@ -35,9 +43,10 @@ int main (int argc, char **argv)
     return 0;
 }
 
-void runSim()
+void runSim(int maxQueueLength)
 {
-    unsigned int maxQueueLength = 20;
+    /*unsigned int maxQueueLength = 20;*/
+    printf("Max queue length: %d", maxQueueLength);
     unsigned int numServicePoints = 3;
     unsigned int closingTime = 10;
     float mean = 5;
