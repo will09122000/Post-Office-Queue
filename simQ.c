@@ -6,6 +6,7 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
+    // Simulation Parameters
     int maxQueueLength;
     int numServicePoints;
     int closingTime;
@@ -75,6 +76,7 @@ void runSim(int maxQueueLength,
         printf("%d:\n", currentTime);
 
         /*fulfillCustomers(&numServicePoints, servicePoints, &customersServed);*/
+        /* Customers leave service point */
         int i;
         for (i=0; i < numServicePoints; i++)
         {
@@ -86,20 +88,9 @@ void runSim(int maxQueueLength,
             }
         }
 
-        for (i=0; i < numServicePoints; i++)
-        {
-            if (servicePoints[i].id != 1)
-            {
-                NODE * customer = dequeue(&customerQueue);
-                if (customer) {
-                    SERVICEPOINT servicePoint;
-                    servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 5;
-                    servicePoint.id = 1;
-                    servicePoints[i] = servicePoint;
-                }
-            }
-        }
+        /* Customers arrive at service point */
+        startServingCustomer(&numServicePoints, servicePoints, &customerQueue);
+
 
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
@@ -210,4 +201,23 @@ void runSim(int maxQueueLength,
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
+}
+
+void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
+{
+    int i;
+    for (i=0; i < numServicePoints; i++)
+    {
+        if (servicePoints[i].id != 1)
+        {
+            NODE * customer = dequeue(&customerQueue);
+            if (customer) {
+                SERVICEPOINT servicePoint;
+                servicePoint.timeTaken = 0;
+                servicePoint.timeDone = 5;
+                servicePoint.id = 1;
+                servicePoints[i] = servicePoint;
+            }
+        }
+    }
 }
