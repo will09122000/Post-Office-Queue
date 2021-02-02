@@ -89,7 +89,7 @@ void runSim(int maxQueueLength,
         }
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, &customerQueue);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue);
 
 
         /* Customer reaches wait limit */
