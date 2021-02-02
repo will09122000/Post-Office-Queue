@@ -23,34 +23,29 @@ int main (int argc, char **argv)
                      &meanWaitTolerance,
                      &standDevWaitTolerance);
 
-    printf("%d\n", maxQueueLength);
-    printf("%d\n", numServicePoints);
-    printf("%d\n", closingTime);
-    printf("%d\n", meanNewCustomers);
-    printf("%d\n", stanDevNewCustomers);
-    printf("%d\n", meanWaitTolerance);
-    printf("%d\n", standDevWaitTolerance);
-
-
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim(maxQueueLength);
+        runSim(maxQueueLength,
+               numServicePoints,
+               closingTime,
+               meanNewCustomers,
+               stanDevNewCustomers,
+               meanWaitTolerance,
+               standDevWaitTolerance);
     }
-
-
 
     return 0;
 }
 
-void runSim(int maxQueueLength)
+void runSim(int maxQueueLength,
+            int numServicePoints,
+            int closingTime,
+            int meanNewCustomers,
+            int stanDevNewCustomers,
+            int meanWaitTolerance,
+            int standDevWaitTolerance)
 {
-    /*unsigned int maxQueueLength = 20;*/
-    printf("Max queue length: %d", maxQueueLength);
-    unsigned int numServicePoints = 3;
-    unsigned int closingTime = 10;
-    float mean = 5;
-    float standardDeviation = 2;
     unsigned int currentTime;
 
     int customersTotal = 0;
