@@ -210,7 +210,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
     {
         if (servicePoints[i].id != 1)
         {
-            NODE * customer = dequeue(customerQueue);
+            NODE * customer = dequeue(&customerQueue);
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
