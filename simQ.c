@@ -79,31 +79,8 @@ void runSim(int maxQueueLength,
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
 
-        /* New Customers 
-        newCustomer(customerQueue, &customersTotal, &maxQueueLength);*/
-        const gsl_rng_type *T;
-        gsl_rng *r;
-        gsl_rng_env_setup();
-        T = gsl_rng_default;
-        r = gsl_rng_alloc(T);
-        gsl_rng_set(r,time(0));
-
-        unsigned int newCustomers = gsl_ran_poisson(r, 1);
-        int i;
-
-        for (i=0; i < newCustomers; i++)
-        {
-            if (size(customerQueue) < maxQueueLength)
-            {
-                int waitLimit = (int)gsl_ran_flat(r,2,4);
-                enqueue(customerQueue, waitLimit);
-                customersTotal++;
-            }
-            else {
-                printf("Customer Rejected.");
-            }
-        }
-
+        /* New Customers */
+        customersTotal += newCustomer(customerQueue, &maxQueueLength);
 
         print_list(customerQueue);
         printf("Service Points:\n");
@@ -213,7 +190,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
     }
 }
 
-void newCustomer(NODE customerQueue[], int *customersTotal, int *maxQueueLength)
+int newCustomer(NODE customerQueue[], int *maxQueueLength)
 {
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -222,6 +199,7 @@ void newCustomer(NODE customerQueue[], int *customersTotal, int *maxQueueLength)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r,time(0));
 
+    int customersTotal = 0;
     unsigned int newCustomers = gsl_ran_poisson(r, 1);
     int i;
 
@@ -231,10 +209,11 @@ void newCustomer(NODE customerQueue[], int *customersTotal, int *maxQueueLength)
         {
             int waitLimit = (int)gsl_ran_flat(r,2,4);
             enqueue(customerQueue, waitLimit);
-            *customersTotal++;
+            customersTotal++;
         }
         else {
             printf("Customer Rejected.");
         }
     }
+    return customersTotal;
 }
