@@ -150,21 +150,8 @@ void runSim(int maxQueueLength,
             }
         }
 
-
-        for (i=0; i < numServicePoints; i++)
-        {
-            if (servicePoints[i].id != 1)
-            {
-                NODE * customer = dequeue(&customerQueue);
-                if (customer) {
-                    SERVICEPOINT servicePoint;
-                    servicePoint.timeTaken = 0;
-                    servicePoint.timeDone = 5;
-                    servicePoint.id = 1;
-                    servicePoints[i] = servicePoint;
-                }
-            }
-        }
+        /* Customers arrive at service point */
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue);
 
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
