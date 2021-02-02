@@ -190,6 +190,7 @@ void fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *c
             servicePoints[i].id = 0;
         }
     }
+    printf("Total Served: %d\n", *customersServed);
 }
 
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
