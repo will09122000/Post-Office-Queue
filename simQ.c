@@ -62,6 +62,13 @@ void runSim(int maxQueueLength,
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
+    const gsl_rng_type *T;
+    gsl_rng *r;
+    gsl_rng_env_setup();
+    T = gsl_rng_default;
+    r = gsl_rng_alloc(T);
+    gsl_rng_set(r,time(0));
+
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
         printf("%d:\n", currentTime);
@@ -75,36 +82,13 @@ void runSim(int maxQueueLength,
         /* Customer reaches wait limit */
         customersBored += checkWaitLimit(&customerQueue);
 
-        /* New Customers 
-        customersTotal += newCustomer(customerQueue, &maxQueueLength); */
-        const gsl_rng_type *T;
-        gsl_rng *r;
-        gsl_rng_env_setup();
-        T = gsl_rng_default;
-        r = gsl_rng_alloc(T);
-        gsl_rng_set(r,time(0));
-
-        int customersTotal = 0;
-        unsigned int newCustomers = gsl_ran_poisson(r, 1);
-        int i;
-
-        for (i=0; i < newCustomers; i++)
-        {
-            if (size(customerQueue) < maxQueueLength)
-            {
-                int waitLimit = (int)gsl_ran_flat(r,2,4);
-                enqueue(customerQueue, waitLimit);
-                customersTotal++;
-            }
-            else {
-                printf("Customer Rejected.");
-            }
-        }
+        /* New Customers */
+        customersTotal += newCustomer(customerQueue, &maxQueueLength, &r);
 
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
-        
+        int i;
         for (i=0; i < numServicePoints; i++)
         {
             printf("%d, ", servicePoints[i].id);
@@ -207,15 +191,8 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
     }
 }
 
-int newCustomer(NODE customerQueue[], int *maxQueueLength)
+int newCustomer(NODE customerQueue[], int *maxQueueLength, gsl_rng *r)
 {
-    const gsl_rng_type *T;
-    gsl_rng *r;
-    gsl_rng_env_setup();
-    T = gsl_rng_default;
-    r = gsl_rng_alloc(T);
-    gsl_rng_set(r,time(0));
-
     int customersTotal = 0;
     unsigned int newCustomers = gsl_ran_poisson(r, 1);
     int i;

@@ -15,4 +15,4 @@ typedef struct servicePoint SERVICEPOINT;
 void runSim();
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[]);
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[]);
-int newCustomer(NODE customerQueue[], int *maxQueueLength);
+int newCustomer(NODE customerQueue[], int *maxQueueLength, gsl_rng *r);
