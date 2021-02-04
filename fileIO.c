@@ -69,8 +69,8 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
     int i, j;
     for (i=0; i < currentTime*6; i+=6)
     {
-        printf("%d, %d\n", currentTime/6, closingTime);
-        if (currentTime/6 == closingTime)
+        printf("%d, %d\n", i/6, closingTime);
+        if (i/6 == closingTime)
             fputs("-------- Post Office Closed --------", fp);
         fprintf(fp, "Current Time: %d\n", outputLog[i]);
         fprintf(fp, "Customers being Served: %d\n", outputLog[i+1]);
