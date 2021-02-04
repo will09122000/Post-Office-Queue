@@ -24,7 +24,7 @@ int main (int argc, char **argv)
 
     if (numSims == 1)
     {
-        writeOutputFileOneSim(inputFileName, outputFileName);
+        writeOutputFileOneSim(inputFileName, outputFileName, outputLog);
     }
 
     return 0;
