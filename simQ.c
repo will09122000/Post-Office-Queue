@@ -118,12 +118,6 @@ void runSim(int simParams[], int numSims)
                 servicePoints[i].timeTaken++;
         }
 
-        *array = malloc(length * sizeof(int));
-        if (*array == NULL)
-            return;
-        for (int i = 0 ; i < length ; i++)
-            (*array)[i] = 1;
-
         outputLog[counter] = currentTime;
         outputLog[counter + 1] = customersAtServicePoint;
         outputLog[counter + 2] = size(customerQueue);
