@@ -45,6 +45,7 @@ void runSim(int simParams[], int numSims)
     int lowerLimitServeTime = simParams[7];
 
     int outputLog[(closingTime*6)+50];
+    int counter = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
@@ -184,10 +185,13 @@ void runSim(int simParams[], int numSims)
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
-    int i;
-    for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
+    if (numSims == 1)
     {
-        printf("%d", outputLog[i]);
+        int i;
+        for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
+        {
+            printf("%d", outputLog[i]);
+        }
     }
 }
 
