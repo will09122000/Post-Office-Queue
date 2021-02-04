@@ -159,6 +159,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
         updateWait(customerQueue);
+        int i;
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
