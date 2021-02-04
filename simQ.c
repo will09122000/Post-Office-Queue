@@ -185,6 +185,11 @@ void runSim(int simParams[], int outputLog[])
     printf("Total Time: %d\n", currentTime);
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
+
+    for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
+    {
+        printf("%d", outputLog[i]);
+    }
 }
 
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
