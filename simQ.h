@@ -15,7 +15,8 @@ typedef struct servicePoint SERVICEPOINT;
 void runSim(int simParams[], int numSims, char outputFileName[]);
 
 int fulfillCustomer(int *numServicePoints,
-                    SERVICEPOINT servicePoints[]);
+                    SERVICEPOINT servicePoints[],
+                    int *totalWaitTime);
 
 void startServingCustomer(int *numServicePoints,
                           SERVICEPOINT servicePoints[],
