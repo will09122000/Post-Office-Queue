@@ -24,7 +24,7 @@ void getSimParameters(char inputFileName[], int simParams[])
     fclose(fp);
 }
 
-void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
+void writeSimParameters(char inputFileName[], char outputFileName[])
 {
     char content[100];
 
@@ -57,7 +57,7 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
     fclose(fpOut);
 }
 
-void test(char outputFileName[], int outputLog[], int currentTime)
+void writeLogs(char outputFileName[], int outputLog[], int currentTime)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
@@ -70,9 +70,9 @@ void test(char outputFileName[], int outputLog[], int currentTime)
     for (i=0; i < currentTime*6; i+=6)
     {
         fprintf(fp, "Current Time: %d\n", outputLog[i]);
-        fprintf(fp, "Customers At Service Points: %d\n", outputLog[i+1]);
+        fprintf(fp, "Customers being Served: %d\n", outputLog[i+1]);
         fprintf(fp, "Customers in Queue: %d\n", outputLog[i+2]);
-        fprintf(fp, "Customers Served: %d\n", outputLog[i+3]);
+        fprintf(fp, "Customers Fulfilled: %d\n", outputLog[i+3]);
         fprintf(fp, "Customers Unfulfilled: %d\n", outputLog[i+4]);
         fprintf(fp, "Customers Timed-out: %d\n", outputLog[i+5]);
         fputs("\n", fp);

@@ -14,7 +14,7 @@ int main (int argc, char **argv)
     int simParams[8];
     getSimParameters(inputFileName, simParams);
 
-    writeOutputFileOneSim(inputFileName, outputFileName);
+    writeSimParameters(inputFileName, outputFileName);
 
     int i;
     for (i=0; i < numSims; i++)
@@ -187,7 +187,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     if (numSims == 1)
     {
-        test(outputFileName, outputLog, currentTime);
+        writeLogs(outputFileName, outputLog, currentTime);
     }
 }
 
