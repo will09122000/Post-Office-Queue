@@ -15,9 +15,10 @@ int main (int argc, char **argv)
 
     printf("A");
 
+/*
     getSimParameters(inputFileName,
                      simParams);
-
+*/
     printf("B");
 
     int i;
