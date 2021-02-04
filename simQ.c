@@ -14,7 +14,7 @@ int main (int argc, char **argv)
     int simParams[8];
     getSimParameters(inputFileName, simParams);
 
-    int outputLog[(simParams[0]*6)+50];
+    int outputLog[(simParams[2]*6)+50];
 
     int i;
     for (i=0; i < numSims; i++)
