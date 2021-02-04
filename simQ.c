@@ -97,7 +97,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
             }
         }
 
-        /*
+
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
@@ -109,7 +109,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
                 customersAtServicePoint++;
         }
         printf("\n\n");
-        */
+
 
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
@@ -140,7 +140,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
 
-/*
+
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
@@ -152,12 +152,12 @@ void runSim(int simParams[], int numSims, char outputFileName[])
                 customersAtServicePoint++;
         }
         printf("\n\n");
-*/
+
 
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
         updateWait(customerQueue);
-        int i;
+
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
