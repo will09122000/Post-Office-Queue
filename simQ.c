@@ -43,10 +43,10 @@ void runSim(int simParams[], int numSims, char outputFileName[])
     int scaleServeTime = simParams[6];
     int lowerLimitServeTime = simParams[7];
 
-    int outputLog[(closingTime*6)+50];
-    int outputLog2[(closingTime)+50][6];
+    /* Output logs if number of simulations is 1 
+    50 is a buffer as the time taken to finish serving customer is unknown */
+    int outputLog[(closingTime)+50][6];
     int totalWaitTime = 0;
-    int counter = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
@@ -70,7 +70,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
-        printf("%d:\n", currentTime);
+        /*printf("%d:\n", currentTime);*/
 
         /* Customers leave service point */
         customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
@@ -94,11 +94,10 @@ void runSim(int simParams[], int numSims, char outputFileName[])
             }
             else {
                 customersUnfulfilled++;
-                printf("Customer Rejected.");
             }
         }
 
-
+        /*
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
@@ -110,6 +109,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
                 customersAtServicePoint++;
         }
         printf("\n\n");
+        */
 
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
@@ -120,24 +120,14 @@ void runSim(int simParams[], int numSims, char outputFileName[])
                 servicePoints[i].timeTaken++;
         }
 
-        outputLog[counter] = currentTime;
-        outputLog[counter + 1] = customersAtServicePoint;
-        outputLog[counter + 2] = size(customerQueue);
-        outputLog[counter + 3] = customersServed;
-        outputLog[counter + 4] = customersUnfulfilled;
-        outputLog[counter + 5] = customersTimedOut;
-        counter += 6;
-
-        outputLog2[currentTime][0] = currentTime;
-        outputLog2[currentTime][1] = customersAtServicePoint;
-        outputLog2[currentTime][2] = size(customerQueue);
-        outputLog2[currentTime][3] = customersServed;
-        outputLog2[currentTime][4] = customersUnfulfilled;
-        outputLog2[currentTime][5] = customersTimedOut;
+        outputLog[currentTime][0] = currentTime;
+        outputLog[currentTime][1] = customersAtServicePoint;
+        outputLog[currentTime][2] = size(customerQueue);
+        outputLog[currentTime][3] = customersServed;
+        outputLog[currentTime][4] = customersUnfulfilled;
+        outputLog[currentTime][5] = customersTimedOut;
 
     }
-
-    printf("Post Office Close\n");
 
     while (customersAtServicePoint > 0 || size(customerQueue) > 0)
     {
@@ -152,6 +142,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
 
+/*
         print_list(customerQueue);
         printf("Service Points:\n");
         customersAtServicePoint = 0;
@@ -163,6 +154,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
                 customersAtServicePoint++;
         }
         printf("\n\n");
+*/
 
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
@@ -173,20 +165,12 @@ void runSim(int simParams[], int numSims, char outputFileName[])
                 servicePoints[i].timeTaken++;
         }
 
-        outputLog[counter] = currentTime;
-        outputLog[counter + 1] = customersAtServicePoint;
-        outputLog[counter + 2] = size(customerQueue);
-        outputLog[counter + 3] = customersServed;
-        outputLog[counter + 4] = customersUnfulfilled;
-        outputLog[counter + 5] = customersTimedOut;
-        counter += 6;
-
-        outputLog2[currentTime][0] = currentTime;
-        outputLog2[currentTime][1] = customersAtServicePoint;
-        outputLog2[currentTime][2] = size(customerQueue);
-        outputLog2[currentTime][3] = customersServed;
-        outputLog2[currentTime][4] = customersUnfulfilled;
-        outputLog2[currentTime][5] = customersTimedOut;
+        outputLog[currentTime][0] = currentTime;
+        outputLog[currentTime][1] = customersAtServicePoint;
+        outputLog[currentTime][2] = size(customerQueue);
+        outputLog[currentTime][3] = customersServed;
+        outputLog[currentTime][4] = customersUnfulfilled;
+        outputLog[currentTime][5] = customersTimedOut;
 
         /* Increment Time interval as this loops after the post office has closed */
         currentTime++;
@@ -203,8 +187,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     if (numSims == 1)
     {
-        /*writeLogs(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);*/
-        writeLogs2(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);
+        writeLogs(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);
     }
 }
 
