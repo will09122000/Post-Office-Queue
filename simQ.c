@@ -10,8 +10,7 @@ int main (int argc, char **argv)
     printf("A");
 
     /* Simulation Parameters */
-    int *simParams;
-    simParams = (int *)malloc(sizeof(int)*8);
+    int simParams[8];
 
     printf("A");
 
