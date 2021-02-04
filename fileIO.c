@@ -1,7 +1,7 @@
 #include <fileIO.h>
 
 void getSimParameters(char inputFileName[],
-                      int *simParams)
+                      int simParams[])
 {
     int test[] = {0,0,0,0,0,0,0,0};
     FILE *fp;
@@ -14,14 +14,14 @@ void getSimParameters(char inputFileName[],
 
     fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\nscaleServeTime: %d\nlowerLimitServeTime: %d\n",
-           &test[0],
-           &test[1],
-           &test[2],
-           &test[3],
-           &test[4],
-           &test[5],
-           &test[6],
-           &test[7]);
+           &simParams[0],
+           &simParams[1],
+           &simParams[2],
+           &simParams[3],
+           &simParams[4],
+           &simParams[5],
+           &simParams[6],
+           &simParams[7]);
 
 /*
 
