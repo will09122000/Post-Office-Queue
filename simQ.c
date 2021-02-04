@@ -13,7 +13,6 @@ int main (int argc, char **argv)
     /* Simulation Parameters */
     int simParams[8];
     getSimParameters(inputFileName, simParams);
-
     writeSimParameters(inputFileName, outputFileName);
 
     int i;
@@ -187,7 +186,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     if (numSims == 1)
     {
-        writeLogs(outputFileName, outputLog, currentTime);
+        writeLogs(outputFileName, outputLog, currentTime, closingTime);
     }
 }
 
