@@ -71,14 +71,14 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
     {
         if (i/6 == closingTime)
             fputs("----------- Post Office Closed -----------\n\n", fp);
-        fprintf(fp, "Current Time: %d\n", outputLog[i]);
+        fprintf(fp, "Current Time:           %d\n", outputLog[i]);
         fprintf(fp, "Customers being Served: %d\n", outputLog[i+1]);
-        fprintf(fp, "Customers in Queue: %d\n", outputLog[i+2]);
-        fprintf(fp, "Customers Fulfilled: %d\n", outputLog[i+3]);
-        fprintf(fp, "Customers Unfulfilled: %d\n", outputLog[i+4]);
-        fprintf(fp, "Customers Timed-out: %d\n", outputLog[i+5]);
+        fprintf(fp, "Customers in Queue:     %d\n", outputLog[i+2]);
+        fprintf(fp, "Customers Fulfilled:    %d\n", outputLog[i+3]);
+        fprintf(fp, "Customers Unfulfilled:  %d\n", outputLog[i+4]);
+        fprintf(fp, "Customers Timed-out:    %d\n", outputLog[i+5]);
         fputs("\n", fp);
     }
-    fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", (currentTime-closingTime));
+    fprintf(fp, "Time taken to serve remaining customers after the post office has closed: %d\n", (currentTime-closingTime));
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[(currentTime*6)-3]);
 }
