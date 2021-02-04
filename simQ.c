@@ -187,7 +187,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     if (numSims == 1)
     {
-        test(outputFileName, outputLog);
+        test(outputFileName, outputLog, currentTime);
     }
 }
 
