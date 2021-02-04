@@ -81,6 +81,6 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
     }
     fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", (currentTime-closingTime)-1);
     printf("%d, %d\n", totalWaitTime, outputLog[(currentTime*6)-3]);
-    float avgWaitTime = totalWaitTime / outputLog[(currentTime*6)-3];
+    float avgWaitTime = (float) totalWaitTime / (float) outputLog[(currentTime*6)-3];
     fprintf(fp, "Average Customer Waiting Time: %f\n", avgWaitTime);
 }
