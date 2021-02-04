@@ -44,11 +44,15 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
         exit(1);
     }
 
+    fputs("# Input Parameters\n", fpOut);
     while(fgets(content, sizeof(content), fpIn) !=NULL)
     {
         fprintf(fpOut, "%s", content);
     }
-
+    fputs("\n", fpOut);
     fclose(fpIn);
+
+
+
     fclose(fpOut);
 }
