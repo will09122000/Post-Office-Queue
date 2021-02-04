@@ -12,7 +12,7 @@ struct servicePoint
 typedef struct servicePoint SERVICEPOINT;
 
 /* Function Prototypes */
-void runSim(int simParams[], int outputLog[][]);
+void runSim(int simParams[], int outputLog[]);
 
 int fulfillCustomer(int *numServicePoints,
                     SERVICEPOINT servicePoints[]);

@@ -14,7 +14,7 @@ int main (int argc, char **argv)
     int simParams[8];
     getSimParameters(inputFileName, simParams);
 
-    int outputLog[simParams[0]+50][6];
+    int outputLog[(simParams[0]*6)+50];
 
     int i;
     for (i=0; i < numSims; i++)
@@ -30,7 +30,7 @@ int main (int argc, char **argv)
     return 0;
 }
 
-void runSim(int simParams[], int outputLog[][])
+void runSim(int simParams[], int outputLog[])
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -48,6 +48,8 @@ void runSim(int simParams[], int outputLog[][])
     int upperLimitWaitTolerance = simParams[5];
     int scaleServeTime = simParams[6];
     int lowerLimitServeTime = simParams[7];
+
+    int counter = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
@@ -121,12 +123,13 @@ void runSim(int simParams[], int outputLog[][])
                 servicePoints[i].timeTaken++;
         }
 
-        &outputLog[i][0] = currentTime;
-        &outputLog[i][1] = customersAtServicePoint;
-        &outputLog[i][2] = size(customerQueue);
-        &outputLog[i][3] = customersServed;
-        &outputLog[i][4] = customersUnfulfilled;
-        &outputLog[i][5] = customersUnfulfilled;
+        &outputLog[counter] = currentTime;
+        &outputLog[counter + 1] = customersAtServicePoint;
+        &outputLog[counter + 2] = size(customerQueue);
+        &outputLog[counter + 3] = customersServed;
+        &outputLog[counter + 4] = customersUnfulfilled;
+        &outputLog[counter + 5] = customersUnfulfilled;
+        counter += 6;
     }
 
     printf("Post Office Close\n");
@@ -165,12 +168,13 @@ void runSim(int simParams[], int outputLog[][])
                 servicePoints[i].timeTaken++;
         }
 
-        &outputLog[i][0] = currentTime;
-        &outputLog[i][1] = customersAtServicePoint;
-        &outputLog[i][2] = size(customerQueue);
-        &outputLog[i][3] = customersServed;
-        &outputLog[i][4] = customersUnfulfilled;
-        &outputLog[i][5] = customersUnfulfilled;
+        &outputLog[counter] = currentTime;
+        &outputLog[counter + 1] = customersAtServicePoint;
+        &outputLog[counter + 2] = size(customerQueue);
+        &outputLog[counter + 3] = customersServed;
+        &outputLog[counter + 4] = customersUnfulfilled;
+        &outputLog[counter + 5] = customersUnfulfilled;
+        counter += 6;
 
         /* Increment Time interval as this loops after the post office has closed */
         currentTime++;
