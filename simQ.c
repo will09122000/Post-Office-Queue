@@ -186,6 +186,7 @@ void runSim(int simParams[], int outputLog[])
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
+    int i;
     for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
     {
         printf("%d", outputLog[i]);
