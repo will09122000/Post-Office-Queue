@@ -81,7 +81,7 @@ void runSim(int maxQueueLength,
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, &r);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -136,7 +136,7 @@ void runSim(int maxQueueLength,
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, &r);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -192,7 +192,7 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
     return customersServed;
 }
 
-void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng *r)
+void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r)
 {
     int i;
     for (i=0; i < *numServicePoints; i++)
@@ -203,7 +203,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
-                printf("Rayleigh: %lf\n", gsl_ran_rayleigh(*r, 2));
+                printf("Rayleigh: %lf\n", gsl_ran_rayleigh(r, 2));
                 servicePoint.timeDone = 5;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;

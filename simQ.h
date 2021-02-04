@@ -14,4 +14,4 @@ typedef struct servicePoint SERVICEPOINT;
 /* Function Prototypes */
 void runSim();
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[]);
-void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng *r);
+void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r);
