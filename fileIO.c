@@ -23,7 +23,8 @@ void getSimParameters(char inputFileName[],
            test[6],
            test[7]);
 
-    for(int x=0; x<8; x++)
+    int x;
+    for(x=0; x<8; x++)
     {
         *simParams = test[0];
         simParams++;
