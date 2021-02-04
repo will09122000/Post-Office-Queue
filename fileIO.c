@@ -1,7 +1,7 @@
 #include <fileIO.h>
 
 void getSimParameters(char inputFileName[],
-                      int *simParams)
+                      int simParams[])
 {
     FILE *fp;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
