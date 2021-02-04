@@ -7,7 +7,7 @@ int main (int argc, char **argv)
     char * outputFileName = argv[3];
 
     /* Simulation Parameters */
-    int simParams[8];
+    int simParams[];
 
     printf("A");
 
