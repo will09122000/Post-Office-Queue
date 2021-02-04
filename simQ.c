@@ -2,6 +2,7 @@
 
 int main (int argc, char **argv)
 {
+    printf("A");
     char * inputFileName = argv[1];
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
