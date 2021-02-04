@@ -17,6 +17,9 @@ void runSim(int maxQueueLength,
             int closingTime,
             int meanNewCustomers,
             int lowerLimitWaitTolerance,
-            int upperLimitWaitTolerance);
+            int upperLimitWaitTolerance,
+            int scaleServeTime,
+            int lowerLimitServeTime);
+
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[]);
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r, int scaleServeTime, int lowerLimitServeTime);

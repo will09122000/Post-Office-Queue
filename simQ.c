@@ -34,7 +34,9 @@ int main (int argc, char **argv)
                closingTime,
                meanNewCustomers,
                lowerLimitWaitTolerance,
-               upperLimitWaitTolerance);
+               upperLimitWaitTolerance,
+               scaleServeTime,
+               lowerLimitServeTime);
     }
     return 0;
 }
@@ -44,7 +46,9 @@ void runSim(int maxQueueLength,
             int closingTime,
             int meanNewCustomers,
             int lowerLimitWaitTolerance,
-            int upperLimitWaitTolerance)
+            int upperLimitWaitTolerance,
+            int scaleServeTime,
+            int lowerLimitServeTime)
 {
     unsigned int currentTime;
     int customersTotal = 0;
