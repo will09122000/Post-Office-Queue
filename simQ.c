@@ -9,8 +9,12 @@ int main (int argc, char **argv)
     /* Simulation Parameters */
     int simParams[8];
 
+    printf("A");
+
     getSimParameters(inputFileName,
                      simParams);
+
+    printf("B");
 
     int i;
     for (i=0; i < numSims; i++)
