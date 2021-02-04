@@ -201,7 +201,7 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *to
         {
             printf("Customer Served.\n");
             customersServed++;
-            *totalWaitTime += servicePoints[i].timeTaken
+            *totalWaitTime += servicePoints[i].timeTaken;
             servicePoints[i].id = 0;
         }
     }

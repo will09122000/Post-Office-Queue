@@ -80,5 +80,5 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
         fputs("\n", fp);
     }
     fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", (currentTime-closingTime)-1);
-    fprintf(fp, "Average Customer Waiting Time: %f\n", totalWaitTime / outputLog[(currentTime*6)-2];
+    fprintf(fp, "Average Customer Waiting Time: %f\n", totalWaitTime / outputLog[(currentTime*6)-2]);
 }
