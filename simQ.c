@@ -19,7 +19,7 @@ int main (int argc, char **argv)
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim(simParams, numSims);
+        runSim(simParams, numSims, outputFileName);
     }
 
     return 0;
