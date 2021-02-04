@@ -52,11 +52,7 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[], int outp
     fputs("\n", fpOut);
     fclose(fpIn);
 
-    int i;
-    for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
-    {
-        printf("%d", outputLog[5]);
-    }
+    printf("%d", outputLog[0]);
 
 
     fclose(fpOut);
