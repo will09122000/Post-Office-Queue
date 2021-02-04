@@ -79,7 +79,6 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
         fprintf(fp, "Customers Timed-out: %d\n", outputLog[i+5]);
         fputs("\n", fp);
     }
-    fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", (currentTime-closingTime)-1);
-    float avgWaitTime = (float) totalWaitTime / (float) outputLog[(currentTime*6)-3];
-    fprintf(fp, "Average Customer Waiting Time: %f\n", avgWaitTime);
+    fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", (currentTime-closingTime));
+    fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[(currentTime*6)-3]);
 }
