@@ -3,6 +3,11 @@
 #include <fileIO.c>
 #include <queue.c>
 
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <stdlib.h>
+
 struct servicePoint
 {
     unsigned int timeTaken;

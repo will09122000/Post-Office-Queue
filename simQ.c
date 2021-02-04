@@ -187,11 +187,22 @@ void runSim(int simParams[], int numSims)
 
     if (numSims == 1)
     {
-        int i;
-        for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
+        FILE *fpOut;
+        if ( (fpOut = fopen(outputFileName, "w")) == NULL )
         {
-            printf("%d", outputLog[i]);
+            printf("Unable to open %s\n", inputFileName);
+            fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+            exit(1);
         }
+        int i, j;
+        for (i=0; i < currentTime; i+=6)
+        {
+            for (j=0; j < 6; j++)
+            {
+                fprintf(fpOut, "%d", outputLog[i+j])
+            }
+        }
+
     }
 }
 
