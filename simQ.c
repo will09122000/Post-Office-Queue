@@ -26,7 +26,7 @@ int main (int argc, char **argv)
     {
         writeOutputFileOneSim(inputFileName, outputFileName, outputLog);
     } else {
-        printf("Testttttt");
+        printf("%d", numSims);
     }
 
     return 0;
