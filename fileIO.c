@@ -57,7 +57,7 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
     fclose(fpOut);
 }
 
-void writeLogs(char outputFileName[], int outputLog[], int currentTime, int closingTime)
+void writeLogs(char outputFileName[], int outputLog[], int currentTime, int closingTime, int totalWaitTime)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
@@ -79,5 +79,6 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
             fputs("\n----------- Post Office Closed -----------\n", fp);
         fputs("\n", fp);
     }
-    fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", currentTime - closingTime);
+    fprintf(fp, "Time taken from closing time until all remaining customers have been served: %d\n", (currentTime-closingTime)-1);
+    fprintf(fp, "Average Customer Waiting Time: %f\n", (outputLog[(currentTime*6)-2]);
 }

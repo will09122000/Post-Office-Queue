@@ -44,6 +44,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
     int lowerLimitServeTime = simParams[7];
 
     int outputLog[(closingTime*6)+50];
+    int totalWaitTime = 0;
     int counter = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
@@ -71,7 +72,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         printf("%d:\n", currentTime);
 
         /* Customers leave service point */
-        customersServed += fulfillCustomer(&numServicePoints, servicePoints);
+        customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
 
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r, scaleServeTime, lowerLimitServeTime);
@@ -134,7 +135,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         printf("%d:\n", currentTime);
 
         /* Customers leave service point */
-        customersServed += fulfillCustomer(&numServicePoints, servicePoints);
+        customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
 
         /* Customers arrive at service point */
         startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r, scaleServeTime, lowerLimitServeTime);
@@ -186,11 +187,11 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     if (numSims == 1)
     {
-        writeLogs(outputFileName, outputLog, currentTime, closingTime);
+        writeLogs(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);
     }
 }
 
-int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
+int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *totalWaitTime)
 {
     int customersServed = 0;
     int i;
@@ -200,6 +201,7 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
         {
             printf("Customer Served.\n");
             customersServed++;
+            *totalWaitTime += servicePoints[i].timeTaken
             servicePoints[i].id = 0;
         }
     }
