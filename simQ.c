@@ -49,7 +49,8 @@ void runSim(int maxQueueLength,
     unsigned int currentTime;
     int customersTotal = 0;
     int customersServed = 0;
-    int customersBored = 0;
+    int customersTimedOut = 0;
+    int customersUnfulfilled = 0;
     int customersAtServicePoint = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
@@ -61,6 +62,9 @@ void runSim(int maxQueueLength,
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
+
+    if (maxQueueLength == -1)
+        maxQueueLength = INT_MAX;
 
     const gsl_rng_type *T;
     gsl_rng *r;
@@ -80,7 +84,7 @@ void runSim(int maxQueueLength,
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
 
         /* Customer reaches wait limit */
-        customersBored += checkWaitLimit(&customerQueue);
+        customersTimedOut += checkWaitLimit(&customerQueue);
 
         /* New Customers */
         unsigned int newCustomers = gsl_ran_poisson(r, 1);
@@ -95,6 +99,7 @@ void runSim(int maxQueueLength,
                 customersTotal++;
             }
             else {
+                customersUnfulfilled++;
                 printf("Customer Rejected.");
             }
         }
@@ -135,7 +140,7 @@ void runSim(int maxQueueLength,
         startServingCustomer(&numServicePoints, servicePoints, customerQueue);
 
         /* Customer reaches wait limit */
-        customersBored += checkWaitLimit(&customerQueue);
+        customersTimedOut += checkWaitLimit(&customerQueue);
 
         print_list(customerQueue);
         printf("Service Points:\n");
@@ -164,7 +169,8 @@ void runSim(int maxQueueLength,
 
     printf("Total Customers: %d\n", customersTotal);
     printf("Customers Served: %d\n", customersServed);
-    printf("Customers Bored: %d\n", customersBored);
+    printf("Customers Timed-out: %d\n", customersTimedOut);
+    printf("Customers Unfulfilled: %d\n", customersUnfulfilled);
     printf("Customers at Service Points: %d\n", customersAtServicePoint);
     printf("Total Time: %d\n", currentTime);
     printf("Size of Queue: %d\n", size(customerQueue));
