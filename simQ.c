@@ -89,7 +89,6 @@ void runSim(int maxQueueLength,
         /* New Customers */
         unsigned int newCustomers = gsl_ran_poisson(r, 1);
         int i;
-
         for (i=0; i < newCustomers; i++)
         {
             if (size(customerQueue) < maxQueueLength)
@@ -195,6 +194,13 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
 
 void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
 {
+    const gsl_rng_type *T;
+    gsl_rng *r;
+    gsl_rng_env_setup();
+    T = gsl_rng_default;
+    r = gsl_rng_alloc(T);
+    gsl_rng_set(r,time(0));
+
     int i;
     for (i=0; i < *numServicePoints; i++)
     {
@@ -204,6 +210,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
+                printf("Rayleigh: %d\n", gsl_ran_rayleigh(r, 2))
                 servicePoint.timeDone = 5;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
