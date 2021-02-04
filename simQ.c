@@ -134,6 +134,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         customersTimedOut += checkWaitLimit(&customerQueue);
 
         customersAtServicePoint = 0;
+        int i;
         for (i=0; i < numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
