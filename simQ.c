@@ -91,13 +91,13 @@ void runSim(int maxQueueLength,
         customersTimedOut += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        unsigned int newCustomers = gsl_ran_poisson(r, 1);
+        unsigned int newCustomers = gsl_ran_poisson(r, meanNewCustomers);
         int i;
         for (i=0; i < newCustomers; i++)
         {
             if (size(customerQueue) < maxQueueLength)
             {
-                int waitLimit = (int) gsl_ran_flat(r,2,4);
+                int waitLimit = (int) gsl_ran_flat(r, lowerLimitWaitTolerance, upperLimitWaitTolerance);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
             }
@@ -207,7 +207,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
-                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, 3, 2);
+                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime, lowerLimitServeTime);
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
