@@ -130,7 +130,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     printf("Post Office Close\n");
 
-    while (customersAtServicePoint > 0)
+    while (customersAtServicePoint > 0 && size(customerQueue) > 0)
     {
         printf("%d:\n", currentTime);
 
