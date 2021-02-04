@@ -69,10 +69,11 @@ void test(char outputFileName[], int outputLog[], int currentTime)
     int i, j;
     for (i=0; i < currentTime*6; i+=6)
     {
-        for (j=0; j < 6; j++)
-        {
-            fprintf(fpOut, "%d", outputLog[i+j]);
-            printf("%d", outputLog[i+j]);
-        }
+        fprintf(fpOut, "Current Time: %d\n", outputLog[i]);
+        fprintf(fpOut, "Customers At Service Points: %d\n", outputLog[i+1]);
+        fprintf(fpOut, "Customers in Queue: %d\n", outputLog[i+2]);
+        fprintf(fpOut, "Customers Served: %d\n", outputLog[i+3]);
+        fprintf(fpOut, "Customers Unfulfilled: %d\n", outputLog[i+4]);
+        fprintf(fpOut, "Customers Timed-out: %d\n", outputLog[i+5]);
     }
 }

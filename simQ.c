@@ -124,7 +124,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         outputLog[counter + 2] = size(customerQueue);
         outputLog[counter + 3] = customersServed;
         outputLog[counter + 4] = customersUnfulfilled;
-        outputLog[counter + 5] = customersUnfulfilled;
+        outputLog[counter + 5] = customersTimedOut;
         counter += 6;
     }
 
@@ -169,7 +169,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         outputLog[counter + 2] = size(customerQueue);
         outputLog[counter + 3] = customersServed;
         outputLog[counter + 4] = customersUnfulfilled;
-        outputLog[counter + 5] = customersUnfulfilled;
+        outputLog[counter + 5] = customersTimedOut;
         counter += 6;
 
         /* Increment Time interval as this loops after the post office has closed */
