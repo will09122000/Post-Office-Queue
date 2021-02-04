@@ -120,7 +120,7 @@ void runSim(int simParams[], int outputLog[])
                 servicePoints[i].timeTaken++;
         }
 
-        &outputLog[counter] = currentTime;
+        &outputLog[0] = currentTime;
         &outputLog[counter + 1] = customersAtServicePoint;
         &outputLog[counter + 2] = size(customerQueue);
         &outputLog[counter + 3] = customersServed;
