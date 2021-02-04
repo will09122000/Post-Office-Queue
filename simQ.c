@@ -6,6 +6,8 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
+    printf("A");
+
     /* Simulation Parameters */
     int simParams[8];
 
