@@ -14,22 +14,19 @@ int main (int argc, char **argv)
     int simParams[8];
     getSimParameters(inputFileName, simParams);
 
-    int outputLog[(simParams[2]*6)+50];
+    writeOutputFileOneSim(inputFileName, outputFileName);
 
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim(simParams);
+        runSim(simParams, numSims);
     }
-
-    writeOutputFileOneSim(inputFileName, outputFileName, outputLog);
 
     return 0;
 }
 
-void runSim(int simParams[])
+void runSim(int simParams[], int numSims)
 {
-    int outputLog[(simParams[2]*6)+50];
     unsigned int currentTime;
     int customersTotal = 0;
     int customersServed = 0;
@@ -47,7 +44,7 @@ void runSim(int simParams[])
     int scaleServeTime = simParams[6];
     int lowerLimitServeTime = simParams[7];
 
-    int counter = 0;
+    int outputLog[(closingTime*6)+50];
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
@@ -120,6 +117,12 @@ void runSim(int simParams[])
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
+
+        *array = malloc(length * sizeof(int));
+        if (*array == NULL)
+            return;
+        for (int i = 0 ; i < length ; i++)
+            (*array)[i] = 1;
 
         outputLog[counter] = currentTime;
         outputLog[counter + 1] = customersAtServicePoint;

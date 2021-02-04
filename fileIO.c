@@ -24,7 +24,7 @@ void getSimParameters(char inputFileName[], int simParams[])
     fclose(fp);
 }
 
-void writeOutputFileOneSim(char inputFileName[], char outputFileName[], int outputLog[])
+void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
 {
     char content[100];
 
@@ -52,11 +52,6 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[], int outp
     fputs("\n", fpOut);
     fclose(fpIn);
 
-    int i;
-    for(i=0; i < sizeof(outputLog) / sizeof(int); i++)
-    {
-        printf("%d", outputLog[i]);
-    }
 
 
     fclose(fpOut);
