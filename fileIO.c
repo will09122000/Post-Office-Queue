@@ -20,4 +20,32 @@ void getSimParameters(char inputFileName[], int simParams[])
            &simParams[5],
            &simParams[6],
            &simParams[7]);
+
+    fclose(fp);
+}
+
+void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
+{
+    FILE *fpIn;
+    if ( (fpIn = fopen(inputFileName, "r")) == NULL )
+    {
+        printf("Unable to open %s\n", inputFileName);
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+        exit(1);
+    }
+
+    FILE *fpOut;
+    if ( (fpOut = fopen(outputFileName, "w")) == NULL )
+    {
+        printf("Unable to open %s\n", inputFileName);
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+        exit(1);
+    }
+
+    while(fgets(content, sizeof(content), fpIn) !=NULL)
+    {
+        fprintf(fpOut, "%s", content);
+    }
+
+    fclose(fp);
 }

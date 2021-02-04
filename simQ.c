@@ -7,6 +7,9 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
+    if (numSims < 1)
+        return 1;
+
     /* Simulation Parameters */
     int simParams[8];
     getSimParameters(inputFileName, simParams);
@@ -16,6 +19,12 @@ int main (int argc, char **argv)
     {
         runSim(simParams);
     }
+
+    if (numSims == 1)
+    {
+        writeOutputFileOneSim(inputFileName, outputFileName);
+    }
+
     return 0;
 }
 
