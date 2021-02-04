@@ -49,5 +49,6 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
         fprintf(fpOut, "%s", content);
     }
 
-    fclose(fp);
+    fclose(fpIn);
+    fclose(fpOut);
 }
