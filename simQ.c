@@ -47,6 +47,8 @@ void runSim(int simParams[])
     int scaleServeTime = simParams[6];
     int lowerLimitServeTime = simParams[7];
 
+    int outputLog[maxQueueLength+50][6];
+
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
 
@@ -118,6 +120,13 @@ void runSim(int simParams[])
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
+
+        outputLog[i][0] = currentTime;
+        outputLog[i][1] = customersAtServicePoint;
+        outputLog[i][2] = size(customerQueue);
+        outputLog[i][3] = customersServed;
+        outputLog[i][4] = customersUnfulfilled;
+        outputLog[i][5] = customersUnfulfilled;
     }
 
     printf("Post Office Close\n");
@@ -155,6 +164,13 @@ void runSim(int simParams[])
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
+
+        outputLog[i][0] = currentTime;
+        outputLog[i][1] = customersAtServicePoint;
+        outputLog[i][2] = size(customerQueue);
+        outputLog[i][3] = customersServed;
+        outputLog[i][4] = customersUnfulfilled;
+        outputLog[i][5] = customersUnfulfilled;
 
         /* Increment Time interval as this loops after the post office has closed */
         currentTime++;
