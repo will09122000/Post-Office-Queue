@@ -60,7 +60,7 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
 void test(char outputFileName[], int outputLog[], int currentTime)
 {
     FILE *fpOut;
-    if ( (fpOut = fopen(&outputFileName, "w")) == NULL )
+    if ( (fpOut = fopen(outputFileName, "w")) == NULL )
     {
         printf("Unable to open %s\n", outputFileName);
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
