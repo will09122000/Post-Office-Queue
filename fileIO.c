@@ -59,8 +59,8 @@ void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
 
 void test(char outputFileName[], int outputLog[], int currentTime)
 {
-    FILE *fpOut;
-    if ( (fpOut = fopen(outputFileName, "a")) == NULL )
+    FILE *fp;
+    if ( (fp = fopen(outputFileName, "a")) == NULL )
     {
         printf("Unable to open %s\n", outputFileName);
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
@@ -69,11 +69,12 @@ void test(char outputFileName[], int outputLog[], int currentTime)
     int i, j;
     for (i=0; i < currentTime*6; i+=6)
     {
-        fprintf(fpOut, "Current Time: %d\n", outputLog[i]);
-        fprintf(fpOut, "Customers At Service Points: %d\n", outputLog[i+1]);
-        fprintf(fpOut, "Customers in Queue: %d\n", outputLog[i+2]);
-        fprintf(fpOut, "Customers Served: %d\n", outputLog[i+3]);
-        fprintf(fpOut, "Customers Unfulfilled: %d\n", outputLog[i+4]);
-        fprintf(fpOut, "Customers Timed-out: %d\n", outputLog[i+5]);
+        fprintf(fp, "Current Time: %d\n", outputLog[i]);
+        fprintf(fp, "Customers At Service Points: %d\n", outputLog[i+1]);
+        fprintf(fp, "Customers in Queue: %d\n", outputLog[i+2]);
+        fprintf(fp, "Customers Served: %d\n", outputLog[i+3]);
+        fprintf(fp, "Customers Unfulfilled: %d\n", outputLog[i+4]);
+        fprintf(fp, "Customers Timed-out: %d\n", outputLog[i+5]);
+        fputs("\n", fp);
     }
 }
