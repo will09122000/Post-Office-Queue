@@ -26,6 +26,8 @@ void getSimParameters(char inputFileName[], int simParams[])
 
 void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
 {
+    char content[100];
+
     FILE *fpIn;
     if ( (fpIn = fopen(inputFileName, "r")) == NULL )
     {
