@@ -119,7 +119,6 @@ int checkWaitLimit(NODE ** head)
         
             /* Finally, free the memory occupied by del*/
             free(current);
-            printf("Customer Bored.\n");
             newBoredCustomers++;
         }
         current = current->next;
