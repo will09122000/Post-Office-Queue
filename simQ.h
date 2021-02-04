@@ -13,13 +13,14 @@ typedef struct servicePoint SERVICEPOINT;
 
 /* Function Prototypes */
 void runSim(int maxQueueLength,
-            int numServicePoints,
-            int closingTime,
-            int meanNewCustomers,
-            int lowerLimitWaitTolerance,
-            int upperLimitWaitTolerance,
-            int scaleServeTime,
-            int lowerLimitServeTime);
+            int simParams[]);
 
-int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[]);
-void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r, int scaleServeTime, int lowerLimitServeTime);
+int fulfillCustomer(int *numServicePoints,
+                    SERVICEPOINT servicePoints[]);
+
+void startServingCustomer(int *numServicePoints,
+                          SERVICEPOINT servicePoints[],
+                          NODE customerQueue[],
+                          gsl_rng r,
+                          int scaleServeTime,
+                          int lowerLimitServeTime);

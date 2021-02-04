@@ -1,14 +1,7 @@
 #include <fileIO.h>
 
 void getSimParameters(char inputFileName[],
-                      int *maxQueueLength,
-                      int *numServicePoints,
-                      int *closingTime,
-                      int *meanNewCustomers,
-                      int *lowerLimitWaitTolerance,
-                      int *upperLimitWaitTolerance,
-                      int *scaleServeTime,
-                      int *lowerLimitServeTime)
+                      int simParams[])
 {
     FILE *fp;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
@@ -20,12 +13,12 @@ void getSimParameters(char inputFileName[],
 
     fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\nscaleServeTime: %d\nlowerLimitServeTime: %d\n",
-           maxQueueLength,
-           numServicePoints,
-           closingTime,
-           meanNewCustomers,
-           lowerLimitWaitTolerance,
-           upperLimitWaitTolerance,
-           scaleServeTime,
-           lowerLimitServeTime);
+           simParams[0],
+           simParams[1],
+           simParams[2],
+           simParams[3],
+           simParams[4],
+           simParams[5],
+           simParams[6],
+           simParams[7]);
 }

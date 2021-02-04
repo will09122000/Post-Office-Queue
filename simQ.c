@@ -7,48 +7,20 @@ int main (int argc, char **argv)
     char * outputFileName = argv[3];
 
     /* Simulation Parameters */
-    int maxQueueLength;
-    int numServicePoints;
-    int closingTime;
-    int meanNewCustomers;
-    int lowerLimitWaitTolerance;
-    int upperLimitWaitTolerance;
-    int scaleServeTime;
-    int lowerLimitServeTime;
+    int simParams[8];
 
     getSimParameters(inputFileName,
-                     &maxQueueLength,
-                     &numServicePoints,
-                     &closingTime,
-                     &meanNewCustomers,
-                     &lowerLimitWaitTolerance,
-                     &upperLimitWaitTolerance,
-                     &scaleServeTime,
-                     &lowerLimitServeTime);
+                     simParams);
 
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim(maxQueueLength,
-               numServicePoints,
-               closingTime,
-               meanNewCustomers,
-               lowerLimitWaitTolerance,
-               upperLimitWaitTolerance,
-               scaleServeTime,
-               lowerLimitServeTime);
+        runSim(simParams);
     }
     return 0;
 }
 
-void runSim(int maxQueueLength,
-            int numServicePoints,
-            int closingTime,
-            int meanNewCustomers,
-            int lowerLimitWaitTolerance,
-            int upperLimitWaitTolerance,
-            int scaleServeTime,
-            int lowerLimitServeTime)
+void runSim(int simParams[])
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -56,6 +28,15 @@ void runSim(int maxQueueLength,
     int customersTimedOut = 0;
     int customersUnfulfilled = 0;
     int customersAtServicePoint = 0;
+
+    int maxQueueLength = simParams[0];
+    int numServicePoints = simParams[1];
+    int closingTime = simParams[2];
+    int meanNewCustomers = simParams[3];
+    int lowerLimitWaitTolerance = simParams[4];
+    int upperLimitWaitTolerance = simParams[5];
+    int scaleServeTime = simParams[6];
+    int lowerLimitServeTime = simParams[7];
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
