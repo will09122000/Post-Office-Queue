@@ -34,9 +34,7 @@ int main (int argc, char **argv)
                closingTime,
                meanNewCustomers,
                lowerLimitWaitTolerance,
-               upperLimitWaitTolerance,
-               scaleServeTime,
-               lowerLimitServeTime);
+               upperLimitWaitTolerance);
     }
     return 0;
 }
@@ -46,9 +44,7 @@ void runSim(int maxQueueLength,
             int closingTime,
             int meanNewCustomers,
             int lowerLimitWaitTolerance,
-            int upperLimitWaitTolerance,
-            int scaleServeTime,
-            int lowerLimitServeTime)
+            int upperLimitWaitTolerance)
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -85,7 +81,7 @@ void runSim(int maxQueueLength,
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r, scaleServeTime, lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -140,7 +136,7 @@ void runSim(int maxQueueLength,
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r, scaleServeTime, lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -196,7 +192,7 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
     return customersServed;
 }
 
-void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r)
+void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r,  int scaleServeTime, int lowerLimitServeTime)
 {
     int i;
     for (i=0; i < *numServicePoints; i++)
