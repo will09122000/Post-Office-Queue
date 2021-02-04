@@ -10,7 +10,7 @@ int main (int argc, char **argv)
     printf("A");
 
     /* Simulation Parameters
-    int simParams[8] = {0,0,0,0,0,0,0}; */
+    int simParams[8] = {0,0,0,0,0,0,0}; 
 
     printf("A");
 
@@ -24,6 +24,7 @@ int main (int argc, char **argv)
     {
         runSim(simParams);
     }
+    */
     return 0;
 }
 
