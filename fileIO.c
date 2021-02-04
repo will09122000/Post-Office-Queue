@@ -106,5 +106,6 @@ void writeLogs2(char outputFileName[], int outputLog[][6], int currentTime, int 
         fputs("\n", fp);
     }
     fprintf(fp, "Time taken to serve remaining customers after the post office has closed: %d\n", (currentTime-closingTime));
+    printf("%f, %f\n", (float) totalWaitTime, (float) outputLog[currentTime][3]);
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[currentTime][3]);
 }
