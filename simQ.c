@@ -131,8 +131,6 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     while (customersAtServicePoint > 0 || size(customerQueue) > 0)
     {
-        printf("%d:\n", currentTime);
-
         /* Customers leave service point */
         customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
 
@@ -200,7 +198,6 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *to
     {
         if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
         {
-            printf("Customer Served.\n");
             customersServed++;
             *totalWaitTime += servicePoints[i].timeTaken;
             servicePoints[i].id = 0;
