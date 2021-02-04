@@ -24,7 +24,7 @@ void getSimParameters(char inputFileName[], int simParams[])
     fclose(fp);
 }
 
-void writeOutputFileOneSim(char inputFileName[], char outputFileName[])
+void writeOutputFileOneSim(char inputFileName[], char outputFileName[][])
 {
     char content[100];
 

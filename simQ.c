@@ -30,7 +30,7 @@ int main (int argc, char **argv)
     return 0;
 }
 
-void runSim(int simParams[], int outputLog[])
+void runSim(int simParams[], int outputLog[][])
 {
     unsigned int currentTime;
     int customersTotal = 0;
