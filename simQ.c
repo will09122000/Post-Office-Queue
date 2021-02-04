@@ -120,12 +120,12 @@ void runSim(int simParams[], int outputLog[])
                 servicePoints[i].timeTaken++;
         }
 
-        outputLog[counter] = currentTime;
-        outputLog[counter + 1] = customersAtServicePoint;
-        outputLog[counter + 2] = size(customerQueue);
-        outputLog[counter + 3] = customersServed;
-        outputLog[counter + 4] = customersUnfulfilled;
-        outputLog[counter + 5] = customersUnfulfilled;
+        &outputLog[counter] = currentTime;
+        &outputLog[counter + 1] = customersAtServicePoint;
+        &outputLog[counter + 2] = size(customerQueue);
+        &outputLog[counter + 3] = customersServed;
+        &outputLog[counter + 4] = customersUnfulfilled;
+        &outputLog[counter + 5] = customersUnfulfilled;
         counter += 6;
     }
 
@@ -165,12 +165,12 @@ void runSim(int simParams[], int outputLog[])
                 servicePoints[i].timeTaken++;
         }
 
-        outputLog[counter] = currentTime;
-        outputLog[counter + 1] = customersAtServicePoint;
-        outputLog[counter + 2] = size(customerQueue);
-        outputLog[counter + 3] = customersServed;
-        outputLog[counter + 4] = customersUnfulfilled;
-        outputLog[counter + 5] = customersUnfulfilled;
+        &outputLog[counter] = currentTime;
+        &outputLog[counter + 1] = customersAtServicePoint;
+        &outputLog[counter + 2] = size(customerQueue);
+        &outputLog[counter + 3] = customersServed;
+        &outputLog[counter + 4] = customersUnfulfilled;
+        &outputLog[counter + 5] = customersUnfulfilled;
         counter += 6;
 
         /* Increment Time interval as this loops after the post office has closed */
