@@ -44,6 +44,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
     int lowerLimitServeTime = simParams[7];
 
     int outputLog[(closingTime*6)+50];
+    int outputLog2[(closingTime)+50][6];
     int totalWaitTime = 0;
     int counter = 0;
 
@@ -126,6 +127,14 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         outputLog[counter + 4] = customersUnfulfilled;
         outputLog[counter + 5] = customersTimedOut;
         counter += 6;
+
+        outputLog2[currentTime][0] = currentTime;
+        outputLog2[currentTime][1] = customersAtServicePoint;
+        outputLog2[currentTime][2] = size(customerQueue);
+        outputLog2[currentTime][3] = customersServed;
+        outputLog2[currentTime][4] = customersUnfulfilled;
+        outputLog2[currentTime][5] = customersTimedOut;
+
     }
 
     printf("Post Office Close\n");
@@ -172,6 +181,13 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         outputLog[counter + 5] = customersTimedOut;
         counter += 6;
 
+        outputLog2[currentTime][0] = currentTime;
+        outputLog2[currentTime][1] = customersAtServicePoint;
+        outputLog2[currentTime][2] = size(customerQueue);
+        outputLog2[currentTime][3] = customersServed;
+        outputLog2[currentTime][4] = customersUnfulfilled;
+        outputLog2[currentTime][5] = customersTimedOut;
+
         /* Increment Time interval as this loops after the post office has closed */
         currentTime++;
     }
@@ -187,7 +203,8 @@ void runSim(int simParams[], int numSims, char outputFileName[])
 
     if (numSims == 1)
     {
-        writeLogs(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);
+        /*writeLogs(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);*/
+        writeLogs2(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);
     }
 }
 
