@@ -2,15 +2,14 @@
 
 int main (int argc, char **argv)
 {
+    /* Terminal Arguments */
     char * inputFileName = argv[1];
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
     /* Simulation Parameters */
     int simParams[8];
-
     getSimParameters(inputFileName, simParams);
-
 
     int i;
     for (i=0; i < numSims; i++)
@@ -29,6 +28,7 @@ void runSim(int simParams[])
     int customersUnfulfilled = 0;
     int customersAtServicePoint = 0;
 
+    /* Simulation parameters separated into individual variables for improved readability */
     int maxQueueLength = simParams[0];
     int numServicePoints = simParams[1];
     int closingTime = simParams[2];
