@@ -22,10 +22,7 @@ int main (int argc, char **argv)
         runSim(simParams, outputLog);
     }
 
-    if (numSims == 1)
-    {
-        writeOutputFileOneSim(inputFileName, outputFileName, outputLog);
-    }
+    writeOutputFileOneSim(inputFileName, outputFileName, outputLog);
 
     return 0;
 }
