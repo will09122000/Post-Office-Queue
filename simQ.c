@@ -81,7 +81,7 @@ void runSim(int maxQueueLength,
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -136,7 +136,7 @@ void runSim(int maxQueueLength,
         customersServed += fulfillCustomer(&numServicePoints, servicePoints);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -192,15 +192,8 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[])
     return customersServed;
 }
 
-void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[])
+void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r)
 {
-    const gsl_rng_type *T;
-    gsl_rng *r;
-    gsl_rng_env_setup();
-    T = gsl_rng_default;
-    r = gsl_rng_alloc(T);
-    gsl_rng_set(r,time(0));
-
     int i;
     for (i=0; i < *numServicePoints; i++)
     {
