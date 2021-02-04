@@ -1,7 +1,7 @@
 #include <fileIO.h>
 
 void getSimParameters(char inputFileName[],
-                      int simParams[])
+                      int *simParams)
 {
     int test[] = {0,0,0,0,0,0,0,0};
     FILE *fp;
@@ -26,7 +26,6 @@ void getSimParameters(char inputFileName[],
     int x;
     for(x=0; x<8; x++)
     {
-        *simParams = test[0];
-        simParams++;
+        simParams[i] = test[i];
     }
 }
