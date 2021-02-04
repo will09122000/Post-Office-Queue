@@ -203,7 +203,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
-                printf("Rayleigh: %lf\n", gsl_ran_rayleigh(r, 2));
+                printf("Rayleigh: %lf\n", gsl_ran_rayleigh(*r, 2));
                 servicePoint.timeDone = 5;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
