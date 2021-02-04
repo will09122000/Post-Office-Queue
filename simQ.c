@@ -9,8 +9,9 @@ int main (int argc, char **argv)
 
     printf("A");
 
-    /* Simulation Parameters
-    int simParams[8] = {0,0,0,0,0,0,0}; 
+    /* Simulation Parameters */
+    int *simParams;
+    simParams = (int *)malloc(sizeof(int)*8);
 
     printf("A");
 
@@ -24,7 +25,6 @@ int main (int argc, char **argv)
     {
         runSim(simParams);
     }
-    */
     return 0;
 }
 
