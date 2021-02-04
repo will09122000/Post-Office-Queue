@@ -83,7 +83,7 @@ void writeLogs(char outputFileName[], int outputLog[], int currentTime, int clos
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[(currentTime*6)-3]);
 }
 
-void writeLogs2(char outputFileName[], int outputLog[][], int currentTime, int closingTime, int totalWaitTime)
+void writeLogs2(char outputFileName[], int outputLog[][6], int currentTime, int closingTime, int totalWaitTime)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
