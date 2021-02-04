@@ -72,7 +72,7 @@ void test(char outputFileName[], int outputLog[], int currentTime)
         for (j=0; j < 6; j++)
         {
             fprintf(fpOut, "%d", outputLog[i+j]);
-            printf(fpOut, "%d", outputLog[i+j]);
+            printf("%d", outputLog[i+j]);
         }
     }
 }
