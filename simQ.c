@@ -2,22 +2,15 @@
 
 int main (int argc, char **argv)
 {
-    printf("A");
     char * inputFileName = argv[1];
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
-    printf("A");
-
     /* Simulation Parameters */
     int simParams[] = {0,0,0,0,0,0,0,0};
 
-    printf("A");
-
-
     getSimParameters(inputFileName, simParams);
 
-    printf("B");
 
     int i;
     for (i=0; i < numSims; i++)
