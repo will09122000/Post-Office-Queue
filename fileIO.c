@@ -5,9 +5,10 @@ void getSimParameters(char inputFileName[],
                       int *numServicePoints,
                       int *closingTime,
                       int *meanNewCustomers,
-                      int *stanDevNewCustomers,
-                      int *meanWaitTolerance,
-                      int *standDevWaitTolerance)
+                      int *lowerLimitWaitTolerance,
+                      int *upperLimitWaitTolerance,
+                      int *scaleServeTime,
+                      int *lowerLimitServeTime)
 {
     FILE *fp;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
@@ -18,12 +19,13 @@ void getSimParameters(char inputFileName[],
     }
 
     fscanf(fp,
-           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nstanDevNewCustomers: %d\nmeanWaitTolerance: %d\nstandDevWaitTolerance: %d\n",
+           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\nscaleServeTime: %d\nlowerLimitServeTime: %d\n",
            maxQueueLength,
            numServicePoints,
            closingTime,
            meanNewCustomers,
-           stanDevNewCustomers,
-           meanWaitTolerance,
-           standDevWaitTolerance);
+           lowerLimitWaitTolerance,
+           upperLimitWaitTolerance,
+           scaleServeTime,
+           lowerLimitServeTime);
 }

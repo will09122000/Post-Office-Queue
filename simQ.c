@@ -11,18 +11,20 @@ int main (int argc, char **argv)
     int numServicePoints;
     int closingTime;
     int meanNewCustomers;
-    int stanDevNewCustomers;
-    int meanWaitTolerance;
-    int standDevWaitTolerance;
+    int lowerLimitWaitTolerance;
+    int upperLimitWaitTolerance;
+    int scaleServeTime;
+    int lowerLimitServeTime;
 
     getSimParameters(inputFileName,
                      &maxQueueLength,
                      &numServicePoints,
                      &closingTime,
                      &meanNewCustomers,
-                     &stanDevNewCustomers,
-                     &meanWaitTolerance,
-                     &standDevWaitTolerance);
+                     &lowerLimitWaitTolerance,
+                     &upperLimitWaitTolerance,
+                     &scaleServeTime,
+                     &lowerLimitServeTime);
 
     int i;
     for (i=0; i < numSims; i++)
@@ -31,9 +33,10 @@ int main (int argc, char **argv)
                numServicePoints,
                closingTime,
                meanNewCustomers,
-               stanDevNewCustomers,
-               meanWaitTolerance,
-               standDevWaitTolerance);
+               lowerLimitWaitTolerance,
+               upperLimitWaitTolerance,
+               scaleServeTime,
+               lowerLimitServeTime);
     }
     return 0;
 }
@@ -42,9 +45,10 @@ void runSim(int maxQueueLength,
             int numServicePoints,
             int closingTime,
             int meanNewCustomers,
-            int stanDevNewCustomers,
-            int meanWaitTolerance,
-            int standDevWaitTolerance)
+            int lowerLimitWaitTolerance,
+            int upperLimitWaitTolerance,
+            int scaleServeTime,
+            int lowerLimitServeTime)
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -93,7 +97,7 @@ void runSim(int maxQueueLength,
         {
             if (size(customerQueue) < maxQueueLength)
             {
-                int waitLimit = (int)gsl_ran_flat(r,2,4);
+                int waitLimit = (int) gsl_ran_flat(r,2,4);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
             }
@@ -203,7 +207,7 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], N
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
-                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, 5, 2);
+                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, 3, 2);
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
