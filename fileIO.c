@@ -97,7 +97,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 			for(k=0;k<6;k++)
             {
                 avgOutputLogTest[i][j][k] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
-                printf("%d ", avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k]);
+                /*printf("%d ", avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k]);*/
             }
             printf("\n");
 		}
@@ -105,7 +105,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 
     for(i=0;i<numSims;i++)
     {
-        printf("%d\n", closingTimes[i]);
+        printf("%d \n", avgOutputLogTest[i][closingTimes[i]][3]);
         totalcustomersServed += avgOutputLogTest[i][closingTimes[i]][3];
         totalcustomersUnfulfilled += avgOutputLogTest[i][closingTimes[i]][4];
         totalcustomersTimedOut += avgOutputLogTest[i][closingTimes[i]][5];
