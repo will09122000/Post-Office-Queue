@@ -89,7 +89,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
     int i, j, k;
     for(i=0;i<numSims;i++)
 	{
-		for(j=0;j<closingTime+50;j++)
+		for(j=0;j<closingTime+10;j++)
 		{
 			for(k=0;k<6;k++)
 			{
