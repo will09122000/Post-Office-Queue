@@ -27,14 +27,16 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r,time(0));
 
-    int avgOutputLog[numSims][(simParams[2])+10][6];
+    /* Worst case time after post office close */
+    int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
+    int avgOutputLog[numSims][(simParams[2]) + buffer][6];
 
     /* Run Simulations */
     int i;
     OUTPUT outputParams;
     for (i=0; i < numSims; i++)
     {
-        int outputLog[(simParams[2])+10][6];
+        int outputLog[(simParams[2]) + buffer][6];
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
@@ -43,7 +45,7 @@ int main (int argc, char **argv)
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
     }
 
-    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime, numSims);
+    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime, numSims, buffer);
 
     return 0;
 }
