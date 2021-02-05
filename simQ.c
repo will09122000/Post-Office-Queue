@@ -50,7 +50,6 @@ int main (int argc, char **argv)
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
             totalWaitTime += outputParams.totalWaitTime;
             closingTimes[i] = outputParams.currentTime;
-            printf("%d\n", closingTimes[i]);
         }
     }
 
