@@ -37,28 +37,12 @@ int main (int argc, char **argv)
         OUTPUT outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
-            writeLogs(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
+            writeLogsOneSim(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
         else
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
     }
 
-    int j, k;
-    for(i=0;i<numSims;i++)
-	{
-		for(j=0;j<(simParams[2])+50;j++)
-		{
-			for(k=0;k<6;k++)
-			{
-				printf("%d ",avgOutputLog[i][j][k]);
-				if(k==5)
-				{
-					printf("\n");
-				}
-			}
-		}
-		printf("\n");
-	}
-
+    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime, numSims);
 
     return 0;
 }
