@@ -30,6 +30,7 @@ int main (int argc, char **argv)
     /* Worst case time after post office close */
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
     int avgOutputLog[numSims][(simParams[2]) + buffer][6];
+    int totalWaitTime = 0;
 
     /* Run Simulations */
     int i;
@@ -40,12 +41,17 @@ int main (int argc, char **argv)
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
+        {
             writeLogsOneSim(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
+        }
         else
+        {
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
+            totalWaitTime += outputParams.totalWaitTime;
+        }
     }
 
-    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime, numSims, buffer);
+    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, totalWaitTime, numSims, buffer);
 
     return 0;
 }

@@ -83,8 +83,11 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int closingTime, int totalWaitTime, int numSims, int buffer)
+void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int closingTime, int totalwaitTime, int numSims, int buffer)
 {
+    int totalcustomersServed = 0;
+    int totalcustomersUnfulfilled = 0;
+    int totalcustomersTimedOut = 0;
     int avgOutputLogTest[numSims][closingTime + buffer][6];
     int i, j, k;
     for(i=0;i<numSims;i++)
@@ -99,16 +102,12 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 	{
 		for(j=0;j<closingTime + buffer;j++)
 		{
-            printf("Current Time:           %d\n", avgOutputLogTest[i][j][0]);
-            printf("Customers being Served: %d\n", avgOutputLogTest[i][j][1]);
-            printf("Customers in Queue:     %d\n", avgOutputLogTest[i][j][2]);
-            printf("Customers Fulfilled:    %d\n", avgOutputLogTest[i][j][3]);
-            printf("Customers Unfulfilled:  %d\n", avgOutputLogTest[i][j][4]);
-            printf("Customers Timed-out:    %d\n", avgOutputLogTest[i][j][5]);
+            totalcustomersServed += avgOutputLogTest[i][j][3]);
+            totalcustomersUnfulfilled += avgOutputLogTest[i][j][4]);
+            totalcustomersTimedOut += avgOutputLogTest[i][j][5]);
 		}
-		printf("\n");
 	}
-    /*
+
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
     {
@@ -116,20 +115,14 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(1);
     }
-    int i;
-    for (i=0; i < currentTime; i++)
-    {
-        if (i == closingTime)
-            fputs("----------- Post Office Closed -----------\n\n", fp);
-        fprintf(fp, "Current Time:           %d\n", outputLog[i][0]);
-        fprintf(fp, "Customers being Served: %d\n", outputLog[i][1]);
-        fprintf(fp, "Customers in Queue:     %d\n", outputLog[i][2]);
-        fprintf(fp, "Customers Fulfilled:    %d\n", outputLog[i][3]);
-        fprintf(fp, "Customers Unfulfilled:  %d\n", outputLog[i][4]);
-        fprintf(fp, "Customers Timed-out:    %d\n", outputLog[i][5]);
-        fputs("\n", fp);
-    }
+
+    fprintf(fp, "Average Number of Fulfilled Customers:   %d\n", totalcustomersServed / numSims);
+    fprintf(fp, "Average Number of Unfulfilled Customers: %d\n", totalcustomersUnfulfilled / numSims);
+    fprintf(fp, "Average Number of Timed-out Customers:   %d\n", totalcustomersTimedOut / numSims);
+
+    /*
     fprintf(fp, "Time taken to serve remaining customers after the post office has closed: %d\n", (currentTime-closingTime));
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
     */
+
 }
