@@ -54,8 +54,8 @@ int main (int argc, char **argv)
             totalWaitTimeAvg[i] = outputParams.totalWaitTime;
         }
     }
-
-    writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTimeAvg);
+    if (numSims > 1)
+        writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTimeAvg);
 
     return 0;
 }
