@@ -18,7 +18,7 @@ struct outputParams
 typedef struct outputParams OUTPUT;
 
 /* Function Prototypes */
-TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6]);
+OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6]);
 
 int fulfillCustomer(int *numServicePoints,
                     SERVICEPOINT servicePoints[],
