@@ -31,10 +31,11 @@ int main (int argc, char **argv)
 
     /* Run Simulations */
     int i;
+    OUTPUT outputParams;
     for (i=0; i < numSims; i++)
     {
         int outputLog[(simParams[2])+50][6];
-        OUTPUT outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
+        outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
             writeLogsOneSim(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
