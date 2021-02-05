@@ -102,9 +102,9 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 	{
 		for(j=0;j<closingTime + buffer;j++)
 		{
-            totalcustomersServed += avgOutputLogTest[i][j][3]);
-            totalcustomersUnfulfilled += avgOutputLogTest[i][j][4]);
-            totalcustomersTimedOut += avgOutputLogTest[i][j][5]);
+            totalcustomersServed += avgOutputLogTest[i][j][3];
+            totalcustomersUnfulfilled += avgOutputLogTest[i][j][4];
+            totalcustomersTimedOut += avgOutputLogTest[i][j][5];
 		}
 	}
 
