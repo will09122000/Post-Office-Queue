@@ -11,11 +11,11 @@ struct servicePoint
 };
 typedef struct servicePoint SERVICEPOINT;
 
-struct test
+struct outputParams
 {
-    int currentTime, closingTime, totalWaitTime
+    int currentTime, closingTime, totalWaitTime;
 };
-typedef struct test TEST;
+typedef struct outputParams OUTPUT;
 
 /* Function Prototypes */
 TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6]);

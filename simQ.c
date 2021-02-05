@@ -32,18 +32,18 @@ int main (int argc, char **argv)
     for (i=0; i < numSims; i++)
     {
         int outputLog[(simParams[2])+50][6];
-        TEST test = runSim(simParams, numSims, outputFileName, *r, outputLog);
+        OUTPUT outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
         {
-            writeLogs(outputFileName, outputLog, test.currentTime, test.closingTime, test.totalWaitTime);
+            writeLogs(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
         }
     }
 
     return 0;
 }
 
-TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6])
+OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6])
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -77,7 +77,7 @@ TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int 
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
-    TEST test;
+    OUTPUT outputParams;
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
@@ -180,11 +180,11 @@ TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int 
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
-    test.currentTime = currentTime;
-    test.closingTime = closingTime;
-    test.totalWaitTime = totalWaitTime;
+    outputParams.currentTime = currentTime;
+    outputParams.closingTime = closingTime;
+    outputParams.totalWaitTime = totalWaitTime;
 
-    return test;
+    return outputParams;
 }
 
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *totalWaitTime)
