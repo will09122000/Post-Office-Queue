@@ -13,7 +13,9 @@ typedef struct servicePoint SERVICEPOINT;
 
 struct outputParams
 {
-    int currentTime, closingTime, totalWaitTime;
+    int currentTime;
+    int closingTime;
+    int totalWaitTime;
 };
 typedef struct outputParams OUTPUT;
 

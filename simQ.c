@@ -27,6 +27,8 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r,time(0));
 
+    int avgOutputLog[numSims][(simParams[2])+50][6]
+
     /* Run Simulations */
     int i;
     for (i=0; i < numSims; i++)
@@ -35,9 +37,9 @@ int main (int argc, char **argv)
         OUTPUT outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
-        {
             writeLogs(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
-        }
+        else
+            avgOutputLog[i][][] = outputLog;
     }
 
     return 0;
