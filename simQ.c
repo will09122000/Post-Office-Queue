@@ -27,14 +27,14 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r,time(0));
 
-    int avgOutputLog[numSims][(simParams[2])+50][6];
+    int avgOutputLog[numSims][(simParams[2])+10][6];
 
     /* Run Simulations */
     int i;
     OUTPUT outputParams;
     for (i=0; i < numSims; i++)
     {
-        int outputLog[(simParams[2])+50][6];
+        int outputLog[(simParams[2])+10][6];
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
