@@ -32,7 +32,7 @@ int main (int argc, char **argv)
     for (i=0; i < numSims; i++)
     {
         int outputLog[(simParams[2])+50][6];
-        runSim(simParams, numSims, outputFileName, *r, outputLog);
+        TEST test = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
         {
