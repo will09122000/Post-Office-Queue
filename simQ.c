@@ -8,14 +8,18 @@ int main (int argc, char **argv)
     char * outputFileName = argv[3];
 
     if (numSims < 1)
+    {
+        printf("Number of sims should be an integer greater than 0 (second argument)");
         return 1;
+    }
+        
 
     /* Simulation Parameters */
     int simParams[8];
     getSimParameters(inputFileName, simParams);
     writeSimParameters(inputFileName, outputFileName);
 
-    /* Random Code */
+    /* Code from slides for GSL random number generation */
     const gsl_rng_type *T;
     gsl_rng *r;
     gsl_rng_env_setup();
