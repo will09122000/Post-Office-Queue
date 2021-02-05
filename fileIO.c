@@ -99,12 +99,12 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 	{
 		for(j=0;j<closingTime + buffer;j++)
 		{
-            printf(fp, "Current Time:           %d\n", avgOutputLogTest[i][j][0]);
-            printf(fp, "Customers being Served: %d\n", avgOutputLogTest[i][j][1]);
-            printf(fp, "Customers in Queue:     %d\n", avgOutputLogTest[i][j][2]);
-            printf(fp, "Customers Fulfilled:    %d\n", avgOutputLogTest[i][j][3]);
-            printf(fp, "Customers Unfulfilled:  %d\n", avgOutputLogTest[i][j][4]);
-            printf(fp, "Customers Timed-out:    %d\n", avgOutputLogTest[i][j][5]);
+            printf("Current Time:           %d\n", avgOutputLogTest[i][j][0]);
+            printf("Customers being Served: %d\n", avgOutputLogTest[i][j][1]);
+            printf("Customers in Queue:     %d\n", avgOutputLogTest[i][j][2]);
+            printf("Customers Fulfilled:    %d\n", avgOutputLogTest[i][j][3]);
+            printf("Customers Unfulfilled:  %d\n", avgOutputLogTest[i][j][4]);
+            printf("Customers Timed-out:    %d\n", avgOutputLogTest[i][j][5]);
 		}
 		printf("\n");
 	}
