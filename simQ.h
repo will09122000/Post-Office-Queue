@@ -11,8 +11,13 @@ struct servicePoint
 };
 typedef struct servicePoint SERVICEPOINT;
 
+struct test
+{
+    int arr[][];
+};
+
 /* Function Prototypes */
-void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int **outputLog);
+test runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r);
 
 int fulfillCustomer(int *numServicePoints,
                     SERVICEPOINT servicePoints[],
