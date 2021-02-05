@@ -27,7 +27,7 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r,time(0));
 
-    int avgOutputLog[numSims][(simParams[2])+50][6]
+    int avgOutputLog[numSims][(simParams[2])+50][6];
 
     /* Run Simulations */
     int i;
