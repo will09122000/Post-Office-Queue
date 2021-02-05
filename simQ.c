@@ -32,7 +32,7 @@ int main (int argc, char **argv)
     for (i=0; i < numSims; i++)
     {
         int outputLog[(simParams[2])+50][6];
-        outputLog = runSim(simParams, numSims, outputFileName, *r, &outputLog);
+        runSim(simParams, numSims, outputFileName, *r, &outputLog);
     }
 
     return 0;
@@ -117,12 +117,12 @@ void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int 
                 servicePoints[i].timeTaken++;
         }
 
-        *outputLog[currentTime][0] = currentTime;
-        *outputLog[currentTime][1] = customersAtServicePoint;
-        *outputLog[currentTime][2] = size(customerQueue);
-        *outputLog[currentTime][3] = customersServed;
-        *outputLog[currentTime][4] = customersUnfulfilled;
-        *outputLog[currentTime][5] = customersTimedOut;
+        outputLog[currentTime][0] = currentTime;
+        outputLog[currentTime][1] = customersAtServicePoint;
+        outputLog[currentTime][2] = size(customerQueue);
+        outputLog[currentTime][3] = customersServed;
+        outputLog[currentTime][4] = customersUnfulfilled;
+        outputLog[currentTime][5] = customersTimedOut;
 
     }
 
@@ -155,12 +155,12 @@ void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int 
                 servicePoints[i].timeTaken++;
         }
 
-        *outputLog[currentTime][0] = currentTime;
-        *outputLog[currentTime][1] = customersAtServicePoint;
-        *outputLog[currentTime][2] = size(customerQueue);
-        *outputLog[currentTime][3] = customersServed;
-        *outputLog[currentTime][4] = customersUnfulfilled;
-        *outputLog[currentTime][5] = customersTimedOut;
+        outputLog[currentTime][0] = currentTime;
+        outputLog[currentTime][1] = customersAtServicePoint;
+        outputLog[currentTime][2] = size(customerQueue);
+        outputLog[currentTime][3] = customersServed;
+        outputLog[currentTime][4] = customersUnfulfilled;
+        outputLog[currentTime][5] = customersTimedOut;
 
         /* Increment Time interval as this loops after the post office has closed */
         currentTime++;
