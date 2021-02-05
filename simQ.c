@@ -43,14 +43,14 @@ int main (int argc, char **argv)
     }
 
     int j, k;
-    for(i=1;i<=numSims;i++)
+    for(i=0;i<numSims;i++)
 	{
-		for(j=1;j<=(simParams[2])+50;j++)
+		for(j=0;j<(simParams[2])+50;j++)
 		{
-			for(k=1;k<=6;k++)
+			for(k=0;k<6;k++)
 			{
 				printf("%d ",avgOutputLog[i][j][k]);
-				if(k==6)
+				if(k==5)
 				{
 					printf("\n");
 				}
