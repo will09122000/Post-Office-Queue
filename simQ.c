@@ -7,12 +7,12 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
+    /* Check the number of simulations is valid */
     if (numSims < 1)
     {
-        printf("Number of sims should be an integer greater than 0 (second argument)");
+        printf("Number of simulations should be an integer greater than 0 (second argument)\n)";
         return 1;
     }
-        
 
     /* Simulation Parameters */
     int simParams[8];
