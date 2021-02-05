@@ -109,7 +109,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int to
         totalcustomersServed += avgOutputLogTest[i][currentTime[i]-1][3];
         totalcustomersUnfulfilled += avgOutputLogTest[i][currentTime[i]-1][4];
         totalcustomersTimedOut += avgOutputLogTest[i][currentTime[i]-1][5];
-        totalTimeAfterClose += currentTime[i] - closingTime;
+        totalTimeAfterClose += (currentTime[i]-1) - closingTime;
     }
 
     FILE *fp;
