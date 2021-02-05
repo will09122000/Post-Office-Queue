@@ -49,7 +49,7 @@ int main (int argc, char **argv)
         {
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
             totalWaitTime += outputParams.totalWaitTime;
-            closingTimes[numSims] = outputParams.currentTime
+            closingTimes[numSims] = outputParams.currentTime;
         }
     }
 
