@@ -41,7 +41,7 @@ int main (int argc, char **argv)
         else
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
     }
-    /*
+
     int j, k;
     for(i=1;i<=numSims;i++)
 	{
@@ -58,7 +58,7 @@ int main (int argc, char **argv)
 		}
 		printf("\n");
 	}
-    */
+
 
     return 0;
 }
