@@ -13,7 +13,7 @@ typedef struct servicePoint SERVICEPOINT;
 
 struct test
 {
-    int arr[][];
+    int arr[1000][6];
 };
 
 /* Function Prototypes */
