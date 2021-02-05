@@ -43,7 +43,7 @@ int main (int argc, char **argv)
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
     }
 
-    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime, numSims);
+    writeLogs(outputFileName, *avgOutputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime, numSims);
 
     return 0;
 }
