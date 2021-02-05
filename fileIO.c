@@ -83,7 +83,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int closingTime, int totalwaitTime, int numSims, int buffer, int closingTimes[])
+void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int closingTime, int totalwaitTime, int numSims, int buffer, int currentTime[])
 {
     int totalcustomersServed = 0;
     int totalcustomersUnfulfilled = 0;
@@ -103,14 +103,11 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 		}
 	}
 
-    printf("%d \n", closingTimes[0]);
-    printf("%d \n", closingTimes[1]);
     for(i=0;i<numSims;i++)
     {
-        /*printf("%d \n", avgOutputLogTest[i][closingTimes[i]][3]);*/
-        totalcustomersServed += avgOutputLogTest[i][closingTimes[i]-1][3];
-        totalcustomersUnfulfilled += avgOutputLogTest[i][closingTimes[i]-1][4];
-        totalcustomersTimedOut += avgOutputLogTest[i][closingTimes[i]-1][5];
+        totalcustomersServed += avgOutputLogTest[i][currentTime[i]-1][3];
+        totalcustomersUnfulfilled += avgOutputLogTest[i][currentTime[i]-1][4];
+        totalcustomersTimedOut += avgOutputLogTest[i][currentTime[i]-1][5];
     }
 
     FILE *fp;
