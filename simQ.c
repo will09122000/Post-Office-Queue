@@ -32,6 +32,7 @@ int main (int argc, char **argv)
     int avgOutputLog[numSims][(simParams[2]) + buffer][6];
     int totalWaitTime = 0;
     int currentTime[numSims];
+    int totalWaitTimeAvg[numSims];
 
     /* Run Simulations */
     int i;
@@ -50,10 +51,11 @@ int main (int argc, char **argv)
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
             totalWaitTime += outputParams.totalWaitTime;
             currentTime[i] = outputParams.currentTime;
+            totalWaitTimeAvg[i] = outputParams.totalWaitTime;
         }
     }
 
-    writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, totalWaitTime, numSims, buffer, currentTime);
+    writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTime);
 
     return 0;
 }
