@@ -85,7 +85,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
 
 void writeLogs(char outputFileName[], int ***avgOutputLog, int currentTime, int closingTime, int totalWaitTime, int numSims)
 {
-    int test = *avgOutputLog[0][0][0];
+    int test = ***avgOutputLog[0][0][0];
     /*
     int i, j, k;
     for(i=0;i<numSims;i++)
