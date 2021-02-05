@@ -31,13 +31,14 @@ int main (int argc, char **argv)
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim(simParams, numSims, outputFileName, *r);
+        int outputLog[(simParams[2])+50][6];
+        runSim(simParams, numSims, outputFileName, *r, outputLog);
     }
 
     return 0;
 }
 
-void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r)
+void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6])
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -57,8 +58,8 @@ void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r)
     int lowerLimitServeTime = simParams[7];
 
     /* Output logs if number of simulations is 1 
-    50 is a buffer as the time taken to finish serving customer is unknown */
-    int outputLog[(closingTime)+50][6];
+    50 is a buffer as the time taken to finish serving customer is unknown 
+    int outputLog[(closingTime)+50][6]; */
     int totalWaitTime = 0;
 
     SERVICEPOINT servicePoints[numServicePoints];
@@ -73,8 +74,6 @@ void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r)
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
-        /*printf("%d:\n", currentTime);*/
-
         /* Customers leave service point */
         customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
 
