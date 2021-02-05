@@ -50,7 +50,7 @@ int main (int argc, char **argv)
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
             totalWaitTime += outputParams.totalWaitTime;
             closingTimes[numSims] = outputParams.currentTime;
-            printf("%d\n", closingTimes[i]);
+            printf("%d\n", outputParams.currentTime);
         }
     }
 
@@ -196,7 +196,6 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
-    printf("yeet %d\n", currentTime); 
     outputParams.currentTime = currentTime;
     outputParams.closingTime = closingTime;
     outputParams.totalWaitTime = totalWaitTime;
