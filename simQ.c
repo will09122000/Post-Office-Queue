@@ -15,16 +15,24 @@ int main (int argc, char **argv)
     getSimParameters(inputFileName, simParams);
     writeSimParameters(inputFileName, outputFileName);
 
+    /* Random Code */
+    const gsl_rng_type *T;
+    gsl_rng *r;
+    gsl_rng_env_setup();
+    T = gsl_rng_default;
+    r = gsl_rng_alloc(T);
+    gsl_rng_set(r,time(0));
+
     int i;
     for (i=0; i < numSims; i++)
     {
-        runSim(simParams, numSims, outputFileName);
+        runSim(simParams, numSims, outputFileName, *r);
     }
 
     return 0;
 }
 
-void runSim(int simParams[], int numSims, char outputFileName[])
+void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r)
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -58,16 +66,6 @@ void runSim(int simParams[], int numSims, char outputFileName[])
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
-    if (maxQueueLength == -1)
-        maxQueueLength = INT_MAX;
-
-    const gsl_rng_type *T;
-    gsl_rng *r;
-    gsl_rng_env_setup();
-    T = gsl_rng_default;
-    r = gsl_rng_alloc(T);
-    gsl_rng_set(r,time(0));
-
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
         /*printf("%d:\n", currentTime);*/
@@ -76,19 +74,19 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r, scaleServeTime, lowerLimitServeTime);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r, scaleServeTime, lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        unsigned int newCustomers = gsl_ran_poisson(r, meanNewCustomers);
+        unsigned int newCustomers = gsl_ran_poisson(&r, meanNewCustomers);
         int i;
         for (i=0; i < newCustomers; i++)
         {
-            if (size(customerQueue) < maxQueueLength)
+            if (size(customerQueue) < maxQueueLength || maxQueueLength == -1)
             {
-                int waitLimit = (int) gsl_ran_flat(r, lowerLimitWaitTolerance, upperLimitWaitTolerance);
+                int waitLimit = (int) gsl_ran_flat(&r, lowerLimitWaitTolerance, upperLimitWaitTolerance);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
             }
@@ -128,7 +126,7 @@ void runSim(int simParams[], int numSims, char outputFileName[])
         customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, *r, scaleServeTime, lowerLimitServeTime);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r, scaleServeTime, lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
