@@ -95,30 +95,20 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 		for(j=0;j<closingTime + buffer;j++)
 		{
 			for(k=0;k<6;k++)
-                avgOutputLogTest[i][j][k] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
-		}
-	}
-    /*
-    for(i=0;i<numSims;i++)
-	{
-		for(j=0;j<closingTime + buffer;j++)
-		{
-            if (j == 0 || avgOutputLogTest[i][j][0]-1 == avgOutputLogTest[i][j-1][0])
             {
-                printf("%d\n", totalcustomersServed);
-                totalcustomersServed = avgOutputLogTest[i][j][3];
-                totalcustomersUnfulfilled = avgOutputLogTest[i][j][4];
-                totalcustomersTimedOut = avgOutputLogTest[i][j][5];
+                avgOutputLogTest[i][j][k] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
+                printf("%d ", avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k]);
             }
+            printf("\n");
 		}
 	}
-    */
+
     for(i=0;i<numSims;i++)
     {
         printf("%d\n", closingTimes[i]);
-        totalcustomersServed = avgOutputLogTest[i][closingTimes[i]][3];
-        totalcustomersUnfulfilled = avgOutputLogTest[i][closingTimes[i]][4];
-        totalcustomersTimedOut = avgOutputLogTest[i][closingTimes[i]][5];
+        totalcustomersServed += avgOutputLogTest[i][closingTimes[i]][3];
+        totalcustomersUnfulfilled += avgOutputLogTest[i][closingTimes[i]][4];
+        totalcustomersTimedOut += avgOutputLogTest[i][closingTimes[i]][5];
     }
 
     FILE *fp;
