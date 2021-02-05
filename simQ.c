@@ -53,7 +53,7 @@ int main (int argc, char **argv)
         }
     }
 
-    writeLogs(outputFileName, avgOutputLog, outputParams.currentTime, outputParams.closingTime, totalWaitTime, numSims, buffer, currentTime);
+    writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, totalWaitTime, numSims, buffer, currentTime);
 
     return 0;
 }
