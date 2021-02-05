@@ -55,7 +55,7 @@ int main (int argc, char **argv)
         }
     }
 
-    writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTime);
+    writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTimeAvg);
 
     return 0;
 }
