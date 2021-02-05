@@ -93,7 +93,7 @@ void writeLogs(char outputFileName[], int **avgOutputLog, int currentTime, int c
 		{
 			for(k=0;k<6;k++)
 			{
-				printf("%d ",avgOutputLog[i * closingTime + j ]);
+				printf("%d ",avgOutputLog[i * closingTime + j + k]);
 				if(k==5)
 				{
 					printf("\n");
