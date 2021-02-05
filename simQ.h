@@ -17,7 +17,7 @@ struct test
 };
 
 /* Function Prototypes */
-test runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r);
+struct test runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r);
 
 int fulfillCustomer(int *numServicePoints,
                     SERVICEPOINT servicePoints[],

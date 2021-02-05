@@ -38,7 +38,7 @@ int main (int argc, char **argv)
     return 0;
 }
 
-test runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r)
+struct test runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r)
 {
     unsigned int currentTime;
     int customersTotal = 0;
