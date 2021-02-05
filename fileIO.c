@@ -83,7 +83,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
     fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int closingTime, int totalWaitTime, int numSims)
+void writeLogs(char outputFileName[], int **avgOutputLog, int currentTime, int closingTime, int totalWaitTime, int numSims)
 {
 
     int i, j, k;
@@ -93,7 +93,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 		{
 			for(k=0;k<6;k++)
 			{
-				printf("%d ",avgOutputLog[(i * closingTime) + (j * 6) + k]);
+				printf("%d ",avgOutputLog[(i * closingTime) + (j * 6)][k]);
 				if(k==5)
 				{
 					printf("\n");
