@@ -10,7 +10,7 @@ int main (int argc, char **argv)
     /* Check the number of simulations is valid */
     if (numSims < 1)
     {
-        printf("Number of simulations should be an integer greater than 0 (second argument)\n)";
+        printf("Number of simulations should be an integer greater than 0 (second argument)\n");
         return 1;
     }
 
