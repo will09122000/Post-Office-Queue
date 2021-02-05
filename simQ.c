@@ -196,6 +196,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
+    printf("yeet %d\n", currentTime); 
     outputParams.currentTime = currentTime;
     outputParams.closingTime = closingTime;
     outputParams.totalWaitTime = totalWaitTime;
