@@ -11,8 +11,14 @@ struct servicePoint
 };
 typedef struct servicePoint SERVICEPOINT;
 
+struct test
+{
+    int currentTime, closingTime, totalWaitTime
+};
+typedef struct test TEST;
+
 /* Function Prototypes */
-void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6]);
+TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6]);
 
 int fulfillCustomer(int *numServicePoints,
                     SERVICEPOINT servicePoints[],

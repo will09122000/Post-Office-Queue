@@ -33,12 +33,17 @@ int main (int argc, char **argv)
     {
         int outputLog[(simParams[2])+50][6];
         runSim(simParams, numSims, outputFileName, *r, outputLog);
+
+        if (numSims == 1)
+        {
+            writeLogs(outputFileName, outputLog, test.currentTime, test.closingTime, test.totalWaitTime);
+        }
     }
 
     return 0;
 }
 
-void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6])
+TEST runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6])
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -71,6 +76,8 @@ void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int 
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
+
+    TEST test;
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
@@ -173,10 +180,11 @@ void runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int 
     printf("Size of Queue: %d\n", size(customerQueue));
     print_list(customerQueue);
 
-    if (numSims == 1)
-    {
-        writeLogs(outputFileName, outputLog, currentTime, closingTime, totalWaitTime);
-    }
+    test.currentTime = currentTime;
+    test.closingTime = closingTime;
+    test.totalWaitTime = totalWaitTime;
+
+    return test;
 }
 
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *totalWaitTime)
