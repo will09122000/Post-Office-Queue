@@ -39,7 +39,7 @@ int main (int argc, char **argv)
         if (numSims == 1)
             writeLogs(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
         else
-            avgOutputLog[i][][] = outputLog;
+            avgOutputLog[i] = outputLog;
     }
 
     return 0;
