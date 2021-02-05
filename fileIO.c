@@ -85,16 +85,16 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
 
 void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int closingTime, int totalWaitTime, int numSims)
 {
-    int avgOutputLogTest[numSims][(simParams[2])+10][6];
+    int avgOutputLogTest[numSims][currentTime][6];
     int i, j, k;
     for(i=0;i<numSims;i++)
 	{
-		for(j=0;j<closingTime+10;j++)
+		for(j=0;j<currentTime;j++)
 		{
 			for(k=0;k<6;k++)
 			{
-				printf("%d ",avgOutputLog[(i * ((closingTime+10)*6)) + (j * 6) + k]);
-                avgOutputLogTest[i][j][k] = avgOutputLog[(i * ((closingTime+10)*6)) + (j * 6) + k];
+				printf("%d ",avgOutputLog[(i * (currentTime*6)) + (j * 6) + k]);
+                avgOutputLogTest[i][j][k] = avgOutputLog[(i * (currentTime*6)) + (j * 6) + k];
 				if(k==5)
 				{
 					printf("\n");
