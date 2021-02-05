@@ -92,15 +92,8 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
 		for(j=0;j<closingTime + buffer;j++)
 		{
 			for(k=0;k<6;k++)
-			{
                 avgOutputLogTest[i][j][k] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
-				if(k==5)
-				{
-					printf("\n");
-				}
-			}
 		}
-		printf("\n");
 	}
     for(i=0;i<numSims;i++)
 	{
