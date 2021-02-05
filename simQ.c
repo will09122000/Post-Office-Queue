@@ -42,6 +42,23 @@ int main (int argc, char **argv)
             memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));
     }
 
+    int j, k;
+    for(i=1;i<=numSims;i++)
+	{
+		for(j=1;j<=(simParams[2])+50;j++)
+		{
+			for(k=1;k<=6;k++)
+			{
+				printf("%d ",avgOutputLog[i][j][k]);
+				if(k==6)
+				{
+					printf("\n");
+				}
+			}
+		}
+		printf("\n");
+	}
+
     return 0;
 }
 
