@@ -105,9 +105,9 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int currentTime, int cl
             if (j == 0 || avgOutputLogTest[i][j][0]-1 == avgOutputLogTest[i][j-1][0])
             {
                 printf("%d\n", totalcustomersServed);
-                totalcustomersServed += avgOutputLogTest[i][j][3];
-                totalcustomersUnfulfilled += avgOutputLogTest[i][j][4];
-                totalcustomersTimedOut += avgOutputLogTest[i][j][5];
+                totalcustomersServed = avgOutputLogTest[i][j][3];
+                totalcustomersUnfulfilled = avgOutputLogTest[i][j][4];
+                totalcustomersTimedOut = avgOutputLogTest[i][j][5];
             }
 		}
 	}
