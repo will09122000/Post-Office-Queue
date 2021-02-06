@@ -30,7 +30,7 @@ int main (int argc, char **argv)
 
     /* Worst case time after post office close */
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
-    int avgOutputLog[numSims][(simParams[2]) + buffer][3];
+    int avgOutputLog[3];
     int totalWaitTime = 0;
     int currentTime[numSims];
     int totalWaitTimeAvg[numSims];
@@ -51,17 +51,11 @@ int main (int argc, char **argv)
         else
         {
             /*memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));*/
-            int j;
-            for (j=0; j<(simParams[2]) + buffer; j++)
-            {
-                printf("%d ", outputLog[j][3]);
-                printf("%d ", outputLog[j][4]);
-                printf("%d ", outputLog[j][5]);
-                printf("\n");
-                avgOutputLog[i][j][0] = outputLog[j][3];
-                avgOutputLog[i][j][1] = outputLog[j][4];
-                avgOutputLog[i][j][2] = outputLog[j][5];
-            }
+
+            avgOutputLog[0] += outputLog[outputParams.currentTime-1][3];
+            avgOutputLog[1] += outputLog[outputParams.currentTime-1][4];
+            avgOutputLog[2] += outputLog[outputParams.currentTime-1][5];
+
 
             totalWaitTime += outputParams.totalWaitTime;
             currentTime[i] = outputParams.currentTime;
@@ -69,9 +63,10 @@ int main (int argc, char **argv)
         }
     }
     if (numSims > 1)
+    /*
         writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims,
                   buffer, currentTime, totalWaitTimeAvg);
-
+    */
     return 0;
 }
 
