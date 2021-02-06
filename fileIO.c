@@ -64,7 +64,8 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
     fclose(fpOut);
 }
 
-void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime, int closingTime, int totalWaitTime)
+void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
+                     int closingTime, int totalWaitTime)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
@@ -86,11 +87,14 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
         fprintf(fp, "Customers Timed-out:    %d\n", outputLog[i][5]);
         fputs("\n", fp);
     }
-    fprintf(fp, "Time taken to serve remaining customers after the post office has closed: %d\n", (currentTime-closingTime));
-    fprintf(fp, "Average Customer Waiting Time: %f\n", (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
+    fprintf(fp, "Time taken to serve remaining customers after the post office\
+            has closed: %d\n", (currentTime-closingTime));
+    fprintf(fp, "Average Customer Waiting Time: %f\n",
+            (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int numSims, int buffer, int currentTime[], int waitTime[])
+void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime,
+               int numSims, int buffer, int currentTime[], int waitTime[])
 {
     int totalcustomersServed = 0;
     int totalcustomersUnfulfilled = 0;
@@ -108,7 +112,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
         totalcustomersUnfulfilled += avgOutputLog[customersUnfulfilledIndex];
         totalcustomersTimedOut += avgOutputLog[customersTimedOutIndex];
         totalTimeAfterClose += (currentTime[i]-1) - closingTime;
-        totalWaitTime += waitTime[0];
+        totalWaitTime += waitTime[i];
     }
 
     FILE *fp;
