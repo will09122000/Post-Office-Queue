@@ -122,7 +122,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
     int offset(int x, int y, int z) { 
         return (x * (closingTime + buffer) * 6) + (y * 6) + z; 
     }
-
+    int i;
     for(i=0;i<numSims;i++)
     {
         /*
