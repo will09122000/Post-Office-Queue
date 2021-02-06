@@ -85,6 +85,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
 
 void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int numSims, int buffer, int currentTime[], int waitTime[])
 {
+    printf("Done2\n");
     int totalcustomersServed = 0;
     int totalcustomersUnfulfilled = 0;
     int totalcustomersTimedOut = 0;
@@ -92,7 +93,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
     int totalWaitTime = 0;
     int avgOutputLogTest[numSims][closingTime + buffer][3];
     int i, j, k;
-    printf("Done2\n");
+    
     for(i=0;i<numSims;i++)
 	{
 		for(j=0;j<closingTime + buffer;j++)
