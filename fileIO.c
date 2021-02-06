@@ -15,10 +15,10 @@ void getSimParameters(char inputFileName[], int simParams[])
            &simParams[0], &simParams[1], &simParams[2], &simParams[3], &simParams[4], &simParams[5], &simParams[6], &simParams[7]);
 
     fclose(fp);
-    printf("%d", &simParams[0]);
-    printf("%d", &simParams[1]);
-    printf("%d", &simParams[2]);
-    printf("%d", &simParams[3]);
+    printf("%d\n", &simParams[0]);
+    printf("%d\n", &simParams[1]);
+    printf("%d\n", &simParams[2]);
+    printf("%d\n", &simParams[3]);
 }
 
 void writeSimParameters(char inputFileName[], char outputFileName[])
