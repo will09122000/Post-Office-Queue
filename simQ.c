@@ -93,9 +93,9 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
 
     SERVICEPOINT servicePoints[numServicePoints];
     int busyServicePoints = 0;
-    
-    NODE *customerQueue = NULL;
     printf("Yeet\n");
+    NODE *customerQueue = NULL;
+    
     customerQueue = (NODE *) malloc(sizeof(NODE));
     printf("Yeet1\n");
     customerQueue->next = NULL;
