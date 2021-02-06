@@ -212,7 +212,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
     return outputParams;
 }
 
-int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],\
+int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],
                     int *totalWaitTime)
 {
     int customersServed = 0;
