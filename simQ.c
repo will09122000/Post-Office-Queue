@@ -54,6 +54,10 @@ int main (int argc, char **argv)
             int j;
             for (j=0; j<(simParams[2]) + buffer; j++)
             {
+                printf("%d ", outputLog[j][3]);
+                printf("%d ", outputLog[j][4]);
+                printf("%d ", outputLog[j][5]);
+                printf("\n");
                 avgOutputLog[i][j][0] = outputLog[j][3];
                 avgOutputLog[i][j][1] = outputLog[j][4];
                 avgOutputLog[i][j][2] = outputLog[j][5];
