@@ -11,16 +11,7 @@ struct servicePoint
 };
 typedef struct servicePoint SERVICEPOINT;
 
-struct outputParams
-{
-    int currentTime;
-    int closingTime;
-    int totalWaitTime;
-    int totalcustomersServed;
-    int totalcustomersUnfulfilled;
-    int totalcustomersTimedOut;
-};
-typedef struct outputParams OUTPUT;
+
 
 /* Function Prototypes */
 OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6]);
