@@ -84,7 +84,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     int scaleServeTime = simParams[6];
     int lowerLimitServeTime = simParams[7];
 
-    printf("Yeet\n");
+    
 
     /* Output logs if number of simulations is 1 
     50 is a buffer as the time taken to finish serving customer is unknown 
@@ -100,6 +100,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
+
+    printf("Yeet\n");
 
     OUTPUT outputParams;
 
