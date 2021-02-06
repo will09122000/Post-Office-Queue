@@ -11,7 +11,14 @@ void getSimParameters(char inputFileName[], int simParams[])
     }
 
     fscanf(fp,
-           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\nscaleServeTime: %d\nlowerLimitServeTime: %d\n",
+           "maxQueueLength: %d\n
+           numServicePoints: %d\n
+           closingTime: %d\n
+           meanNewCustomers: %d\n
+           lowerLimitWaitTolerance: %d\n
+           upperLimitWaitTolerance: %d\n
+           scaleServeTime: %d\n
+           lowerLimitServeTime: %d\n",
            &simParams[0],
            &simParams[1],
            &simParams[2],
@@ -85,10 +92,6 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
 
 void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int numSims, int buffer, int currentTime[], int waitTime[])
 {
-    int converter(int x, int y, int z) { 
-        return (x * (closingTime + buffer) * 6) + (y * 6) + z; 
-    }
-
     int totalcustomersServed = 0;
     int totalcustomersUnfulfilled = 0;
     int totalcustomersTimedOut = 0;
