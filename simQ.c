@@ -32,12 +32,12 @@ int main (int argc, char **argv)
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
     OUTPUT outputParams;
     int currentTime[numSims];
+    int outputLog[(simParams[2]) + buffer][6];
 
     /* Run Simulations */
     int i;
     for (i=0; i < numSims; i++)
     {
-        int outputLog[(simParams[2]) + buffer][6];
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
