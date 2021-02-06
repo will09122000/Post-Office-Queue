@@ -30,12 +30,11 @@ int main (int argc, char **argv)
 
     /* Worst case time after post office close */
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
-    int totalWaitTime = 0;
+    OUTPUT outputParams;
     int currentTime[numSims];
 
     /* Run Simulations */
     int i;
-    OUTPUT outputParams;
     for (i=0; i < numSims; i++)
     {
         int outputLog[(simParams[2]) + buffer][6];
@@ -46,6 +45,7 @@ int main (int argc, char **argv)
         else
             currentTime[i] = outputParams.currentTime;
     }
+
     if (numSims > 1)
         writeLogs(outputFileName, numSims, buffer, currentTime, outputParams);
 
