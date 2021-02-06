@@ -75,7 +75,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputPar
     fprintf(fp, "Time taken to serve remaining customers after the post office\
  has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
     fprintf(fp, "Average Customer Waiting Time: %f\n",
-            (float) outputParams.totalWaitTime / (float) outputLog[currentTime-1][3]);
+            (float) outputParams.totalWaitTime / (float) outputLog[outputParams.currentTime-1][3]);
 }
 
 void writeLogs(char outputFileName[], int closingTime,
