@@ -113,6 +113,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
             }
 		}
 	}
+    printf("Done2\n");
 
     for(i=0;i<numSims;i++)
     {
