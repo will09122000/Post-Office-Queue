@@ -32,7 +32,6 @@ int main (int argc, char **argv)
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
     int totalWaitTime = 0;
     int currentTime[numSims];
-    int totalWaitTimeAvg[numSims];
 
     /* Run Simulations */
     int i;
@@ -43,18 +42,12 @@ int main (int argc, char **argv)
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
         if (numSims == 1)
-        {
             writeLogsOneSim(outputFileName, outputLog, outputParams);
-        }
         else
-        {
             currentTime[i] = outputParams.currentTime;
-        }
     }
     if (numSims > 1)
-
-        writeLogs(outputFileName, numSims,
-                  buffer, currentTime, outputParams);
+        writeLogs(outputFileName, numSims, buffer, currentTime, outputParams);
 
     return 0;
 }
