@@ -85,54 +85,25 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
 
 void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int numSims, int buffer, int currentTime[], int waitTime[])
 {
-    
+    int converter(int x, int y, int z) { 
+        return (x * (closingTime + buffer) * 6) + (y * 6) + z; 
+    }
+
     int totalcustomersServed = 0;
     int totalcustomersUnfulfilled = 0;
     int totalcustomersTimedOut = 0;
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
-    /*
-    int *avgOutputLogTest = new int[numSims][closingTime + buffer][3];
-    printf("Done3\n");
-    int i, j, k;
-    
-    for(i=0;i<numSims;i++)
-	{
-		for(j=0;j<closingTime + buffer;j++)
-		{
-			for(k=0;k<6;k++)
-            {
-                switch (k)
-                {
-                case 3:
-                    avgOutputLogTest[i][j][0] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
-                    break;
-                case 4:
-                    avgOutputLogTest[i][j][1] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
-                    break;
-                case 5:
-                    avgOutputLogTest[i][j][2] = avgOutputLog[(i * ((closingTime + buffer)*6)) + (j * 6) + k];
-                    break;
-                }
-            }
-		}
-	}
-    printf("Done4\n");
-    */
-    int offset(int x, int y, int z) { 
-        return (x * (closingTime + buffer) * 6) + (y * 6) + z; 
-    }
+
     int i;
-    for(i=0;i<numSims;i++)
+    for(i=0; i<numSims; i++)
     {
-        /*
-        totalcustomersServed += avgOutputLogTest[i][currentTime[i]-1][3];
-        totalcustomersUnfulfilled += avgOutputLogTest[i][currentTime[i]-1][4];
-        totalcustomersTimedOut += avgOutputLogTest[i][currentTime[i]-1][5];
-        */
-        totalcustomersServed += avgOutputLog[offset(i, currentTime[i]-1, 3)];
-        totalcustomersUnfulfilled += avgOutputLog[offset(i, currentTime[i]-1, 4)];
-        totalcustomersTimedOut += avgOutputLog[offset(i, currentTime[i]-1, 5)];
+        int customersServedIndex = (i * (closingTime + buffer) * 6) + (currentTime[i]-1 * 6) + 3;
+        int customersUnfulfilledIndex = (i * (closingTime + buffer) * 6) + (currentTime[i]-1 * 6) + 4;
+        int customersTimedOutIndex = (i * (closingTime + buffer) * 6) + (currentTime[i]-1 * 6) + 5;
+        totalcustomersServed += avgOutputLog[customersServedIndex];
+        totalcustomersUnfulfilled += avgOutputLog[customersUnfulfilledIndex];
+        totalcustomersTimedOut += avgOutputLog[customersTimedOutIndex];
         totalTimeAfterClose += (currentTime[i]-1) - closingTime;
         totalWaitTime += waitTime[0];
     }
