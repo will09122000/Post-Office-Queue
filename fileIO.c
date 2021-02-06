@@ -78,8 +78,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputPar
             (float) outputParams.totalWaitTime / (float) outputLog[outputParams.currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int closingTime,
-               int numSims, int buffer, int currentTime[], int waitTime[], OUTPUT outputParams)
+void writeLogs(char outputFileName[], int numSims, int buffer, int currentTime[], OUTPUT outputParams)
 {
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
@@ -87,8 +86,7 @@ void writeLogs(char outputFileName[], int closingTime,
     int i;
     for(i=0; i<numSims; i++)
     {
-        totalTimeAfterClose += (currentTime[i]-1) - closingTime;
-        totalWaitTime += waitTime[i];
+        totalTimeAfterClose += (currentTime[i]-1) - outputParams.closingTime;
     }
 
     FILE *fp;
@@ -109,7 +107,7 @@ void writeLogs(char outputFileName[], int closingTime,
 after the post office has closed: %f\n",
             (float) totalTimeAfterClose / (float) numSims);
     fprintf(fp, "Average Customer Waiting Time:              %f\n",
-            (float) totalWaitTime / (float) outputParams.totalcustomersServed);
+            (float) outputParams.totalWaitTime / (float) outputParams.totalcustomersServed);
 
     fclose(fp);
 }
