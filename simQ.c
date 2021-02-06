@@ -52,10 +52,10 @@ int main (int argc, char **argv)
         {
             /*memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));*/
             printf("%d %d %d\n", outputLog[outputParams.currentTime-1][3], outputLog[outputParams.currentTime-1][4], outputLog[outputParams.currentTime-1][5]);
-            avgOutputLog[0] += outputLog[outputParams.currentTime][3];
-            avgOutputLog[1] += outputLog[outputParams.currentTime][4];
-            avgOutputLog[2] += outputLog[outputParams.currentTime][5];
-            /*printf("%d %d %d\n", avgOutputLog[0], avgOutputLog[1], avgOutputLog[2]);*/
+            avgOutputLog[0] += outputLog[outputParams.currentTime-1][3];
+            avgOutputLog[1] += outputLog[outputParams.currentTime-1][4];
+            avgOutputLog[2] += outputLog[outputParams.currentTime-1][5];
+            printf("%d %d %d\n", avgOutputLog[0], avgOutputLog[1], avgOutputLog[2]);
 
             totalWaitTime += outputParams.totalWaitTime;
             currentTime[i] = outputParams.currentTime;
