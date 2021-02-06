@@ -50,7 +50,8 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
     fclose(fpOut);
 }
 
-void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputParams)
+void writeLogsOneSim(char outputFileName[], int outputLog[][6],
+                     OUTPUT outputParams)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
@@ -72,13 +73,16 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputPar
         fprintf(fp, "Customers Timed-out:    %d\n", outputLog[i][5]);
         fputs("\n", fp);
     }
-    fprintf(fp, "Time taken to serve remaining customers after the post office\
- has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
+    fprintf(fp, "Time taken to serve remaining customers after the post \
+office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
+
     fprintf(fp, "Average Customer Waiting Time: %f\n",
-            (float) outputParams.totalWaitTime / (float) outputLog[outputParams.currentTime-1][3]);
+            (float) outputParams.totalWaitTime / 
+            (float) outputLog[outputParams.currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int numSims, int buffer, int currentTime[], OUTPUT outputParams)
+void writeLogs(char outputFileName[], int numSims, int buffer,
+               int currentTime[], OUTPUT outputParams)
 {
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
@@ -99,15 +103,20 @@ void writeLogs(char outputFileName[], int numSims, int buffer, int currentTime[]
 
     fprintf(fp, "Average Number of Fulfilled Customers:      %f\n",
             (float) outputParams.totalcustomersServed / (float) numSims);
+
     fprintf(fp, "Average Number of Unfulfilled Customers:    %f\n",
             (float) outputParams.totalcustomersUnfulfilled / (float) numSims);
+
     fprintf(fp, "Average Number of Timed-out Customers:      %f\n",
             (float) outputParams.totalcustomersTimedOut / (float) numSims);
+
     fprintf(fp, "Average time taken to serve remaining\ncustomers \
 after the post office has closed: %f\n",
             (float) totalTimeAfterClose / (float) numSims);
+
     fprintf(fp, "Average Customer Waiting Time:              %f\n",
-            (float) outputParams.totalWaitTime / (float) outputParams.totalcustomersServed);
+            (float) outputParams.totalWaitTime /
+            (float) outputParams.totalcustomersServed);
 
     fclose(fp);
 }
