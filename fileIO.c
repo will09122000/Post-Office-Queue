@@ -79,29 +79,18 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
             (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime,
+void writeLogs(char outputFileName[], int avgOutputLog[], int closingTime,
                int numSims, int buffer, int currentTime[], int waitTime[])
 {
-    int totalcustomersServed = 0;
-    int totalcustomersUnfulfilled = 0;
-    int totalcustomersTimedOut = 0;
+    int totalcustomersServed = avgOutputLog[0];
+    int totalcustomersUnfulfilled = avgOutputLog[1];
+    int totalcustomersTimedOut = avgOutputLog[2];
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
 
     int i;
     for(i=0; i<numSims; i++)
     {
-        int customersServedIndex = (i * (closingTime + buffer) * 3) +\
-                                   (currentTime[i]-1 * 3) + 0;
-        int customersUnfulfilledIndex = (i * (closingTime + buffer) * 3) +\
-                                        (currentTime[i]-1 * 3) + 1;
-        int customersTimedOutIndex = (i * (closingTime + buffer) * 3) +\
-                                     (currentTime[i]-1 * 3) + 2;
-        /*
-        totalcustomersServed += avgOutputLog[customersServedIndex];
-        totalcustomersUnfulfilled += avgOutputLog[customersUnfulfilledIndex];
-        totalcustomersTimedOut += avgOutputLog[customersTimedOutIndex];
-        */
         totalTimeAfterClose += (currentTime[i]-1) - closingTime;
         totalWaitTime += waitTime[i];
     }
@@ -115,16 +104,16 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime,
     }
 
     fprintf(fp, "Average Number of Fulfilled Customers:      %f\n",
-            (float) avgOutputLog[0] / (float) numSims);
+            (float) totalcustomersServed / (float) numSims);
     fprintf(fp, "Average Number of Unfulfilled Customers:    %f\n",
-            (float) avgOutputLog[1] / (float) numSims);
+            (float) totalcustomersUnfulfilled / (float) numSims);
     fprintf(fp, "Average Number of Timed-out Customers:      %f\n",
-            (float) avgOutputLog[2] / (float) numSims);
+            (float) totalcustomersTimedOut / (float) numSims);
     fprintf(fp, "Average time taken to serve remaining\ncustomers \
 after the post office has closed: %f\n",
             (float) totalTimeAfterClose / (float) numSims);
     fprintf(fp, "Average Customer Waiting Time:              %f\n",
-            (float) totalWaitTime / (float) avgOutputLog[0]);
+            (float) totalWaitTime / (float) totalcustomersServed);
 
     fclose(fp);
 }
