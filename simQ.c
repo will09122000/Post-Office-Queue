@@ -51,11 +51,11 @@ int main (int argc, char **argv)
         else
         {
             /*memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));*/
-
+            printf("%d %d %d\n", outputLog[outputParams.currentTime][3], outputLog[outputParams.currentTime][4], outputLog[outputParams.currentTime][5]);
             avgOutputLog[0] += outputLog[outputParams.currentTime][3];
             avgOutputLog[1] += outputLog[outputParams.currentTime][4];
             avgOutputLog[2] += outputLog[outputParams.currentTime][5];
-            printf("%d %d %d\n", avgOutputLog[0], avgOutputLog[1], avgOutputLog[2]);
+            /*printf("%d %d %d\n", avgOutputLog[0], avgOutputLog[1], avgOutputLog[2]);*/
 
             totalWaitTime += outputParams.totalWaitTime;
             currentTime[i] = outputParams.currentTime;
@@ -216,6 +216,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
     printf("Customers at Service Points: %d\n", customersAtServicePoint);
     printf("Total Time: %d\n", currentTime);
     printf("Size of Queue: %d\n", size(customerQueue));
+    printf("\n");
 
 
     outputParams.currentTime = currentTime;
