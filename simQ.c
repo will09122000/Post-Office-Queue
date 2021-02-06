@@ -249,7 +249,8 @@ void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
-                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime, lowerLimitServeTime);
+                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime,
+                                                              lowerLimitServeTime);
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;

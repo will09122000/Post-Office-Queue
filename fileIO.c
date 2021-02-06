@@ -11,7 +11,9 @@ void getSimParameters(char inputFileName[], int simParams[])
     }
 
     fscanf(fp,
-           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\nmeanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\nscaleServeTime: %d\nlowerLimitServeTime: %d\n",
+           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
+meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
+scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams[0], &simParams[1], &simParams[2], &simParams[3],
            &simParams[4], &simParams[5], &simParams[6], &simParams[7]);
 
@@ -72,7 +74,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
         fputs("\n", fp);
     }
     fprintf(fp, "Time taken to serve remaining customers after the post office\
-            has closed: %d\n", (currentTime-closingTime));
+ has closed: %d\n", (currentTime-closingTime));
     fprintf(fp, "Average Customer Waiting Time: %f\n",
             (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
