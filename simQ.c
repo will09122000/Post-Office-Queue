@@ -30,7 +30,7 @@ int main (int argc, char **argv)
 
     /* Worst case time after post office close */
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
-    int avgOutputLog[3];
+    int avgOutputLog[] = {0, 0, 0};
     int totalWaitTime = 0;
     int currentTime[numSims];
     int totalWaitTimeAvg[numSims];
