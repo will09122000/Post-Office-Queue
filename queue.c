@@ -1,5 +1,19 @@
 #include <queue.h>
 
+/*
+    This file contains functions that handles the post office queue in the form
+    of a linked list.
+*/
+
+/*
+    Function:  size
+    --------------------
+    Computes the size of the post office queue.
+
+    head: a pointer to the start of the list
+
+    returns: the size of the list
+ */
 int size(NODE * head)
 {
     int count = 0;
@@ -12,21 +26,16 @@ int size(NODE * head)
     return count-1; 
 }
 
-void print_list(NODE * head)
-{
-    NODE * current = head;
-    printf("Queue:\n");
+/*
+    Function:  enequeue
+    --------------------
+    Adds a new customer to the end of the post office queue.
 
-    if (current->waitLimit == INT_MIN)
-        current = current->next;
+    head: a pointer to the start of the list
+    waitLimit: the maximum time the new customer is willing to wait
 
-    while (current != NULL)
-    {
-        printf("Wait Limit: %d Current Wait: %d\n", current->waitLimit, current->waitCurrent);
-        current = current->next;
-    }
-}
-
+    returns: null
+ */
 void enqueue(NODE * head, int waitLimit)
 {
     NODE * current = head;
@@ -34,7 +43,6 @@ void enqueue(NODE * head, int waitLimit)
     while (current->next != NULL)
         current = current->next;
 
-    /* now we can add a new variable */
     current->next = (NODE *) malloc(sizeof(NODE));
     current->next->waitLimit = waitLimit;
     current->next->waitCurrent = 0;
@@ -42,6 +50,15 @@ void enqueue(NODE * head, int waitLimit)
     current->next->previous = current;
 }
 
+/*
+    Function:  dequeue
+    --------------------
+    Removes the customer at the front of the post office queue.
+
+    head: a double pointer to the start of the list
+
+    returns: the customer node struct that has been removed
+ */
 NODE* dequeue(NODE ** head)
 {
     NODE* nodeRemoved;
@@ -68,6 +85,15 @@ NODE* dequeue(NODE ** head)
     }
 }
 
+/*
+    Function:  updateWait
+    --------------------
+    Increments the wait time of each customer in the queue by 1.
+
+    head: a pointer to the start of the list
+
+    returns: null
+ */
 void updateWait(NODE * head)
 {
     NODE * current = head;
@@ -82,13 +108,23 @@ void updateWait(NODE * head)
         current->waitCurrent++;
         current = current->next;
     }
-
 }
 
+/*
+    Function:  checkWaitLimit
+    --------------------
+    Iterates through the customer queue and removes customers that have reached
+    their wait limit.
+
+    head: a double pointer to the start of the list
+
+    returns: the number of customers that have timed-out during the
+             current time unit
+ */
 int checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
-    int newBoredCustomers = 0;
+    int newTimedOutCustomers = 0;
 
     if (size(*head) == 0)
         return;
@@ -103,25 +139,24 @@ int checkWaitLimit(NODE ** head)
             if (*head == NULL || current == NULL) 
                 return; 
         
-            /* If node to be deleted is head node */
+            /* If node is head node, go to next node. */
             if (*head == current) 
                 *head = current->next; 
         
-            /* Change next only if node to be 
-            deleted is NOT the last node */
+            /* Change 'next' pointer as long as the node to be deleted is not the
+               last node */
             if (current->next != NULL) 
                 current->next->previous = current->previous; 
         
-            /* Change previous only if node to be 
-            deleted is NOT the first node */
+            /* Change 'previous' pointer as long as the node to be deleted is not
+               the first node */
             if (current->previous != NULL) 
                 current->previous->next = current->next; 
         
-            /* Finally, free the memory occupied by del*/
             free(current);
-            newBoredCustomers++;
+            newTimedOutCustomers++;
         }
         current = current->next;
     }
-    return newBoredCustomers;
+    return newTimedOutCustomers;
 }

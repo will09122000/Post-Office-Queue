@@ -12,6 +12,7 @@
         "string": "c",
         "sstream": "c",
         "deque": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "queue.h": "c"
     }
 }
