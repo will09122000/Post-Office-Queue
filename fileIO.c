@@ -97,9 +97,11 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime,
                                         (currentTime[i]-1 * 3) + 1;
         int customersTimedOutIndex = (i * (closingTime + buffer) * 3) +\
                                      (currentTime[i]-1 * 3) + 2;
+        /*
         totalcustomersServed += avgOutputLog[customersServedIndex];
         totalcustomersUnfulfilled += avgOutputLog[customersUnfulfilledIndex];
         totalcustomersTimedOut += avgOutputLog[customersTimedOutIndex];
+        */
         totalTimeAfterClose += (currentTime[i]-1) - closingTime;
         totalWaitTime += waitTime[i];
     }

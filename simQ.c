@@ -55,7 +55,7 @@ int main (int argc, char **argv)
             avgOutputLog[0] += outputLog[outputParams.currentTime-1][3];
             avgOutputLog[1] += outputLog[outputParams.currentTime-1][4];
             avgOutputLog[2] += outputLog[outputParams.currentTime-1][5];
-
+            printf("%d %d %d\n", avgOutputLog[0], avgOutputLog[1], avgOutputLog[2])
 
             totalWaitTime += outputParams.totalWaitTime;
             currentTime[i] = outputParams.currentTime;
@@ -63,10 +63,10 @@ int main (int argc, char **argv)
         }
     }
     if (numSims > 1)
-    /*
+
         writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims,
                   buffer, currentTime, totalWaitTimeAvg);
-    */
+
     return 0;
 }
 
