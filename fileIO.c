@@ -131,8 +131,8 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
         totalcustomersTimedOut += avgOutputLogTest[i][currentTime[i]-1][5];
         */
         totalcustomersServed += avgOutputLog[offset(i, currentTime[i]-1, 3)];
-        totalcustomersUnfulfilled += avgOutputLog[offset(i, currentTime[i]-1, 3)];
-        totalcustomersTimedOut += avgOutputLog[offset(i, currentTime[i]-1, 3)];
+        totalcustomersUnfulfilled += avgOutputLog[offset(i, currentTime[i]-1, 4)];
+        totalcustomersTimedOut += avgOutputLog[offset(i, currentTime[i]-1, 5)];
         totalTimeAfterClose += (currentTime[i]-1) - closingTime;
         totalWaitTime += waitTime[0];
     }
