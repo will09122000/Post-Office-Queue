@@ -11,22 +11,12 @@ void getSimParameters(char inputFileName[], int simParams[])
     }
 
     fscanf(fp,
-           "maxQueueLength: %d\n\
-           numServicePoints: %d\n\
-           closingTime: %d\n\
-           meanNewCustomers: %d\n\
-           lowerLimitWaitTolerance: %d\n\
-           upperLimitWaitTolerance: %d\n\
-           scaleServeTime: %d\n\
+           "maxQueueLength: %d\numServicePoints: %d\nclosingTime: %d\n\
+           meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\n\
+           upperLimitWaitTolerance: %d\nscaleServeTime: %d\n\
            lowerLimitServeTime: %d\n",
-           &simParams[0],
-           &simParams[1],
-           &simParams[2],
-           &simParams[3],
-           &simParams[4],
-           &simParams[5],
-           &simParams[6],
-           &simParams[7]);
+           &simParams[0], &simParams[1], &simParams[2], &simParams[3],
+           &simParams[4], &simParams[5], &simParams[6], &simParams[7]);
 
     fclose(fp);
 }
@@ -53,14 +43,11 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
 
     fputs("# Input Parameters\n", fpOut);
     while(fgets(content, sizeof(content), fpIn) !=NULL)
-    {
         fprintf(fpOut, "%s", content);
-    }
+
     fputs("\n", fpOut);
+
     fclose(fpIn);
-
-
-
     fclose(fpOut);
 }
 
@@ -105,9 +92,12 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime,
     int i;
     for(i=0; i<numSims; i++)
     {
-        int customersServedIndex = (i * (closingTime + buffer) * 6) + (currentTime[i]-1 * 6) + 3;
-        int customersUnfulfilledIndex = (i * (closingTime + buffer) * 6) + (currentTime[i]-1 * 6) + 4;
-        int customersTimedOutIndex = (i * (closingTime + buffer) * 6) + (currentTime[i]-1 * 6) + 5;
+        int customersServedIndex = (i * (closingTime + buffer) * 6) +\
+                                   (currentTime[i]-1 * 6) + 3;
+        int customersUnfulfilledIndex = (i * (closingTime + buffer) * 6) +\
+                                        (currentTime[i]-1 * 6) + 4;
+        int customersTimedOutIndex = (i * (closingTime + buffer) * 6) +\
+                                     (currentTime[i]-1 * 6) + 5;
         totalcustomersServed += avgOutputLog[customersServedIndex];
         totalcustomersUnfulfilled += avgOutputLog[customersUnfulfilledIndex];
         totalcustomersTimedOut += avgOutputLog[customersTimedOutIndex];
@@ -123,9 +113,17 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime,
         exit(1);
     }
 
-    fprintf(fp, "Average Number of Fulfilled Customers:      %f\n", (float) totalcustomersServed / (float) numSims);
-    fprintf(fp, "Average Number of Unfulfilled Customers:    %f\n", (float) totalcustomersUnfulfilled / (float) numSims);
-    fprintf(fp, "Average Number of Timed-out Customers:      %f\n", (float) totalcustomersTimedOut / (float) numSims);
-    fprintf(fp, "Average time taken to serve remaining\ncustomers after the post office has closed: %f\n", (float) totalTimeAfterClose / (float) numSims);
-    fprintf(fp, "Average Customer Waiting Time:              %f\n", (float) totalWaitTime / (float) totalcustomersServed);
+    fprintf(fp, "Average Number of Fulfilled Customers:      %f\n",
+            (float) totalcustomersServed / (float) numSims);
+    fprintf(fp, "Average Number of Unfulfilled Customers:    %f\n",
+            (float) totalcustomersUnfulfilled / (float) numSims);
+    fprintf(fp, "Average Number of Timed-out Customers:      %f\n",
+            (float) totalcustomersTimedOut / (float) numSims);
+    fprintf(fp, "Average time taken to serve remaining\ncustomers\
+            after the post office has closed: %f\n",
+            (float) totalTimeAfterClose / (float) numSims);
+    fprintf(fp, "Average Customer Waiting Time:              %f\n",
+            (float) totalWaitTime / (float) totalcustomersServed);
+
+    fclose(fp);
 }
