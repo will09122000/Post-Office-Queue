@@ -10,7 +10,8 @@ int main (int argc, char **argv)
     /* Check the number of simulations is valid */
     if (numSims < 1)
     {
-        printf("Number of simulations should be an integer greater than 0 (second argument)\n");
+        printf("Number of simulations should be an integer greater than 0\
+                (second argument)\n");
         return 1;
     }
 
@@ -44,7 +45,8 @@ int main (int argc, char **argv)
 
         if (numSims == 1)
         {
-            writeLogsOneSim(outputFileName, outputLog, outputParams.currentTime, outputParams.closingTime, outputParams.totalWaitTime);
+            writeLogsOneSim(outputFileName, outputLog, outputParams.currentTime,
+                            outputParams.closingTime, outputParams.totalWaitTime);
         }
         else
         {
@@ -55,12 +57,14 @@ int main (int argc, char **argv)
         }
     }
     if (numSims > 1)
-        writeLogs(outputFileName, *avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTimeAvg);
+        writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims,
+                  buffer, currentTime, totalWaitTimeAvg);
 
     return 0;
 }
 
-OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, int outputLog[][6])
+OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
+              int outputLog[][6])
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -69,7 +73,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     int customersUnfulfilled = 0;
     int customersAtServicePoint = 0;
 
-    /* Simulation parameters separated into individual variables for improved readability */
+    /* Simulation parameters separated into individual variables for improved
+       readability */
     int maxQueueLength = simParams[0];
     int numServicePoints = simParams[1];
     int closingTime = simParams[2];
@@ -102,10 +107,12 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
         /* Customers leave service point */
-        customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
+        customersServed += fulfillCustomer(&numServicePoints, servicePoints,
+                                           &totalWaitTime);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r, scaleServeTime, lowerLimitServeTime);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue,
+                             r, scaleServeTime, lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -117,7 +124,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
         {
             if (size(customerQueue) < maxQueueLength || maxQueueLength == -1)
             {
-                int waitLimit = (int) gsl_ran_flat(&r, lowerLimitWaitTolerance, upperLimitWaitTolerance);
+                int waitLimit = (int) gsl_ran_flat(&r, lowerLimitWaitTolerance,
+                                                   upperLimitWaitTolerance);
                 enqueue(customerQueue, waitLimit);
                 customersTotal++;
             }
@@ -154,10 +162,12 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     while (customersAtServicePoint > 0 || size(customerQueue) > 0)
     {
         /* Customers leave service point */
-        customersServed += fulfillCustomer(&numServicePoints, servicePoints, &totalWaitTime);
+        customersServed += fulfillCustomer(&numServicePoints, servicePoints,
+                                           &totalWaitTime);
 
         /* Customers arrive at service point */
-        startServingCustomer(&numServicePoints, servicePoints, customerQueue, r, scaleServeTime, lowerLimitServeTime);
+        startServingCustomer(&numServicePoints, servicePoints, customerQueue,
+                             r, scaleServeTime, lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -187,7 +197,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
         outputLog[currentTime][4] = customersUnfulfilled;
         outputLog[currentTime][5] = customersTimedOut;
 
-        /* Increment Time interval as this loops after the post office has closed */
+        /* Increment Time interval as this loops after the post office has
+           closed */
         currentTime++;
     }
     /*
@@ -208,7 +219,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     return outputParams;
 }
 
-int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *totalWaitTime)
+int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],
+                    int *totalWaitTime)
 {
     int customersServed = 0;
     int i;
@@ -224,7 +236,9 @@ int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], int *to
     return customersServed;
 }
 
-void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[], NODE customerQueue[], gsl_rng r,  int scaleServeTime, int lowerLimitServeTime)
+void startServingCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],
+                          NODE customerQueue[], gsl_rng r,  int scaleServeTime,
+                          int lowerLimitServeTime)
 {
     int i;
     for (i=0; i < *numServicePoints; i++)
