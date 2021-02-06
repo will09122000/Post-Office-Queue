@@ -90,7 +90,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     50 is a buffer as the time taken to finish serving customer is unknown 
     int outputLog[(closingTime)+50][6]; */
     int totalWaitTime = 0;
-    printf("Yeet\n");
+    printf("%d\n", numServicePoints);
     SERVICEPOINT servicePoints[numServicePoints];
 
     int busyServicePoints = 0;
