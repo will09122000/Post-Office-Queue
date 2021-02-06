@@ -91,7 +91,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
     int totalcustomersTimedOut = 0;
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
-    printf("Done2\n");
+    /*
     int *avgOutputLogTest = new int[numSims][closingTime + buffer][3];
     printf("Done3\n");
     int i, j, k;
@@ -118,12 +118,21 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
 		}
 	}
     printf("Done4\n");
+    */
+    int offset(int x, int y, int z) { 
+        return (x * (closingTime + buffer) * 6) + (y * 6) + z; 
+    }
 
     for(i=0;i<numSims;i++)
     {
-        totalcustomersServed += avgOutputLogTest[i][currentTime[i]-1][0];
-        totalcustomersUnfulfilled += avgOutputLogTest[i][currentTime[i]-1][1];
-        totalcustomersTimedOut += avgOutputLogTest[i][currentTime[i]-1][2];
+        /*
+        totalcustomersServed += avgOutputLogTest[i][currentTime[i]-1][3];
+        totalcustomersUnfulfilled += avgOutputLogTest[i][currentTime[i]-1][4];
+        totalcustomersTimedOut += avgOutputLogTest[i][currentTime[i]-1][5];
+        */
+        totalcustomersServed += avgOutputLog[offset(i, currentTime[i]-1, 3)];
+        totalcustomersUnfulfilled += avgOutputLog[offset(i, currentTime[i]-1, 3)];
+        totalcustomersTimedOut += avgOutputLog[offset(i, currentTime[i]-1, 3)];
         totalTimeAfterClose += (currentTime[i]-1) - closingTime;
         totalWaitTime += waitTime[0];
     }
