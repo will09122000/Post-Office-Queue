@@ -33,6 +33,7 @@ int main (int argc, char **argv)
     int totalWaitTime = 0;
     int currentTime[numSims];
     int totalWaitTimeAvg[numSims];
+    printf("Done\n");
 
     /* Run Simulations */
     int i;
@@ -54,7 +55,7 @@ int main (int argc, char **argv)
             totalWaitTimeAvg[i] = outputParams.totalWaitTime;
         }
     }
-    printf("Done\n");
+    printf("Done2\n");
     if (numSims > 1)
         writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTimeAvg);
 
