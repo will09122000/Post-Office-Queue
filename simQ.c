@@ -209,6 +209,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
     outputParams.totalcustomersUnfulfilled += customersUnfulfilled;
     outputParams.totalcustomersTimedOut += customersTimedOut;
 
+    free(customerQueue);
+
     return outputParams;
 }
 
