@@ -16,6 +16,9 @@ struct outputParams
     int currentTime;
     int closingTime;
     int totalWaitTime;
+    int totalcustomersServed;
+    int totalcustomersUnfulfilled;
+    int totalcustomersTimedOut;
 };
 typedef struct outputParams OUTPUT;
 

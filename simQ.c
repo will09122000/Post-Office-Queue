@@ -53,9 +53,9 @@ int main (int argc, char **argv)
         else
         {
             /*memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));*/
-            totalcustomersServed += outputLog[outputParams.currentTime-1][3];
-            totalcustomersUnfulfilled += outputLog[outputParams.currentTime-1][4];
-            totalcustomersTimedOut += outputLog[outputParams.currentTime-1][5];
+            outputParams.totalcustomersServed += outputLog[outputParams.currentTime-1][3];
+            outputParams.totalcustomersUnfulfilled += outputLog[outputParams.currentTime-1][4];
+            outputParams.totalcustomersTimedOut += outputLog[outputParams.currentTime-1][5];
 
             totalWaitTime += outputParams.totalWaitTime;
             currentTime[i] = outputParams.currentTime;
@@ -65,7 +65,7 @@ int main (int argc, char **argv)
     if (numSims > 1)
 
         writeLogs(outputFileName, outputParams.closingTime, numSims,
-                  buffer, currentTime, totalWaitTimeAvg, totalcustomersServed, totalcustomersUnfulfilled, totalcustomersTimedOut);
+                  buffer, currentTime, totalWaitTimeAvg, outputParams.totalcustomersServed, outputParams.totalcustomersUnfulfilled, outputParams.totalcustomersTimedOut);
 
     return 0;
 }
