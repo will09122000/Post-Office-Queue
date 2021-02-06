@@ -92,7 +92,7 @@ void writeLogs(char outputFileName[], int *avgOutputLog, int closingTime, int nu
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
     printf("Done2\n");
-    int avgOutputLogTest[numSims][closingTime + buffer][3];
+    int *avgOutputLogTest = new int[numSims][closingTime + buffer][3];
     printf("Done3\n");
     int i, j, k;
     
