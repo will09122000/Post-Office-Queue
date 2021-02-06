@@ -47,8 +47,7 @@ int main (int argc, char **argv)
 
         if (numSims == 1)
         {
-            writeLogsOneSim(outputFileName, outputLog, outputParams.currentTime,
-                            outputParams.closingTime, outputParams.totalWaitTime);
+            writeLogsOneSim(outputFileName, outputLog, outputParams);
         }
         else
         {
