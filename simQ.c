@@ -101,6 +101,8 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
 
     OUTPUT outputParams;
 
+    printf("Yeet\n");
+
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
         /* Customers leave service point */
