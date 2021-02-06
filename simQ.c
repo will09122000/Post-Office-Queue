@@ -40,8 +40,11 @@ int main (int argc, char **argv)
     OUTPUT outputParams;
     for (i=0; i < numSims; i++)
     {
+        printf("Done2\n");
         int outputLog[(simParams[2]) + buffer][6];
+        printf("Done3\n");
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
+        printf("Done4\n");
 
         if (numSims == 1)
         {
@@ -55,7 +58,7 @@ int main (int argc, char **argv)
             totalWaitTimeAvg[i] = outputParams.totalWaitTime;
         }
     }
-    printf("Done2\n");
+    printf("Done5\n");
     if (numSims > 1)
         writeLogs(outputFileName, avgOutputLog, outputParams.closingTime, numSims, buffer, currentTime, totalWaitTimeAvg);
 
