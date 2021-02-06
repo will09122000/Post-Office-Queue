@@ -191,6 +191,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
         currentTime++;
     }
 
+    /*
     printf("Total Customers: %d\n", customersTotal);
     printf("Customers Served: %d\n", customersServed);
     printf("Customers Timed-out: %d\n", customersTimedOut);
@@ -199,7 +200,7 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
     printf("Total Time: %d\n", currentTime);
     printf("Size of Queue: %d\n", size(customerQueue));
     printf("\n");
-
+    */
 
     outputParams.currentTime = currentTime;
     outputParams.closingTime = closingTime;
