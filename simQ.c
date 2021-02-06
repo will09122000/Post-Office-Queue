@@ -52,7 +52,7 @@ int main (int argc, char **argv)
         }
         else
         {
-            /*memcpy(avgOutputLog[i], outputLog, sizeof(outputLog));*/
+            printf("%d %d %d\n", outputLog[outputParams.currentTime-1][3], outputLog[outputParams.currentTime-1][4], outputLog[outputParams.currentTime-1][5]);
             outputParams.totalcustomersServed += outputLog[outputParams.currentTime-1][3];
             outputParams.totalcustomersUnfulfilled += outputLog[outputParams.currentTime-1][4];
             outputParams.totalcustomersTimedOut += outputLog[outputParams.currentTime-1][5];
