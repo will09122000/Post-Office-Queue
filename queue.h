@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*
+    A struct that represents a customer in the queue.
+*/
 struct node
 {
     int waitCurrent;
