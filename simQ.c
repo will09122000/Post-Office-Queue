@@ -212,14 +212,15 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
     return outputParams;
 }
 
-int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],
+int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],\
                     int *totalWaitTime)
 {
     int customersServed = 0;
     int i;
     for (i=0; i < *numServicePoints; i++)
     {
-        if (servicePoints[i].timeTaken == servicePoints[i].timeDone && servicePoints[i].id == 1)
+        if (servicePoints[i].timeTaken == servicePoints[i].timeDone &&
+            servicePoints[i].id == 1)
         {
             customersServed++;
             *totalWaitTime += servicePoints[i].timeTaken;
