@@ -33,18 +33,14 @@ int main (int argc, char **argv)
     int totalWaitTime = 0;
     int currentTime[numSims];
     int totalWaitTimeAvg[numSims];
-    printf("Done\n");
 
     /* Run Simulations */
     int i;
     OUTPUT outputParams;
     for (i=0; i < numSims; i++)
     {
-        printf("Done2\n");
         int outputLog[(simParams[2]) + buffer][6];
-        printf("Done3\n");
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
-        printf("Done4\n");
 
         if (numSims == 1)
         {
@@ -94,21 +90,16 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r, in
     SERVICEPOINT servicePoints[numServicePoints];
 
     int busyServicePoints = 0;
-    
+
     NODE *customerQueue = NULL;
-    
+
     customerQueue = (NODE *) malloc(sizeof(NODE));
-    printf("Yeet1\n");
     customerQueue->next = NULL;
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
-    
-
     OUTPUT outputParams;
-
-    
 
     for (currentTime=0; currentTime < closingTime; currentTime++)
     {
