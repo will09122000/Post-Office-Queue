@@ -217,7 +217,6 @@ OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
     printf("Customers at Service Points: %d\n", customersAtServicePoint);
     printf("Total Time: %d\n", currentTime);
     printf("Size of Queue: %d\n", size(customerQueue));
-    print_list(customerQueue);
 
 
     outputParams.currentTime = currentTime;
