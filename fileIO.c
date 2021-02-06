@@ -79,7 +79,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputPar
 }
 
 void writeLogs(char outputFileName[], int closingTime,
-               int numSims, int buffer, int currentTime[], int waitTime[], int totalcustomersServed, int totalcustomersUnfulfilled, int totalcustomersTimedOut)
+               int numSims, int buffer, int currentTime[], int waitTime[], OUTPUT outputParams)
 {
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
@@ -100,11 +100,11 @@ void writeLogs(char outputFileName[], int closingTime,
     }
 
     fprintf(fp, "Average Number of Fulfilled Customers:      %f\n",
-            (float) totalcustomersServed / (float) numSims);
+            (float) outputParams.totalcustomersServed / (float) numSims);
     fprintf(fp, "Average Number of Unfulfilled Customers:    %f\n",
-            (float) totalcustomersUnfulfilled / (float) numSims);
+            (float) outputParams.totalcustomersUnfulfilled / (float) numSims);
     fprintf(fp, "Average Number of Timed-out Customers:      %f\n",
-            (float) totalcustomersTimedOut / (float) numSims);
+            (float) outputParams.totalcustomersTimedOut / (float) numSims);
     fprintf(fp, "Average time taken to serve remaining\ncustomers \
 after the post office has closed: %f\n",
             (float) totalTimeAfterClose / (float) numSims);

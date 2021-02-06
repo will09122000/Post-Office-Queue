@@ -59,7 +59,7 @@ int main (int argc, char **argv)
     if (numSims > 1)
 
         writeLogs(outputFileName, outputParams.closingTime, numSims,
-                  buffer, currentTime, totalWaitTimeAvg, outputParams.totalcustomersServed, outputParams.totalcustomersUnfulfilled, outputParams.totalcustomersTimedOut);
+                  buffer, currentTime, totalWaitTimeAvg, outputParams);
 
     return 0;
 }
