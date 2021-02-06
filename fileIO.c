@@ -79,8 +79,8 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6], int currentTime,
             (float) totalWaitTime / (float) outputLog[currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int avgOutputLog[], int closingTime,
-               int numSims, int buffer, int currentTime[], int waitTime[])
+void writeLogs(char outputFileName[], int closingTime,
+               int numSims, int buffer, int currentTime[], int waitTime[], int totalcustomersServed, int totalcustomersUnfulfilled, int totalcustomersTimedOut)
 {
     int totalcustomersServed = avgOutputLog[0];
     int totalcustomersUnfulfilled = avgOutputLog[1];
