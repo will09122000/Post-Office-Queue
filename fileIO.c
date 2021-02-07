@@ -14,7 +14,7 @@
 
     returns: null
  */
-simParams getSimParameters(char inputFileName[])
+INPUT getSimParameters(char inputFileName[])
 {
     FILE *fp;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
