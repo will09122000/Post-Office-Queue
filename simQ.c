@@ -249,9 +249,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
     {
         if (servicePoints[i].id != 1)
         {
-
-            NODE *customer = (NODE *) malloc(sizeof(NODE));
-            customer = dequeue(&customerQueue);
+            NODE customer = dequeue(&customerQueue);
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
