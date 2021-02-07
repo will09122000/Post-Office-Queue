@@ -105,9 +105,9 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
         /* Customers arrive at service point */
         totalWaitTime += startServingCustomer(simParams.numServicePoints,
-                                              servicePoints, customerQueue, r,
                                               simParams.scaleServeTime,
-                                              simParams.lowerLimitServeTime);
+                                              simParams.lowerLimitServeTime,
+                                              servicePoints, customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -163,9 +163,9 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
         /* Customers arrive at service point */
         totalWaitTime += startServingCustomer(simParams.numServicePoints,
-                                              servicePoints, customerQueue, r,
                                               simParams.scaleServeTime,
-                                              simParams.lowerLimitServeTime);
+                                              simParams.lowerLimitServeTime,
+                                              servicePoints, customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -240,9 +240,21 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
     return customersServed;
 }
 
-int startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
-                          NODE customerQueue[], gsl_rng r,  int scaleServeTime,
-                          int lowerLimitServeTime)
+/*
+    Function: startServingCustomer
+    ---------------------------------------------------------------------------
+    Iterates through the service points and checks whether any customers have
+    finished being served.
+
+    numServicePoints: the number of service points
+    servicePoints: the array of service points
+
+    returns: the number of customers that have finished at the post office during
+             this time unit
+*/
+int startServingCustomer(int numServicePoints, int scaleServeTime,
+                         int lowerLimitServeTime, SERVICEPOINT servicePoints[],
+                         NODE customerQueue[], gsl_rng r,)
 {
     int totalWaitTime = 0;
     int i;
