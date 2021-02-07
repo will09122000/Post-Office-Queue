@@ -43,6 +43,7 @@ int main (int argc, char **argv)
     for (i = 0; i < numSims; i++)
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
+    /* Write to results output file */
     if (numSims == 1)
     {
         writeLogsOneSim(outputFileName, outputLog, outputParams);
@@ -105,7 +106,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints,
                              customerQueue, r, simParams.scaleServeTime,
-                             simParams.lowerLimitServeTime);
+                             simParams.lowerLimitServeTime, &totalWaitTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -162,7 +163,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints,
                              customerQueue, r, simParams.scaleServeTime,
-                             simParams.lowerLimitServeTime);
+                             simParams.lowerLimitServeTime, &totalWaitTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -209,6 +210,18 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     return outputParams;
 }
 
+/*
+    Function: fulfillCustomer
+    ---------------------------------------------------------------------------
+    Iterates through the service points and checks whether any customers have
+    finished being served.
+
+    numServicePoints: the number of service points
+    servicePoints: the array of service points
+    totalWaitTime: the total time that each customer 
+
+    returns: a struct containing data required for the results output
+*/
 int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                     int *totalWaitTime)
 {
@@ -220,7 +233,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
             servicePoints[i].id == 1)
         {
             customersServed++;
-            *totalWaitTime += servicePoints[i].timeTaken;
+            /**totalWaitTime += servicePoints[i].timeTaken;*/
             servicePoints[i].id = 0;
         }
     }
@@ -229,7 +242,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
 
 void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                           NODE customerQueue[], gsl_rng r,  int scaleServeTime,
-                          int lowerLimitServeTime)
+                          int lowerLimitServeTime, int *totalWaitTime)
 {
     int i;
     for (i = 0; i < numServicePoints; i++)
@@ -245,6 +258,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
+                *totalWaitTime += customer.waitCurrent;
             }
         }
     }
