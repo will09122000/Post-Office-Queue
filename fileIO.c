@@ -112,7 +112,7 @@ void writeLogs(char outputFileName[], int numSims, int buffer,
 
     fprintf(fp, "Average time taken to serve remaining\ncustomers \
 after the post office has closed: %f\n",
-            (float) totalTimeAfterClose / (float) numSims);
+            (float) outputParams.totalTimeAfterClose / (float) numSims);
 
     fprintf(fp, "Average Customer Waiting Time:              %f\n",
             (float) outputParams.totalWaitTime /
