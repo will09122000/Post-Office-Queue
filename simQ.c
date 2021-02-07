@@ -249,7 +249,8 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
     {
         if (servicePoints[i].id != 1)
         {
-            NODE * customer = dequeue(&customerQueue);
+            customer = (NODE *) malloc(sizeof(NODE));
+            customer = dequeue(&customerQueue);
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
@@ -258,7 +259,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
-                printf("%d\n", customer->waitLimit);
+                printf("%d\n", customer->waitCurrent);
                 *totalWaitTime += customer->waitCurrent;
             }
         }
