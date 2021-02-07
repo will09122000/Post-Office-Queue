@@ -83,15 +83,6 @@ office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
 
 void writeLogs(char outputFileName[], int numSims, int buffer, OUTPUT outputParams)
 {
-    int totalTimeAfterClose = 0;
-    int totalWaitTime = 0;
-
-    int i;
-    for(i=0; i<numSims; i++)
-    {
-        totalTimeAfterClose += (currentTime[i]-1) - outputParams.closingTime;
-    }
-
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
     {
