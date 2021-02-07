@@ -19,6 +19,6 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
 int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[]);
 
-void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
+int startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                           NODE customerQueue[], gsl_rng r, int scaleServeTime,
-                          int lowerLimitServeTime, int *totalWaitTime);
+                          int lowerLimitServeTime);
