@@ -245,20 +245,17 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
     int i;
     for (i = 0; i < numServicePoints; i++)
     {
-        if (servicePoints[i].id != 1)
+        if (servicePoints[i].id != 1 && size(customerQueue) > 0)
         {
-            if (size(customerQueue) > 0) {
-                int waitTime = dequeue(&customerQueue);
-                *totalWaitTime += waitTime;
-                printf("%d\n", waitTime);
-                SERVICEPOINT servicePoint;
-                servicePoint.timeTaken = 0;
-                int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime,
-                                                              lowerLimitServeTime);
-                servicePoint.timeDone = timeToServe;
-                servicePoint.id = 1;
-                servicePoints[i] = servicePoint;
-            }
+            int waitTime = dequeue(&customerQueue);
+            *totalWaitTime += waitTime;
+            SERVICEPOINT servicePoint;
+            servicePoint.timeTaken = 0;
+            int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime,
+                                                            lowerLimitServeTime);
+            servicePoint.timeDone = timeToServe;
+            servicePoint.id = 1;
+            servicePoints[i] = servicePoint;
         }
     }
 }
