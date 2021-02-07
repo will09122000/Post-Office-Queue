@@ -85,7 +85,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
     OUTPUT outputParams;
 
-    for (currentTime = 0; currentTime < closingTime; currentTime++)
+    for (currentTime = 0; currentTime < simParams.closingTime; currentTime++)
     {
         /* Customers leave service point */
         customersServed += fulfillCustomer(simParams.numServicePoints, servicePoints,
@@ -93,7 +93,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints, customerQueue,
-                             r, scaleServeTime, lowerLimitServeTime);
+                             r, simParams.scaleServeTime, simParams.lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -125,7 +125,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
         updateWait(customerQueue);
-        for (i = 0; i < numServicePoints; i++)
+        for (i = 0; i < simParams.numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
