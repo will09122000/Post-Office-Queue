@@ -63,14 +63,14 @@ int main (int argc, char **argv)
     ---------------------------------------------------------------------------
     Runs one simulation of a post office queue.
 
-    simParams: a struct that contains all simulation parameters
-    numSims: the number of simulations to be run
+    simParams:      a struct that contains all simulation parameters
+    numSims:        the number of simulations to be run
     outputFileName: the name of the results text file
-    r: Used for random number generation
-    outputLog: a 2D array containing data for each time time interval during
-               the simulation
+    r:              Used for random number generation
+    outputLog:      a 2D array containing data for each time time interval
+                    during the simulation
 
-    returns: a struct containing data required for the results output
+    returns:        a struct containing data required for the results output
 */
 OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
               int outputLog[][6])
@@ -215,10 +215,10 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     finished being served.
 
     numServicePoints: the number of service points
-    servicePoints: the array of service points
+    servicePoints:    the array of service points
 
-    returns: the number of customers that have finished at the post office during
-             this time unit
+    returns:          the number of customers that have finished at the post
+                      office during this time unit
 */
 int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
 {
@@ -239,14 +239,16 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
 /*
     Function: startServingCustomer
     ---------------------------------------------------------------------------
-    Iterates through the service points and checks whether any customers have
-    finished being served.
+    Iterates through the service points and checks whether any service points
+    are empty. If there are, remove a customer at the front of the queue and
+    add them to the empty service point.
 
-    numServicePoints: the number of service points
+    simParams:     a struct that contains all simulation parameters
     servicePoints: the array of service points
+    customerQueue: the customer queue linked list
 
-    returns: the number of customers that have finished at the post office during
-             this time unit
+    returns:       the total queue waiting time of all customers that have
+                   arrived at a service point during this time unit
 */
 int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
                          NODE customerQueue[], gsl_rng r)

@@ -10,7 +10,7 @@
     ---------------------------------------------------------------------------
     Computes the size of the post office queue.
 
-    head: a pointer to the start of the list
+    head:    a pointer to the start of the list
 
     returns: the size of the list
 */
@@ -31,10 +31,10 @@ int size(NODE * head)
     ---------------------------------------------------------------------------
     Adds a new customer to the end of the post office queue.
 
-    head: a pointer to the start of the list
+    head:      a pointer to the start of the list
     waitLimit: the maximum time the new customer is willing to wait
 
-    returns: null
+    returns:   null
 */
 void enqueue(NODE * head, int waitLimit)
 {
@@ -55,7 +55,7 @@ void enqueue(NODE * head, int waitLimit)
     ---------------------------------------------------------------------------
     Removes the customer at the front of the post office queue.
 
-    head: a double pointer to the start of the list
+    head:    a double pointer to the start of the list
 
     returns: the length of time the customer has been waiting in the queue
 */
@@ -95,7 +95,7 @@ int dequeue(NODE ** head)
     ---------------------------------------------------------------------------
     Increments the wait time of each customer in the queue by 1.
 
-    head: a pointer to the start of the list
+    head:    a pointer to the start of the list
 
     returns: null
 */
@@ -121,7 +121,7 @@ void updateWait(NODE * head)
     Iterates through the customer queue and removes customers that have reached
     their wait limit.
 
-    head: a double pointer to the start of the list
+    head:    a double pointer to the start of the list
 
     returns: the number of customers that have timed-out during the
              current time unit

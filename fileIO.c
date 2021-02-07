@@ -12,7 +12,7 @@
 
     inputFileName: the name of the parameters text file
 
-    returns: simulations parameters struct
+    returns:       simulations parameters struct
 */
 INPUT getSimParameters(char inputFileName[])
 {
@@ -43,10 +43,10 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
     ---------------------------------------------------------------------------
     Writes the simulation parameters to the results text file.
 
-    inputFileName: the name of the parameters text file
+    inputFileName:  the name of the parameters text file
     outputFileName: the name of the results text file
 
-    returns: null
+    returns:        null
 */
 void writeSimParameters(char inputFileName[], char outputFileName[])
 {
@@ -85,11 +85,11 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
     simulation is run.
 
     outputFileName: the name of the results text file
-    outputLog: a 2D array containing data for each time time interval during
-               the simulation
-    outputParams: a struct containing data required for the results output
+    outputLog:      a 2D array containing data for each time time interval
+                    during the simulation
+    outputParams:   a struct containing data required for the results output
 
-    returns: null
+    returns:        null
 */
 void writeLogsOneSim(char outputFileName[], int outputLog[][6],
                      OUTPUT outputParams)
@@ -129,10 +129,10 @@ office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
     simulation is run.
 
     outputFileName: the name of the results text file
-    numSims: the number of simulations that have been run
-    outputParams: a struct containing data required for the results output
+    numSims:        the number of simulations that have been run
+    outputParams:   a struct containing data required for the results output
 
-    returns: null
+    returns:        null
 */
 void writeLogs(char outputFileName[], int numSims, OUTPUT outputParams)
 {
