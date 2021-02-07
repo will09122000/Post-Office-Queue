@@ -255,7 +255,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                 NODE *customer = NULL;
                 customer = (NODE *) malloc(sizeof(NODE));
                 */
-                NODE customer = dequeue(&customerQueue);
+                NODE * customer = dequeue(&customerQueue);
                 
             }
 
