@@ -81,7 +81,7 @@ NODE dequeue(NODE ** head)
         (*head)->next = nodeRemoved->next;
         nextNode->previous = *head;
         free(nodeRemoved);
-        return *nodeRemoved;
+        return nodeRemoved;
     }
 }
 
