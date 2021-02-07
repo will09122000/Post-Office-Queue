@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* A struct that holds data required to produce the output file for both one
+   simulation and multiple simulations */
 struct outputParams
 {
     int currentTime;
@@ -12,4 +14,5 @@ struct outputParams
     int totalcustomersUnfulfilled;
     int totalcustomersTimedOut;
 };
+
 typedef struct outputParams OUTPUT;
