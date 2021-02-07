@@ -63,6 +63,7 @@ int dequeue(NODE ** head)
 {
     NODE * nodeRemoved;
     NODE * nextNode = NULL;
+    int waitTime = nodeRemoved->waitCurrent;
 
     switch (size(*head))
     {
@@ -71,6 +72,7 @@ int dequeue(NODE ** head)
 
     case 1:
         nodeRemoved = (*head)->next;
+        waitTime = nodeRemoved->waitCurrent;
         free((*head)->next);
         (*head)->next = NULL;
         break;
@@ -80,10 +82,11 @@ int dequeue(NODE ** head)
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
         nextNode->previous = *head;
+        waitTime = nodeRemoved->waitCurrent;
         free(nodeRemoved);
         break;
     }
-    int waitTime = nodeRemoved->waitCurrent;
+    
     
     return waitTime;
 }
