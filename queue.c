@@ -61,7 +61,7 @@ void enqueue(NODE * head, int waitLimit)
 */
 int dequeue(NODE ** head)
 {
-    NODE* nodeRemoved;
+    NODE * nodeRemoved;
     NODE * nextNode = NULL;
 
     switch (size(*head))
@@ -80,10 +80,11 @@ int dequeue(NODE ** head)
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
         nextNode->previous = *head;
+        free(nodeRemoved);
         break;
     }
     int waitTime = nodeRemoved->waitCurrent;
-    free(nodeRemoved);
+    
     return waitTime;
 }
 
