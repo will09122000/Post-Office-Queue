@@ -7,13 +7,13 @@
 
 /*
     Function: size
-    --------------------
+    ---------------------------------------------------------------------------
     Computes the size of the post office queue.
 
     head: a pointer to the start of the list
 
     returns: the size of the list
- */
+*/
 int size(NODE * head)
 {
     int count = 0;
@@ -28,14 +28,14 @@ int size(NODE * head)
 
 /*
     Function: enequeue
-    --------------------
+    ---------------------------------------------------------------------------
     Adds a new customer to the end of the post office queue.
 
     head: a pointer to the start of the list
     waitLimit: the maximum time the new customer is willing to wait
 
     returns: null
- */
+*/
 void enqueue(NODE * head, int waitLimit)
 {
     NODE * current = head;
@@ -52,13 +52,13 @@ void enqueue(NODE * head, int waitLimit)
 
 /*
     Function: dequeue
-    --------------------
+    ---------------------------------------------------------------------------
     Removes the customer at the front of the post office queue.
 
     head: a double pointer to the start of the list
 
     returns: the customer node struct that has been removed
- */
+*/
 NODE* dequeue(NODE ** head)
 {
     NODE* nodeRemoved;
@@ -87,13 +87,13 @@ NODE* dequeue(NODE ** head)
 
 /*
     Function: updateWait
-    --------------------
+    ---------------------------------------------------------------------------
     Increments the wait time of each customer in the queue by 1.
 
     head: a pointer to the start of the list
 
     returns: null
- */
+*/
 void updateWait(NODE * head)
 {
     NODE * current = head;
@@ -112,7 +112,7 @@ void updateWait(NODE * head)
 
 /*
     Function: checkWaitLimit
-    --------------------
+    ---------------------------------------------------------------------------
     Iterates through the customer queue and removes customers that have reached
     their wait limit.
 
@@ -120,7 +120,7 @@ void updateWait(NODE * head)
 
     returns: the number of customers that have timed-out during the
              current time unit
- */
+*/
 int checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;

@@ -7,10 +7,10 @@
 
 /*
     Function: getSimParameters
-    --------------------
-    Reads the simulation parameters from the text file
+    ---------------------------------------------------------------------------
+    Reads the simulation parameters from the text file.
 
-    inputFileName: the name of the text file
+    inputFileName: the name of the parameters text file
 
     returns: simulations parameters struct
 */
@@ -38,6 +38,16 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
     return simParams;
 }
 
+/*
+    Function: writeSimParameters
+    ---------------------------------------------------------------------------
+    Writes the simulation parameters to the results text file.
+
+    inputFileName: the name of the parameters text file
+    outputFileName: the name of the results text file
+
+    returns: null
+*/
 void writeSimParameters(char inputFileName[], char outputFileName[])
 {
     char content[100];
@@ -68,6 +78,19 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
     fclose(fpOut);
 }
 
+/*
+    Function: writeLogsOneSim
+    ---------------------------------------------------------------------------
+    Writes the simulation results to the results text file if only one
+    simulation is run.
+
+    outputFileName: the name of the results text file
+    outputLog: a 2D array containing data for each time time interval during
+               the simulation
+    outputParams: a struct containing data required for the results output
+
+    returns: null
+*/
 void writeLogsOneSim(char outputFileName[], int outputLog[][6],
                      OUTPUT outputParams)
 {
@@ -99,7 +122,19 @@ office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
             (float) outputLog[outputParams.currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int numSims, int buffer, OUTPUT outputParams)
+/*
+    Function: writeLogs
+    ---------------------------------------------------------------------------
+    Writes the simulation results to the results text file if more than one
+    simulation is run.
+
+    outputFileName: the name of the results text file
+    numSims: the number of simulations that have been run
+    outputParams: a struct containing data required for the results output
+
+    returns: null
+*/
+void writeLogs(char outputFileName[], int numSims, OUTPUT outputParams)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )

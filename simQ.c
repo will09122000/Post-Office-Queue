@@ -1,5 +1,10 @@
 #include <simQ.h>
 
+/*
+    This file contains the main function as well as functions that handle
+    the simulation of a post office queue.
+*/
+
 int main (int argc, char **argv)
 {
     /* Terminal Arguments */
@@ -27,7 +32,7 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r, time(0));
 
-    /* Worst case extra time after the post office closes */
+    /* Worst case extra time after the post office doors shut */
     int buffer = (simParams.maxQueueLength + simParams.numServicePoints)\
                  * simParams.numServicePoints * simParams.lowerLimitServeTime;
     OUTPUT outputParams;
@@ -41,11 +46,26 @@ int main (int argc, char **argv)
     if (numSims == 1)
         writeLogsOneSim(outputFileName, outputLog, outputParams);
     else
-        writeLogs(outputFileName, numSims, buffer, outputParams);
+        writeLogs(outputFileName, numSims, outputParams);
 
+    printf("%d simulation(s) run successfully\n", numSims);
     return 0;
 }
 
+/*
+    Function: runSim
+    ---------------------------------------------------------------------------
+    Runs one simulation of a post office queue.
+
+    simParams: a struct that contains all simulation parameters
+    numSims: the number of simulations to be run
+    outputFileName: the name of the results text file
+    r: Used for random number generation
+    outputLog: a 2D array containing data for each time time interval during
+               the simulation
+
+    returns: a struct containing data required for the results output
+*/
 OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
               int outputLog[][6])
 {
