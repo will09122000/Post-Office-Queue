@@ -249,10 +249,12 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
     {
         if (servicePoints[i].id != 1)
         {
+            /*
             NODE *customer;
             customer = malloc(sizeof(NODE));
             customer = dequeue(&customerQueue);
             printf("%d\n", customer->waitCurrent);
+            */
             if (size(customerQueue) > 0) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
