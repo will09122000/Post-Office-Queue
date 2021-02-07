@@ -31,23 +31,17 @@ int main (int argc, char **argv)
     /* Worst case time after post office close */
     int buffer = simParams[0] * simParams[1] * simParams[6] * simParams[7];
     OUTPUT outputParams;
-    int currentTime[numSims];
     int outputLog[(simParams[2]) + buffer][6];
 
-    /* Run Simulations */
+    /* Run Simulation(s) */
     int i;
     for (i=0; i < numSims; i++)
-    {
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
-        if (numSims == 1)
-            writeLogsOneSim(outputFileName, outputLog, outputParams);
-        else
-            currentTime[i] = outputParams.currentTime;
-    }
-
-    if (numSims > 1)
-        writeLogs(outputFileName, numSims, buffer, currentTime, outputParams);
+    if (numSims == 1)
+        writeLogsOneSim(outputFileName, outputLog, outputParams);
+    else
+        writeLogs(outputFileName, numSims, buffer, outputParams);
 
     return 0;
 }

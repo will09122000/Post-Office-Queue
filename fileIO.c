@@ -81,8 +81,7 @@ office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
             (float) outputLog[outputParams.currentTime-1][3]);
 }
 
-void writeLogs(char outputFileName[], int numSims, int buffer,
-               int currentTime[], OUTPUT outputParams)
+void writeLogs(char outputFileName[], int numSims, int buffer, OUTPUT outputParams)
 {
     int totalTimeAfterClose = 0;
     int totalWaitTime = 0;
