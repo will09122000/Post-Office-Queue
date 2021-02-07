@@ -26,6 +26,8 @@ INPUT getSimParameters(char inputFileName[])
 
     INPUT simParams;
 
+    printf("Done\n");
+
     fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
@@ -34,7 +36,7 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            simParams.meanNewCustomers, simParams.lowerLimitWaitTolerance,
            simParams.upperLimitWaitTolerance, simParams.scaleServeTime,
            simParams.lowerLimitServeTime);
-
+    printf("Done2\n");
     fclose(fp);
     return simParams;
 }
