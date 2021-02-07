@@ -148,14 +148,14 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints, customerQueue,
-                             r, scaleServeTime, simParams.lowerLimitServeTime);
+                             r, simParams.scaleServeTime, simParams.lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
 
         customersAtServicePoint = 0;
         int i;
-        for (i = 0; i < numServicePoints; i++)
+        for (i = 0; i < simParams.numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
                 customersAtServicePoint++;
