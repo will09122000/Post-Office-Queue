@@ -52,7 +52,7 @@ int main (int argc, char **argv)
     else
     {
         writeLogs(outputFileName, numSims, outputParams);
-        printf("%d simulations run successfully\n", numSims);
+        printf("%d simulations ran successfully\n", numSims);
     }
 
     return 0;
@@ -249,7 +249,8 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
     {
         if (servicePoints[i].id != 1)
         {
-            NODE * customer = dequeue(&customerQueue);
+            NODE *customer = dequeue(&customerQueue);
+            printf("%d\n", customer->waitCurrent);
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
