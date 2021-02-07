@@ -254,7 +254,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
 */
 int startServingCustomer(int numServicePoints, int scaleServeTime,
                          int lowerLimitServeTime, SERVICEPOINT servicePoints[],
-                         NODE customerQueue[], gsl_rng r,)
+                         NODE customerQueue[], gsl_rng r)
 {
     int totalWaitTime = 0;
     int i;
