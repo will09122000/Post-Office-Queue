@@ -14,7 +14,7 @@ struct servicePoint
 typedef struct servicePoint SERVICEPOINT;
 
 /* Function prototypes */
-OUTPUT runSim(int simParams[], int numSims, char outputFileName[], gsl_rng r,
+OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
               int outputLog[][6]);
 
 int fulfillCustomer(int *numServicePoints, SERVICEPOINT servicePoints[],

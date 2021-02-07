@@ -1,6 +1,20 @@
 #include <fileIO.h>
 
-void getSimParameters(char inputFileName[], int simParams[])
+/*
+    This file contains functions that handles the reading and writing to input
+    parameter and output text files.
+*/
+
+/*
+    Function: getSimParameters
+    --------------------
+    Computes the size of the post office queue.
+
+    head: a pointer to the start of the list
+
+    returns: null
+ */
+simParams getSimParameters(char inputFileName[])
 {
     FILE *fp;
     if ( (fp = fopen(inputFileName, "r")) == NULL )
@@ -10,14 +24,19 @@ void getSimParameters(char inputFileName[], int simParams[])
         exit(1);
     }
 
+    INPUT simParams;
+
     fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
 scaleServeTime: %d\nlowerLimitServeTime: %d\n",
-           &simParams[0], &simParams[1], &simParams[2], &simParams[3],
-           &simParams[4], &simParams[5], &simParams[6], &simParams[7]);
+           simParams.maxQueueLength simParams.numServicePoints, simParams.closingTime,
+           simParams.meanNewCustomers, simParams.lowerLimitWaitTolerance,
+           simParams.upperLimitWaitTolerance, simParams.scaleServeTime,
+           simParams.lowerLimitServeTime);
 
     fclose(fp);
+    return simParams;
 }
 
 void writeSimParameters(char inputFileName[], char outputFileName[])
@@ -41,7 +60,7 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
     }
 
     fputs("# Input Parameters\n", fpOut);
-    while(fgets(content, sizeof(content), fpIn) !=NULL)
+    while(fgets(content, sizeof(content), fpIn) != NULL)
         fprintf(fpOut, "%s", content);
 
     fputs("\n", fpOut);
@@ -61,7 +80,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6],
         exit(1);
     }
     int i;
-    for (i=0; i < outputParams.currentTime; i++)
+    for (i = 0; i < outputParams.currentTime; i++)
     {
         if (i == outputParams.closingTime)
             fputs("----------- Post Office Closed -----------\n\n", fp);

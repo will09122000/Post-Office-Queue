@@ -13,6 +13,8 @@
         "sstream": "c",
         "deque": "c",
         "iterator": "c",
-        "queue.h": "c"
+        "queue.h": "c",
+        "random": "c",
+        "limits": "c"
     }
 }

@@ -1,12 +1,12 @@
 #include <queue.h>
 
 /*
-    This file contains functions that handles the post office queue in the form
+    This file contains functions that handle the post office queue in the form
     of a linked list.
 */
 
 /*
-    Function:  size
+    Function: size
     --------------------
     Computes the size of the post office queue.
 
@@ -27,7 +27,7 @@ int size(NODE * head)
 }
 
 /*
-    Function:  enequeue
+    Function: enequeue
     --------------------
     Adds a new customer to the end of the post office queue.
 
@@ -51,7 +51,7 @@ void enqueue(NODE * head, int waitLimit)
 }
 
 /*
-    Function:  dequeue
+    Function: dequeue
     --------------------
     Removes the customer at the front of the post office queue.
 
@@ -86,7 +86,7 @@ NODE* dequeue(NODE ** head)
 }
 
 /*
-    Function:  updateWait
+    Function: updateWait
     --------------------
     Increments the wait time of each customer in the queue by 1.
 
@@ -111,7 +111,7 @@ void updateWait(NODE * head)
 }
 
 /*
-    Function:  checkWaitLimit
+    Function: checkWaitLimit
     --------------------
     Iterates through the customer queue and removes customers that have reached
     their wait limit.
