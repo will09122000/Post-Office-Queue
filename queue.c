@@ -73,7 +73,7 @@ NODE dequeue(NODE ** head)
         nodeRemoved = (*head)->next;
         free((*head)->next);
         (*head)->next = NULL;
-        return nodeRemoved;
+        return *nodeRemoved;
 
     default:
         nextNode = (*head)->next->next;
@@ -81,7 +81,7 @@ NODE dequeue(NODE ** head)
         (*head)->next = nodeRemoved->next;
         nextNode->previous = *head;
         free(nodeRemoved);
-        return nodeRemoved;
+        return *nodeRemoved;
     }
 }
 
