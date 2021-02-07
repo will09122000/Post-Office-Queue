@@ -258,7 +258,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
-                printf("%d\n", customer.waitCurrent);
+                printf("%d\n", customer->waitLimit);
                 *totalWaitTime += customer->waitCurrent;
             }
         }
