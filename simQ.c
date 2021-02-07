@@ -104,10 +104,8 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
                                            servicePoints);
 
         /* Customers arrive at service point */
-        totalWaitTime += startServingCustomer(simParams.numServicePoints,
-                                              simParams.scaleServeTime,
-                                              simParams.lowerLimitServeTime,
-                                              servicePoints, customerQueue, r);
+        totalWaitTime += startServingCustomer(INPUT simParams, servicePoints,
+                                              customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -162,10 +160,8 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
                                            servicePoints);
 
         /* Customers arrive at service point */
-        totalWaitTime += startServingCustomer(simParams.numServicePoints,
-                                              simParams.scaleServeTime,
-                                              simParams.lowerLimitServeTime,
-                                              servicePoints, customerQueue, r);
+        totalWaitTime += startServingCustomer(INPUT simParams, servicePoints,
+                                              customerQueue, r);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -252,13 +248,12 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
     returns: the number of customers that have finished at the post office during
              this time unit
 */
-int startServingCustomer(int numServicePoints, int scaleServeTime,
-                         int lowerLimitServeTime, SERVICEPOINT servicePoints[],
+int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
                          NODE customerQueue[], gsl_rng r)
 {
     int totalWaitTime = 0;
     int i;
-    for (i = 0; i < numServicePoints; i++)
+    for (i = 0; i < simParams.numServicePoints; i++)
     {
         if (servicePoints[i].id != 1 && size(customerQueue) > 0)
         {
@@ -266,8 +261,8 @@ int startServingCustomer(int numServicePoints, int scaleServeTime,
             totalWaitTime += waitTime;
             SERVICEPOINT servicePoint;
             servicePoint.timeTaken = 0;
-            int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime,
-                                                            lowerLimitServeTime);
+            int timeToServe = (int) gsl_ran_rayleigh_tail(&r, simParams.scaleServeTime,
+                                                          simParams.lowerLimitServeTime);
             servicePoint.timeDone = timeToServe;
             servicePoint.id = 1;
             servicePoints[i] = servicePoint;
