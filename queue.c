@@ -82,7 +82,7 @@ int dequeue(NODE ** head)
         nextNode->previous = *head;
         break;
     }
-    int waitTime nodeRemoved->waitCurrent;
+    int waitTime = nodeRemoved->waitCurrent;
     free(nodeRemoved);
     return waitTime;
 }
