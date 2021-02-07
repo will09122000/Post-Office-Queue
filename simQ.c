@@ -101,12 +101,12 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     {
         /* Customers leave service point */
         customersServed += fulfillCustomer(simParams.numServicePoints,
-                                           servicePoints, &totalWaitTime);
+                                           servicePoints);
 
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints,
                              customerQueue, r, simParams.scaleServeTime,
-                             simParams.lowerLimitServeTime);
+                             simParams.lowerLimitServeTime, &totalWaitTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -158,12 +158,12 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     {
         /* Customers leave service point */
         customersServed += fulfillCustomer(simParams.numServicePoints,
-                                           servicePoints, &totalWaitTime);
+                                           servicePoints);
 
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints,
                              customerQueue, r, simParams.scaleServeTime,
-                             simParams.lowerLimitServeTime);
+                             simParams.lowerLimitServeTime, &totalWaitTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
