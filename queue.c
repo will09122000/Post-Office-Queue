@@ -59,7 +59,7 @@ void enqueue(NODE * head, int waitLimit)
 
     returns: the customer node struct that has been removed
 */
-NODE* dequeue(NODE ** head)
+int dequeue(NODE ** head)
 {
     NODE* nodeRemoved;
     NODE * nextNode = NULL;
@@ -73,18 +73,18 @@ NODE* dequeue(NODE ** head)
         nodeRemoved = (*head)->next;
         free((*head)->next);
         (*head)->next = NULL;
-        return nodeRemoved;
+        break;
 
     default:
         nextNode = (*head)->next->next;
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
         nextNode->previous = *head;
-        printf("%d\n", nodeRemoved->waitLimit);
-        free(nodeRemoved);
-        
-        return nodeRemoved;
+        break;
     }
+    int waitTime nodeRemoved->waitCurrent;
+    free(nodeRemoved);
+    return waitTime;
 }
 
 /*

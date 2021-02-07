@@ -249,17 +249,9 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
     {
         if (servicePoints[i].id != 1)
         {
-            
             if (size(customerQueue) > 0) {
-                /*
-                NODE *customer = NULL;
-                customer = (NODE *) malloc(sizeof(NODE));
-                */
-                NODE * customer = dequeue(&customerQueue);
-                
-            }
-
-            if (size(customerQueue) > 0) {
+                int waitTime = dequeue(&customerQueue);
+                printf("%d\n", waitTime);
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
                 int timeToServe = (int) gsl_ran_rayleigh_tail(&r, scaleServeTime,
