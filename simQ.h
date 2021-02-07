@@ -22,4 +22,4 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
 
 void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                           NODE customerQueue[], gsl_rng r, int scaleServeTime,
-                          int lowerLimitServeTime, int *totalWaitTime);
+                          int lowerLimitServeTime);

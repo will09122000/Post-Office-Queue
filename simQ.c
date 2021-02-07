@@ -106,7 +106,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints,
                              customerQueue, r, simParams.scaleServeTime,
-                             simParams.lowerLimitServeTime, &totalWaitTime);
+                             simParams.lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -163,7 +163,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         /* Customers arrive at service point */
         startServingCustomer(simParams.numServicePoints, servicePoints,
                              customerQueue, r, simParams.scaleServeTime,
-                             simParams.lowerLimitServeTime, &totalWaitTime);
+                             simParams.lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -233,7 +233,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
             servicePoints[i].id == 1)
         {
             customersServed++;
-            /**totalWaitTime += servicePoints[i].timeTaken;*/
+            *totalWaitTime += servicePoints[i].timeTaken;
             servicePoints[i].id = 0;
         }
     }
@@ -242,14 +242,14 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
 
 void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                           NODE customerQueue[], gsl_rng r,  int scaleServeTime,
-                          int lowerLimitServeTime, int *totalWaitTime)
+                          int lowerLimitServeTime)
 {
     int i;
     for (i = 0; i < numServicePoints; i++)
     {
         if (servicePoints[i].id != 1)
         {
-            NODE customer = dequeue(&customerQueue);
+            NODE * customer = dequeue(&customerQueue);
             if (customer) {
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;
@@ -258,8 +258,6 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                 servicePoint.timeDone = timeToServe;
                 servicePoint.id = 1;
                 servicePoints[i] = servicePoint;
-                printf("%d\n", customer->waitCurrent);
-                *totalWaitTime += customer->waitCurrent;
             }
         }
     }
