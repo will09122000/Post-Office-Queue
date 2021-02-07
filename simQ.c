@@ -27,9 +27,7 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r, time(0));
 
-    /* Worst case extra time after the post office closes
-       (Max queue length + Number of service points) *
-       Longest possible time at service point */
+    /* Worst case extra time after the post office closes */
     int buffer = (simParams.maxQueueLength + simParams.numServicePoints)\
                  * simParams.numServicePoints * simParams.lowerLimitServeTime;
     OUTPUT outputParams;
@@ -58,18 +56,6 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     int customersUnfulfilled = 0;
     int customersAtServicePoint = 0;
 
-    /* Simulation parameters separated into individual variables for improved
-       readability 
-    int maxQueueLength = simParams[0];
-    int numServicePoints = simParams[1];
-    int closingTime = simParams[2];
-    int meanNewCustomers = simParams[3];
-    int lowerLimitWaitTolerance = simParams[4];
-    int upperLimitWaitTolerance = simParams[5];
-    int scaleServeTime = simParams[6];
-    int lowerLimitServeTime = simParams[7];
-    */
-
     int totalWaitTime = 0;
     SERVICEPOINT servicePoints[simParams.numServicePoints];
 
@@ -88,12 +74,13 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     for (currentTime = 0; currentTime < simParams.closingTime; currentTime++)
     {
         /* Customers leave service point */
-        customersServed += fulfillCustomer(simParams.numServicePoints, servicePoints,
-                                           &totalWaitTime);
+        customersServed += fulfillCustomer(simParams.numServicePoints,
+                                           servicePoints, &totalWaitTime);
 
         /* Customers arrive at service point */
-        startServingCustomer(simParams.numServicePoints, servicePoints, customerQueue,
-                             r, simParams.scaleServeTime, simParams.lowerLimitServeTime);
+        startServingCustomer(simParams.numServicePoints, servicePoints,
+                             customerQueue, r, simParams.scaleServeTime,
+                             simParams.lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
@@ -103,7 +90,8 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         int i;
         for (i = 0; i < newCustomers; i++)
         {
-            if (size(customerQueue) < simParams.maxQueueLength || simParams.maxQueueLength == -1)
+            if (size(customerQueue) < simParams.maxQueueLength || \
+                simParams.maxQueueLength == -1)
             {
                 int waitLimit = (int) gsl_ran_flat(&r, simParams.lowerLimitWaitTolerance,
                                                    simParams.upperLimitWaitTolerance);
@@ -143,12 +131,13 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     while (customersAtServicePoint > 0 || size(customerQueue) > 0)
     {
         /* Customers leave service point */
-        customersServed += fulfillCustomer(simParams.numServicePoints, servicePoints,
-                                           &totalWaitTime);
+        customersServed += fulfillCustomer(simParams.numServicePoints,
+                                           servicePoints, &totalWaitTime);
 
         /* Customers arrive at service point */
-        startServingCustomer(simParams.numServicePoints, servicePoints, customerQueue,
-                             r, simParams.scaleServeTime, simParams.lowerLimitServeTime);
+        startServingCustomer(simParams.numServicePoints, servicePoints,
+                             customerQueue, r, simParams.scaleServeTime,
+                             simParams.lowerLimitServeTime);
 
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);

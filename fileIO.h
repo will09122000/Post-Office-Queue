@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-/* */
+/* A struct that holds all simulation parameters */
 struct simParams
 {
     int maxQueueLength;

@@ -8,12 +8,12 @@
 /*
     Function: getSimParameters
     --------------------
-    Computes the size of the post office queue.
+    Reads the simulation parameters from the text file
 
-    head: a pointer to the start of the list
+    inputFileName: the name of the text file
 
-    returns: null
- */
+    returns: simulations parameters struct
+*/
 INPUT getSimParameters(char inputFileName[])
 {
     FILE *fp;
@@ -25,9 +25,6 @@ INPUT getSimParameters(char inputFileName[])
     }
 
     INPUT simParams;
-
-    printf("Done\n");
-
     fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
@@ -36,7 +33,7 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.meanNewCustomers, &simParams.lowerLimitWaitTolerance,
            &simParams.upperLimitWaitTolerance, &simParams.scaleServeTime,
            &simParams.lowerLimitServeTime);
-    printf("Done2\n");
+
     fclose(fp);
     return simParams;
 }
