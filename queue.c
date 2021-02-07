@@ -57,7 +57,7 @@ void enqueue(NODE * head, int waitLimit)
 
     head: a double pointer to the start of the list
 
-    returns: the customer node struct that has been removed
+    returns: the length of time the customer has been waiting in the queue
 */
 int dequeue(NODE ** head)
 {
@@ -86,8 +86,7 @@ int dequeue(NODE ** head)
         free(nodeRemoved);
         break;
     }
-    
-    
+
     return waitTime;
 }
 

@@ -222,8 +222,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
     returns: a struct containing data required for the results output
 */
-int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
-                    int *totalWaitTime)
+int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
 {
     int customersServed = 0;
     int i;
@@ -233,7 +232,6 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
             servicePoints[i].id == 1)
         {
             customersServed++;
-            *totalWaitTime += servicePoints[i].timeTaken;
             servicePoints[i].id = 0;
         }
     }
@@ -242,7 +240,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
 
 void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                           NODE customerQueue[], gsl_rng r,  int scaleServeTime,
-                          int lowerLimitServeTime)
+                          int lowerLimitServeTime, int *totalWaitTime)
 {
     int i;
     for (i = 0; i < numServicePoints; i++)
@@ -251,6 +249,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
         {
             if (size(customerQueue) > 0) {
                 int waitTime = dequeue(&customerQueue);
+                *totalWaitTime += waitTime;
                 printf("%d\n", waitTime);
                 SERVICEPOINT servicePoint;
                 servicePoint.timeTaken = 0;

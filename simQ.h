@@ -17,9 +17,8 @@ typedef struct servicePoint SERVICEPOINT;
 OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
               int outputLog[][6]);
 
-int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
-                    int *totalWaitTime);
+int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[]);
 
 void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                           NODE customerQueue[], gsl_rng r, int scaleServeTime,
-                          int lowerLimitServeTime);
+                          int lowerLimitServeTime, int *totalWaitTime);
