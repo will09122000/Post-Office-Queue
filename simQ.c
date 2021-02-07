@@ -254,7 +254,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
                 NODE *customer = NULL;
                 customer = (NODE *) malloc(sizeof(NODE));
                 customer = dequeue(&customerQueue);
-                printf("%d\n", customer->waitCurrent);
+                printf("%d\n", customer->waitLimit);
             }
 
             if (size(customerQueue) > 0) {
