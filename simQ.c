@@ -44,11 +44,16 @@ int main (int argc, char **argv)
         outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
 
     if (numSims == 1)
+    {
         writeLogsOneSim(outputFileName, outputLog, outputParams);
+        printf("Simulation ran successfully\n");
+    }
     else
+    {
         writeLogs(outputFileName, numSims, outputParams);
+        printf("%d simulations run successfully\n", numSims);
+    }
 
-    printf("%d simulation(s) run successfully\n", numSims);
     return 0;
 }
 
