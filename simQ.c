@@ -104,7 +104,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
                                            servicePoints);
 
         /* Customers arrive at service point */
-        totalWaitTime += startServingCustomer(INPUT simParams, servicePoints,
+        totalWaitTime += startServingCustomer(simParams, servicePoints,
                                               customerQueue, r);
 
         /* Customer reaches wait limit */
@@ -160,7 +160,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
                                            servicePoints);
 
         /* Customers arrive at service point */
-        totalWaitTime += startServingCustomer(INPUT simParams, servicePoints,
+        totalWaitTime += startServingCustomer(simParams, servicePoints,
                                               customerQueue, r);
 
         /* Customer reaches wait limit */
