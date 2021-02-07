@@ -59,7 +59,7 @@ void enqueue(NODE * head, int waitLimit)
 
     returns: the customer node struct that has been removed
 */
-NODE* dequeue(NODE ** head)
+NODE dequeue(NODE ** head)
 {
     NODE* nodeRemoved;
     NODE * nextNode = NULL;

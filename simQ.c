@@ -250,8 +250,7 @@ void startServingCustomer(int numServicePoints, SERVICEPOINT servicePoints[],
         if (servicePoints[i].id != 1)
         {
             /*NODE *customer = dequeue(&customerQueue);*/
-            NODE *customer;
-            *customer=(NODE *)calloc(1,sizeof(NODE));
+            NODE customer;
             customer = dequeue(&customerQueue);
             printf("%d\n", customer->waitCurrent);
             if (customer) {
