@@ -80,8 +80,9 @@ NODE* dequeue(NODE ** head)
         nodeRemoved = (*head)->next;
         (*head)->next = nodeRemoved->next;
         nextNode->previous = *head;
-        free(nodeRemoved);
         printf("%d\n", nodeRemoved->waitLimit);
+        free(nodeRemoved);
+        
         return nodeRemoved;
     }
 }
