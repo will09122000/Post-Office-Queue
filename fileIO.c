@@ -55,7 +55,7 @@ not want a maximum queue length. \n");
     else
         close(fp);
 
-    if (error = 1)
+    if (error == 1)
         exit(1);
 }
 
