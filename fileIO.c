@@ -60,7 +60,15 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
         ;
     else
     {
-        printf("Invalid input file format.\n");
+        printf("Invalid input file format. It should be:\n \
+maxQueueLength: 8\n\
+numServicePoints: 3\n\
+closingTime: 30\n\
+meanNewCustomers: 1\n\
+lowerLimitWaitTolerance: 3\n\
+upperLimitWaitTolerance: 7\n\
+scaleServeTime: 2\n\
+lowerLimitServeTime: 3\n");
         exit(1);
     }
         
