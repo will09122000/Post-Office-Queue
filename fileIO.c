@@ -25,24 +25,24 @@ less than or equal to 2147483647 or equal to -1 if you do not want a maximum que
         error = 1;
     }
 
-    FILE *fpIn;
-    if ( (fpIn = fopen(argv[1], "r")) == NULL )
+    FILE *fp;
+    if ( (fp = fopen(argv[1], "r")) == NULL )
     {
         printf("Unable to open %s\n", argv[1]);
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         error = 1;
     }
+    else
+        fclose(fp);
 
-    FILE *fpOut;
-    if ( (fpOut = fopen(argv[3], "r")) == NULL )
+    if ( (fp = fopen(argv[3], "r")) == NULL )
     {
         printf("Unable to open %s\n", argv[3]);
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         error = 1;
     }
-
-    fclose(fpIn);
-    fclose(fpOut);
+    else
+        close(fp);
 
     if (error = 1)
         exit(1);
