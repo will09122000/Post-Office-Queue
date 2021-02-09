@@ -28,11 +28,10 @@ void validateInputs(int argc, char **argv)
     }
     
     /* Check the number of simulations is valid */
-    if (!(atoi(argv[2]) != -1) || atoi(argv[2]) < 1)
+    if (atoi(argv[2]) < 1)
     {
         printf("Number of simulations (second argument) should be an integer \
-greater than 0 and less than or equal to 2147483647 or equal to -1 if you do \
-not want a maximum queue length. \n");
+greater than 0 and less than or equal to 2147483647. \n");
         error = 1;
     }
 
@@ -101,6 +100,15 @@ scaleServeTime: 2\n\
 lowerLimitServeTime: 3\n");
         exit(1);
     }
+
+    /* Check all simulation parameters are valid */
+    if (!(simParams.maxQueueLength) != -1) || simParams.maxQueueLength < 1)
+        printf("Invalid maxQueueLength parameter, it should be equal to -1 or an integer greater than 0 and less than or equal to 2147483647.\n")
+    if (simParams.numServicePoints < 1)
+        printf("Invalid numServicePoints parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n")
+    if (simParams.closingTime < 1)
+        printf("Invalid closingTime parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n")
+
         
     fclose(fp);
     return simParams;
