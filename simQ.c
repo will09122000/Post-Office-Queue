@@ -7,18 +7,12 @@
 
 int main (int argc, char **argv)
 {
+    validateInputs(argc, argv)
+
     /* Terminal Arguments */
     char * inputFileName = argv[1];
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
-
-    /* Check the number of simulations is valid */
-    if (numSims < 1)
-    {
-        printf("Number of simulations should be an integer greater than 0 \
-(second argument)\n");
-        return 1;
-    }
 
     /* Read and Write Simulation Parameters */
     INPUT simParams = getSimParameters(inputFileName);
