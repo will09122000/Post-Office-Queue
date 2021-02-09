@@ -77,19 +77,20 @@ INPUT getSimParameters(char inputFileName[])
         exit(1);
     }
 
+    /* Read the file making sure it's in the correct format */
     INPUT simParams;
     if (fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
 scaleServeTime: %d\nlowerLimitServeTime: %d\n",
-           &simParams.maxQueueLength, &simParams.numServicePoints, &simParams.closingTime,
-           &simParams.meanNewCustomers, &simParams.lowerLimitWaitTolerance,
-           &simParams.upperLimitWaitTolerance, &simParams.scaleServeTime,
-           &simParams.lowerLimitServeTime))
+           &simParams.maxQueueLength, &simParams.numServicePoints,
+           &simParams.closingTime, &simParams.meanNewCustomers,
+           &simParams.lowerLimitWaitTolerance, &simParams.upperLimitWaitTolerance,
+           &simParams.scaleServeTime, &simParams.lowerLimitServeTime))
         ;
     else
     {
-        printf("Invalid input file format, it should be:\n\
+        printf("Invalid input file format, it should look like this:\n\
 maxQueueLength: 8\n\
 numServicePoints: 3\n\
 closingTime: 30\n\
@@ -103,13 +104,16 @@ lowerLimitServeTime: 3\n");
 
     /* Check all simulation parameters are valid */
     if (!(simParams.maxQueueLength != -1) || simParams.maxQueueLength < 1)
-        printf("Invalid maxQueueLength parameter, it should be equal to -1 or an integer greater than 0 and less than or equal to 2147483647.\n");
-    if (simParams.numServicePoints < 1)
-        printf("Invalid numServicePoints parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n");
-    if (simParams.closingTime < 1)
-        printf("Invalid closingTime parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n");
+        printf("Invalid maxQueueLength parameter, it should be equal to -1 or \
+an integer greater than 0 and less than or equal to 2147483647.\n");
+    if (simParams.numServicePoints < 1 || simParams.closingTime < 1 ||
+        simParams.meanNewCustomers < 1 || simParams.lowerLimitWaitTolerance < 1 ||
+        simParams.upperLimitWaitTolerance < 1 || simParams.scaleServeTime < 1 ||
+        simParams.lowerLimitServeTime < 1)
+    {
+        printf("Invalid parameters, all parameters except maxQueueLength should be an integer greater than 0 and less than or equal to 2147483647.\n");
+    }
 
-        
     fclose(fp);
     return simParams;
 }
