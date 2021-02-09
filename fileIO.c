@@ -24,6 +24,9 @@ void validateInputs(int argc, char **argv)
 less than or equal to 2147483647. \n");
         error = 1;
     }
+
+    if (error = 1)
+        exit(0);
 }
 
 /*
