@@ -26,7 +26,7 @@ less than or equal to 2147483647. \n");
     }
 
     FILE *fpIn;
-    if ( (fpIn = fopen(inputFileName, "r")) == NULL )
+    if ( (fpIn = fopen(argv[1], "r")) == NULL )
     {
         printf("Unable to open %s\n", inputFileName);
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
@@ -34,7 +34,7 @@ less than or equal to 2147483647. \n");
     }
 
     FILE *fpOut;
-    if ( (fpOut = fopen(outputFileName, "r")) == NULL )
+    if ( (fpOut = fopen(argv[3], "r")) == NULL )
     {
         printf("Unable to open %s\n", outputFileName);
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
