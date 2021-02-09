@@ -57,9 +57,13 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.meanNewCustomers, &simParams.lowerLimitWaitTolerance,
            &simParams.upperLimitWaitTolerance, &simParams.scaleServeTime,
            &simParams.lowerLimitServeTime))
-        printf("Tset\n");
+        ;
     else
-        printf("%d\n", simParams.maxQueueLength);
+    {
+        printf("Invalid input file format.\n");
+        exit(1);
+    }
+        
     fclose(fp);
     return simParams;
 }
