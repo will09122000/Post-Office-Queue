@@ -103,11 +103,11 @@ lowerLimitServeTime: 3\n");
 
     /* Check all simulation parameters are valid */
     if (!(simParams.maxQueueLength) != -1) || simParams.maxQueueLength < 1)
-        printf("Invalid maxQueueLength parameter, it should be equal to -1 or an integer greater than 0 and less than or equal to 2147483647.\n")
+        printf("Invalid maxQueueLength parameter, it should be equal to -1 or an integer greater than 0 and less than or equal to 2147483647.\n");
     if (simParams.numServicePoints < 1)
-        printf("Invalid numServicePoints parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n")
+        printf("Invalid numServicePoints parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n");
     if (simParams.closingTime < 1)
-        printf("Invalid closingTime parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n")
+        printf("Invalid closingTime parameter, it should be an integer greater than 0 and less than or equal to 2147483647.\n");
 
         
     fclose(fp);
