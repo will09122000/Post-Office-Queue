@@ -8,7 +8,7 @@
 void validateInputs(int argc, char **argv)
 {
     int error = 0;
-
+    printf("%d\n", argc);
     /* Check the number of parameters is valid */
     if (argc != 3)
     {
