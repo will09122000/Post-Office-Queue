@@ -58,6 +58,7 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.upperLimitWaitTolerance, &simParams.scaleServeTime,
            &simParams.lowerLimitServeTime);
 
+    printf("%d\n", simParams.maxQueueLength);
     fclose(fp);
     return simParams;
 }
