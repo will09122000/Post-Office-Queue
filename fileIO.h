@@ -32,3 +32,10 @@ struct outputParams
 };
 
 typedef struct outputParams OUTPUT;
+
+/* Function prototypes */
+void validateInputs(int argc, char **argv);
+INPUT getSimParameters(char inputFileName[]);
+void writeSimParameters(char inputFileName[], char outputFileName[]);
+void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputParams);
+void writeLogs(char outputFileName[], int numSims, OUTPUT outputParams);

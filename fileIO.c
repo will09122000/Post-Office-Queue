@@ -5,6 +5,16 @@
     parameter and output text files.
 */
 
+/*
+    Function: validateInputs
+    ---------------------------------------------------------------------------
+    Checks all user inputs to the program are valid.
+
+    argc:    number of command-line arguments passed by the user
+    argv:    array of character pointers listing all the arguments
+
+    returns: null
+*/
 void validateInputs(int argc, char **argv)
 {
     int error = 0;
@@ -20,11 +30,13 @@ void validateInputs(int argc, char **argv)
     /* Check the number of simulations is valid */
     if (atoi(argv[2]) != -1 || atoi(argv[2]) < 1)
     {
-        printf("Number of simulations (second argument) should be an integer greater than 0 and \
-less than or equal to 2147483647 or equal to -1 if you do not want a maximum queue length. \n");
+        printf("Number of simulations (second argument) should be an integer
+greater than 0 and less than or equal to 2147483647 or equal to -1 if you do \
+not want a maximum queue length. \n");
         error = 1;
     }
 
+    /* Check both the input and output files can be read */
     FILE *fp;
     if ( (fp = fopen(argv[1], "r")) == NULL )
     {
@@ -34,7 +46,6 @@ less than or equal to 2147483647 or equal to -1 if you do not want a maximum que
     }
     else
         fclose(fp);
-
     if ( (fp = fopen(argv[3], "r")) == NULL )
     {
         printf("Unable to open %s\n", argv[3]);
