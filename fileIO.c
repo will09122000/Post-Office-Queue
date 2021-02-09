@@ -50,7 +50,7 @@ INPUT getSimParameters(char inputFileName[])
 
     INPUT simParams;
     if (fscanf(fp,
-           "TestmaxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
+           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
 scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.maxQueueLength, &simParams.numServicePoints, &simParams.closingTime,
