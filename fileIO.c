@@ -61,7 +61,7 @@ greater than 0 and less than or equal to 2147483647. \n");
 /*
     Function: getSimParameters
     ---------------------------------------------------------------------------
-    Reads the simulation parameters from the text file.
+    Reads and validates the simulation parameters from the text file.
 
     inputFileName: the name of the parameters text file
 
@@ -114,7 +114,8 @@ an integer greater than 0 and less than or equal to 2147483647.\n");
         simParams.upperLimitWaitTolerance < 1 || simParams.scaleServeTime < 1 ||
         simParams.lowerLimitServeTime < 1)
     {
-        printf("Invalid parameters, all parameters except maxQueueLength should be an integer greater than 0 and less than or equal to 2147483647.\n");
+        printf("Invalid parameters, all parameters except maxQueueLength should \
+be an integer greater than 0 and less than or equal to 2147483647.\n");
         exit(1);
     }
 
