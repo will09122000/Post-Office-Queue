@@ -18,6 +18,7 @@ void validateInputs(int argc, char **argv)
     }
     
     /* Check the number of simulations is valid */
+    printf("%d\n", atoi(argv[2]));
     if (atoi(argv[2]) == -1 || atoi(argv[2]) > 0)
     {
         printf("Number of simulations (second argument) should be an integer greater than 0 and \
