@@ -11,11 +11,11 @@ void validateInputs(int argc, char **argv)
         printf("Invalid number of arguments, please ensure you have \
 [inputFileText.txt numberOfSimulations inputFileText.txt] in that order.\n");
     /* Check the number of simulations is valid */
-    if (argv[2] < 1)
+    if (atoi(argv[2]) < 1)
     {
         printf("Number of simulations (second argument) should be an integer greater than 0 and \
 less than or equal to 2147483647 \n");
-        return 1;
+        exit(0);
     }
 }
 

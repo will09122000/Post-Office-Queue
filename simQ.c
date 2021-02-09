@@ -7,7 +7,7 @@
 
 int main (int argc, char **argv)
 {
-    validateInputs(argc, argv)
+    validateInputs(argc, argv);
 
     /* Terminal Arguments */
     char * inputFileName = argv[1];
