@@ -165,3 +165,23 @@ int checkWaitLimit(NODE ** head)
     }
     return newTimedOutCustomers;
 }
+
+/*
+    Function: freeQueue
+    ---------------------------------------------------------------------------
+    Frees the memory taken up by the post office queue.
+
+    head:    a double pointer to the start of the list
+
+    returns: null
+*/
+void freeQueue (NODE ** head)
+{
+   NODE *current = *head;
+   while ( *head != NULL )
+   {
+      current = (*head)->next;
+      free(*head);
+      *head = current;
+   }
+}

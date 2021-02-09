@@ -55,6 +55,7 @@ int main (int argc, char **argv)
         printf("%d simulations ran successfully\n", numSims);
     }
 
+    gsl_rng_free(r);
     return 0;
 }
 
@@ -204,7 +205,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
     outputParams.totalcustomersTimedOut += customersTimedOut;
     outputParams.totalTimeAfterClose += currentTime - simParams.closingTime;
 
-    free(customerQueue);
+    freeQueue(&customerQueue);
     return outputParams;
 }
 
