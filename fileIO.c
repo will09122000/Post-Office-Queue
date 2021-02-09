@@ -10,7 +10,7 @@ void validateInputs(int argc, char **argv)
     int error = 0;
     printf("%d\n", argc);
     /* Check the number of parameters is valid */
-    if (argc != 3)
+    if (argc != 4)
     {
         printf("Invalid number of arguments, please ensure you have \
 [inputFileText.txt numberOfSimulations inputFileText.txt] in that order.\n");
