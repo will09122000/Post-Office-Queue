@@ -26,7 +26,7 @@ less than or equal to 2147483647. \n");
     }
 
     if (error = 1)
-        exit(0);
+        exit(1);
 }
 
 /*
@@ -49,16 +49,16 @@ INPUT getSimParameters(char inputFileName[])
     }
 
     INPUT simParams;
-    fscanf(fp,
+    if (fscanf(fp,
            "TestmaxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
 scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.maxQueueLength, &simParams.numServicePoints, &simParams.closingTime,
            &simParams.meanNewCustomers, &simParams.lowerLimitWaitTolerance,
            &simParams.upperLimitWaitTolerance, &simParams.scaleServeTime,
-           &simParams.lowerLimitServeTime);
-
-    printf("%d\n", simParams.maxQueueLength);
+           &simParams.lowerLimitServeTime))
+    else
+        printf("%d\n", simParams.maxQueueLength);
     fclose(fp);
     return simParams;
 }
