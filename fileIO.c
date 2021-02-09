@@ -25,6 +25,25 @@ less than or equal to 2147483647. \n");
         error = 1;
     }
 
+    FILE *fpIn;
+    if ( (fpIn = fopen(inputFileName, "r")) == NULL )
+    {
+        printf("Unable to open %s\n", inputFileName);
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+        error = 1;
+    }
+
+    FILE *fpOut;
+    if ( (fpOut = fopen(outputFileName, "r")) == NULL )
+    {
+        printf("Unable to open %s\n", outputFileName);
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+        error = 1;
+    }
+
+    fclose(fpIn);
+    fclose(fpOut);
+
     if (error = 1)
         exit(1);
 }
@@ -69,7 +88,6 @@ lowerLimitWaitTolerance: 3\n\
 upperLimitWaitTolerance: 7\n\
 scaleServeTime: 2\n\
 lowerLimitServeTime: 3\n");
-        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(1);
     }
         
