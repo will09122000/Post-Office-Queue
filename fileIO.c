@@ -7,16 +7,26 @@
 
 void validateInputs(int argc, char **argv)
 {
+    int error = 0;
+
+    /* Check the number of parameters is valid */
     if (argc != 3)
+    {
         printf("Invalid number of arguments, please ensure you have \
 [inputFileText.txt numberOfSimulations inputFileText.txt] in that order.\n");
+        error = 1;
+    }
+    
     /* Check the number of simulations is valid */
     if (atoi(argv[2]) < 1)
     {
         printf("Number of simulations (second argument) should be an integer greater than 0 and \
-less than or equal to 2147483647 \n");
-        exit(0);
+less than or equal to 2147483647. \n");
+        error = 1;
     }
+
+    if (error = 1)
+        exit(0);
 }
 
 /*
@@ -40,7 +50,7 @@ INPUT getSimParameters(char inputFileName[])
 
     INPUT simParams;
     fscanf(fp,
-           "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
+           "TestmaxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
 scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.maxQueueLength, &simParams.numServicePoints, &simParams.closingTime,
