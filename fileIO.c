@@ -57,6 +57,7 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.meanNewCustomers, &simParams.lowerLimitWaitTolerance,
            &simParams.upperLimitWaitTolerance, &simParams.scaleServeTime,
            &simParams.lowerLimitServeTime))
+        printf("Tset\n");
     else
         printf("%d\n", simParams.maxQueueLength);
     fclose(fp);
