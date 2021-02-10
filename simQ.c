@@ -14,7 +14,7 @@ int main (int argc, char **argv)
     int numSims = atoi(argv[2]);
     char * outputFileName = argv[3];
 
-    /* Read and Write Simulation Parameters */
+    /* Read, verify and write the Simulation Parameters */
     INPUT simParams = getSimParameters(inputFileName);
     writeSimParameters(inputFileName, outputFileName);
 
