@@ -221,7 +221,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
     int i;
     for (i = 0; i < numServicePoints; i++)
     {
-        if (servicePoints[i].timeTaken == servicePoints[i].timeDone &&
+        if (servicePoints[i].timeTaken >= servicePoints[i].timeDone &&
             servicePoints[i].id == 1)
         {
             customersServed++;
