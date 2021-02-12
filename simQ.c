@@ -210,17 +210,17 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
            closed */
         currentTime++;
     }
-    printf("%d\n", &outputParams.totalWaitTime);
-    &outputParams.currentTime = currentTime;
-    &outputParams.closingTime = simParams.closingTime;
-    &outputParams.totalWaitTime += totalWaitTime;
-    &outputParams.totalcustomersServed += customersServed;
-    &outputParams.totalcustomersUnfulfilled += customersUnfulfilled;
-    &outputParams.totalcustomersTimedOut += customersTimedOut;
-    &outputParams.totalTimeAfterClose += currentTime - simParams.closingTime;
+    printf("%d\n", outputParams->totalWaitTime);
+    outputParams->currentTime = currentTime;
+    outputParams->closingTime = simParams.closingTime;
+    outputParams->totalWaitTime += totalWaitTime;
+    outputParams->totalcustomersServed += customersServed;
+    outputParams->totalcustomersUnfulfilled += customersUnfulfilled;
+    outputParams->totalcustomersTimedOut += customersTimedOut;
+    outputParams->totalTimeAfterClose += currentTime - simParams.closingTime;
 
     freeQueue(&customerQueue);
-    return &outputParams;
+    return outputParams;
 }
 
 /*
