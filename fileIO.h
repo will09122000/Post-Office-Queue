@@ -37,5 +37,5 @@ typedef struct outputParams OUTPUT;
 void validateInputs(int argc, char **argv);
 INPUT getSimParameters(char inputFileName[]);
 void writeSimParameters(char inputFileName[], char outputFileName[]);
-void writeLogsOneSim(char outputFileName[], int outputLog[][6], OUTPUT outputParams);
-void writeLogs(char outputFileName[], int numSims, OUTPUT outputParams);
+void writeLogsOneSim(char outputFileName[], unsigned outputLog[][6], OUTPUT outputParams);
+void writeLogs(char outputFileName[], unsigned numSims, OUTPUT outputParams);
