@@ -59,7 +59,6 @@ int main (int argc, char **argv)
     Runs one simulation of a post office queue.
 
     simParams:      a struct that contains all simulation parameters
-    numSims:        the number of simulations to be run
     outputFileName: the name of the results text file
     r:              Used for random number generation
     outputLog:      a 2D array containing data for each time time interval
@@ -67,7 +66,7 @@ int main (int argc, char **argv)
 
     returns:        a struct containing data required for the results output
 */
-OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
+OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
               int outputLog[][6])
 {
     unsigned int currentTime;
@@ -92,7 +91,7 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
 
     OUTPUT outputParams;
 
-    for (currentTime = 0; currentTime < simParams.closingTime; currentTime++)
+    while ((customersAtServicePoint > 0 || size(customerQueue) > 0) || currentTime < simParams.closingTime)
     {
         /* Customers leave service point */
         customersServed += fulfillCustomer(simParams.numServicePoints,
@@ -106,60 +105,26 @@ OUTPUT runSim(INPUT simParams, int numSims, char outputFileName[], gsl_rng r,
         customersTimedOut += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        unsigned int newCustomers = gsl_ran_poisson(&r, simParams.meanNewCustomers);
-        int i;
-        for (i = 0; i < newCustomers; i++)
+        if (currentTime < simParams.closingTime)
         {
-            if (size(customerQueue) < simParams.maxQueueLength || \
-                simParams.maxQueueLength == -1)
+            unsigned int newCustomers = gsl_ran_poisson(&r, simParams.meanNewCustomers);
+            int i;
+            for (i = 0; i < newCustomers; i++)
             {
-                int waitLimit = (int) gsl_ran_flat(&r, simParams.lowerLimitWaitTolerance,
-                                                   simParams.upperLimitWaitTolerance);
-                enqueue(customerQueue, waitLimit);
-                customersTotal++;
+                if (size(customerQueue) < simParams.maxQueueLength || \
+                    simParams.maxQueueLength == -1)
+                {
+                    int waitLimit = (int) gsl_ran_flat(&r, simParams.lowerLimitWaitTolerance,
+                                                    simParams.upperLimitWaitTolerance);
+                    enqueue(customerQueue, waitLimit);
+                    customersTotal++;
+                }
+                else {
+                    customersUnfulfilled++;
+                }
             }
-            else {
-                customersUnfulfilled++;
-            }
         }
 
-        customersAtServicePoint = 0;
-        for (i = 0; i < simParams.numServicePoints; i++)
-        {
-            if (servicePoints[i].id == 1)
-                customersAtServicePoint++;
-        }
-
-        /* Increment the wait time of all customers in the queue and
-        service points by 1 */
-        updateWait(customerQueue);
-        for (i = 0; i < simParams.numServicePoints; i++)
-        {
-            if (servicePoints[i].id == 1)
-                servicePoints[i].timeTaken++;
-        }
-
-        outputLog[currentTime][0] = currentTime;
-        outputLog[currentTime][1] = customersAtServicePoint;
-        outputLog[currentTime][2] = size(customerQueue);
-        outputLog[currentTime][3] = customersServed;
-        outputLog[currentTime][4] = customersUnfulfilled;
-        outputLog[currentTime][5] = customersTimedOut;
-
-    }
-
-    while (customersAtServicePoint > 0 || size(customerQueue) > 0)
-    {
-        /* Customers leave service point */
-        customersServed += fulfillCustomer(simParams.numServicePoints,
-                                           servicePoints);
-
-        /* Customers arrive at service point */
-        totalWaitTime += startServingCustomer(simParams, servicePoints,
-                                              customerQueue, r);
-
-        /* Customer reaches wait limit */
-        customersTimedOut += checkWaitLimit(&customerQueue);
 
         customersAtServicePoint = 0;
         int i;
