@@ -99,7 +99,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->waitCurrent = INT_MIN;
 
     int i;
-    while ((customersAtServicePoint > 0 || size(customerQueue) > 0) ||
+    while (customersAtServicePoint > 0 || size(customerQueue) > 0 ||
            currentTime < simParams.closingTime)
     {
         /* Customers leave service point */
@@ -165,8 +165,6 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         currentTime++;
     }
 
-    outputParams->currentTime = currentTime;
-    outputParams->closingTime = simParams.closingTime;
     outputParams->totalWaitTime += totalWaitTime;
     outputParams->totalcustomersServed += customersServed;
     outputParams->totalcustomersUnfulfilled += customersUnfulfilled;
