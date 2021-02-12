@@ -98,7 +98,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
-
+    int i;
     while ((customersAtServicePoint > 0 || size(customerQueue) > 0) ||
            currentTime < simParams.closingTime)
     {
@@ -116,15 +116,14 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         /* New Customers arrive iff the post office is open */
         if (currentTime < simParams.closingTime)
         {
-            unsigned int newCustomers = /
+            unsigned int newCustomers = \
             gsl_ran_poisson(&r, simParams.meanNewCustomers);
-            int i;
             for (i = 0; i < newCustomers; i++)
             {
                 if (size(customerQueue) < simParams.maxQueueLength || \
                     simParams.maxQueueLength == -1)
                 {
-                    unsigned int waitLimit = /
+                    unsigned int waitLimit = \
                     (int) gsl_ran_flat(&r, simParams.lowerLimitWaitTolerance,
                                        simParams.upperLimitWaitTolerance);
                     enqueue(customerQueue, waitLimit);
@@ -232,7 +231,7 @@ int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
             totalWaitTime += waitTime;
             SERVICEPOINT servicePoint;
             servicePoint.timeTaken = 0;
-            unsigned int timeToServe = (int) /
+            unsigned int timeToServe = (int) \
             gsl_ran_rayleigh_tail(&r, simParams.scaleServeTime,
                                   simParams.lowerLimitServeTime);
             servicePoint.timeDone = timeToServe;
