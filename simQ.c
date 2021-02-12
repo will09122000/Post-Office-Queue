@@ -35,7 +35,7 @@ int main (int argc, char **argv)
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
-        outputParams = runSim(simParams, numSims, outputFileName, *r, outputLog);
+        outputParams = runSim(simParams, outputFileName, *r, outputLog);
 
     /* Write to results output file */
     if (numSims == 1)
