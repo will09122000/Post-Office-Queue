@@ -29,8 +29,17 @@ int main (int argc, char **argv)
     /* Worst case extra time after the post office doors shut */
     int buffer = (simParams.maxQueueLength + simParams.numServicePoints)\
                  * simParams.numServicePoints * simParams.lowerLimitServeTime;
-    OUTPUT outputParams;
+    
     int outputLog[(simParams.closingTime) + buffer][6];
+
+    OUTPUT outputParams;
+    /* These values need to be intialized to 0 as they are being incremented
+       instead of being assigned a value */
+    outputParams.totalcustomersServed = 0;
+    outputParams.totalcustomersTimedOut = 0;
+    outputParams.totalcustomersUnfulfilled = 0;
+    outputParams.totalTimeAfterClose = 0;
+    outputParams.totalWaitTime = 0;
 
     /* Run Simulation(s) */
     int i;
@@ -90,7 +99,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->waitCurrent = INT_MIN;
 
 
-    while ((customersAtServicePoint > 0 || size(customerQueue) > 0) || currentTime < simParams.closingTime)
+    while ((customersAtServicePoint > 0 || size(customerQueue) > 0) ||
+           currentTime < simParams.closingTime)
     {
         /* Customers leave service point */
         customersServed += fulfillCustomer(simParams.numServicePoints,
@@ -103,7 +113,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
 
-        /* New Customers */
+        /* New Customers arrive iff the post office is open */
         if (currentTime < simParams.closingTime)
         {
             unsigned int newCustomers = gsl_ran_poisson(&r, simParams.meanNewCustomers);
@@ -123,9 +133,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
                 }
             }
         }
-        
 
-
+        /* Count the number of customers at a service point */
         customersAtServicePoint = 0;
         int i;
         for (i = 0; i < simParams.numServicePoints; i++)
@@ -144,6 +153,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
                 servicePoints[i].timeTaken++;
         }
 
+        /* Save the customer data for this time interval to the 2D array */
         outputLog[currentTime][0] = currentTime;
         outputLog[currentTime][1] = customersAtServicePoint;
         outputLog[currentTime][2] = size(customerQueue);
@@ -151,11 +161,10 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         outputLog[currentTime][4] = customersUnfulfilled;
         outputLog[currentTime][5] = customersTimedOut;
 
-        /* Increment Time interval as this loops after the post office has
-           closed */
+        /* Increment Time interval of this simulation */
         currentTime++;
     }
-    printf("%d\n", outputParams->totalWaitTime);
+
     outputParams->currentTime = currentTime;
     outputParams->closingTime = simParams.closingTime;
     outputParams->totalWaitTime += totalWaitTime;
