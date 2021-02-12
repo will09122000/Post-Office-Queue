@@ -76,7 +76,7 @@ int main (int argc, char **argv)
     returns:        a struct containing data required for the results output
 */
 void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
-              int outputLog[][6], OUTPUT *outputParams)
+              unsigned int outputLog[][6], OUTPUT *outputParams)
 {
     unsigned int currentTime = 0;
     unsigned int customersTotal = 0;
