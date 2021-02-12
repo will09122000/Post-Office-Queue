@@ -176,7 +176,7 @@ void writeSimParameters(char inputFileName[], char outputFileName[])
 
     returns:        null
 */
-void writeLogsOneSim(char outputFileName[], int outputLog[][6],
+void writeLogsOneSim(char outputFileName[], unsigned int outputLog[][6],
                      OUTPUT outputParams)
 {
     FILE *fp;
@@ -219,7 +219,7 @@ office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
 
     returns:        null
 */
-void writeLogs(char outputFileName[], int numSims, OUTPUT outputParams)
+void writeLogs(char outputFileName[], unsigned int numSims, OUTPUT outputParams)
 {
     FILE *fp;
     if ( (fp = fopen(outputFileName, "a")) == NULL )
