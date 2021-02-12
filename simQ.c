@@ -220,7 +220,7 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     outputParams->totalTimeAfterClose += currentTime - simParams.closingTime;
 
     freeQueue(&customerQueue);
-    return outputParams;
+    return &outputParams;
 }
 
 /*
