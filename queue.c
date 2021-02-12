@@ -14,9 +14,9 @@
 
     returns: the size of the list
 */
-int size(NODE * head)
+unsigned int size(NODE * head)
 {
-    int count = 0;
+    unsigned int count = 0;
     NODE *current = head;
     while (current != NULL) 
     { 
@@ -59,11 +59,11 @@ void enqueue(NODE * head, int waitLimit)
 
     returns: the length of time the customer has been waiting in the queue
 */
-int dequeue(NODE ** head)
+unsigned int dequeue(NODE ** head)
 {
     NODE * nodeRemoved;
     NODE * nextNode = NULL;
-    int waitTime = nodeRemoved->waitCurrent;
+    unsigned int waitTime = nodeRemoved->waitCurrent;
 
     switch (size(*head))
     {
@@ -126,10 +126,10 @@ void updateWait(NODE * head)
     returns: the number of customers that have timed-out during the
              current time unit
 */
-int checkWaitLimit(NODE ** head)
+unsigned int checkWaitLimit(NODE ** head)
 {
     NODE * current = *head;
-    int newTimedOutCustomers = 0;
+    unsigned int newTimedOutCustomers = 0;
 
     if (size(*head) == 0)
         return;
