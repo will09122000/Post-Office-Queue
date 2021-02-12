@@ -69,7 +69,7 @@ int main (int argc, char **argv)
 void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
               int outputLog[][6], OUTPUT *outputParams)
 {
-    unsigned int currentTime;
+    unsigned int currentTime = 0;
     int customersTotal = 0;
     int customersServed = 0;
     int customersTimedOut = 0;
