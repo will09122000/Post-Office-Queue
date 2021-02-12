@@ -188,7 +188,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     returns:          the number of customers that have finished at the post
                       office during this time unit
 */
-int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
+unsigned int fulfillCustomer(unsigned int numServicePoints, SERVICEPOINT servicePoints[])
 {
     unsigned int customersServed = 0;
     int i;
@@ -218,7 +218,7 @@ int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[])
     returns:       the total queue waiting time of all customers that have
                    arrived at a service point during this time unit
 */
-int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
+unsigned int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
                          NODE customerQueue[], gsl_rng r)
 {
     unsigned int totalWaitTime = 0;

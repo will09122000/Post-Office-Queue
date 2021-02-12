@@ -17,7 +17,7 @@ typedef struct servicePoint SERVICEPOINT;
 void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
               unsigned int outputLog[][6], OUTPUT *outputParams);
 
-int fulfillCustomer(int numServicePoints, SERVICEPOINT servicePoints[]);
+unsigned int fulfillCustomer(unsigned int numServicePoints, SERVICEPOINT servicePoints[]);
 
-int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
+unsigned int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
                          NODE customerQueue[], gsl_rng r);
