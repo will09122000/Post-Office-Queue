@@ -90,6 +90,7 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->waitCurrent = INT_MIN;
 
     OUTPUT outputParams;
+    outputParams.totalWaitTime = 0;
 
     for (currentTime = 0; currentTime < simParams.closingTime; currentTime++)
     {
