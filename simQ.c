@@ -35,7 +35,7 @@ int main (int argc, char **argv)
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
-        outputParams = runSim(simParams, outputFileName, *r, outputLog);
+        outputParams = runSim(simParams, outputFileName, *r, outputLog, &outputParams);
 
     /* Write to results output file */
     if (numSims == 1)
@@ -67,7 +67,7 @@ int main (int argc, char **argv)
     returns:        a struct containing data required for the results output
 */
 OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
-              int outputLog[][6])
+              int outputLog[][6], OUTPUT outputParams)
 {
     unsigned int currentTime;
     int customersTotal = 0;
@@ -88,8 +88,6 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->previous = NULL;
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
-
-    OUTPUT outputParams;
 
     for (currentTime = 0; currentTime < simParams.closingTime; currentTime++)
     {
@@ -212,17 +210,17 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
            closed */
         currentTime++;
     }
-    printf("%d\n", outputParams.totalWaitTime);
-    outputParams.currentTime = currentTime;
-    outputParams.closingTime = simParams.closingTime;
-    outputParams.totalWaitTime += totalWaitTime;
-    outputParams.totalcustomersServed += customersServed;
-    outputParams.totalcustomersUnfulfilled += customersUnfulfilled;
-    outputParams.totalcustomersTimedOut += customersTimedOut;
-    outputParams.totalTimeAfterClose += currentTime - simParams.closingTime;
+    printf("%d\n", &outputParams.totalWaitTime);
+    &outputParams.currentTime = currentTime;
+    &outputParams.closingTime = simParams.closingTime;
+    &outputParams.totalWaitTime += totalWaitTime;
+    &outputParams.totalcustomersServed += customersServed;
+    &outputParams.totalcustomersUnfulfilled += customersUnfulfilled;
+    &outputParams.totalcustomersTimedOut += customersTimedOut;
+    &outputParams.totalTimeAfterClose += currentTime - simParams.closingTime;
 
     freeQueue(&customerQueue);
-    return outputParams;
+    return &outputParams;
 }
 
 /*
