@@ -24,7 +24,7 @@ struct outputParams
 {
     int currentTime;
     int closingTime;
-    int totalWaitTime;
+    int totalWaitTime = 0;
     int totalcustomersServed;
     int totalcustomersUnfulfilled;
     int totalcustomersTimedOut;
