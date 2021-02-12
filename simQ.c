@@ -165,6 +165,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         currentTime++;
     }
 
+    outputParams->currentTime = currentTime;
+    outputParams->closingTime = simParams.closingTime;
     outputParams->totalWaitTime += totalWaitTime;
     outputParams->totalcustomersServed += customersServed;
     outputParams->totalcustomersUnfulfilled += customersUnfulfilled;

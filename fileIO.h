@@ -22,6 +22,8 @@ typedef struct simParams INPUT;
    simulation and multiple simulations */
 struct outputParams
 {
+    int currentTime;
+    int closingTime;
     int totalWaitTime;
     int totalcustomersServed;
     int totalcustomersUnfulfilled;
