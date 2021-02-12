@@ -35,7 +35,7 @@ int main (int argc, char **argv)
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
-        outputParams = runSim(simParams, outputFileName, *r, outputLog, &outputParams);
+        runSim(simParams, outputFileName, *r, outputLog, &outputParams);
 
     /* Write to results output file */
     if (numSims == 1)
@@ -220,7 +220,6 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     outputParams->totalTimeAfterClose += currentTime - simParams.closingTime;
 
     freeQueue(&customerQueue);
-    return &outputParams;
 }
 
 /*
