@@ -203,7 +203,7 @@ void writeLogsOneSim(char outputFileName[], int outputLog[][6],
 office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
 
     printf("%d\n", outputParams.totalWaitTime);
-    printf("%d\n", outputLog[outputParams.currentTime][3]);
+    printf("%d\n", outputLog[outputParams.currentTime-1][3]);
 
     fprintf(fp, "Average Customer Waiting Time: %f\n",
             (float) outputParams.totalWaitTime / 

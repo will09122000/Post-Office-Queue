@@ -212,7 +212,7 @@ OUTPUT runSim(INPUT simParams, char outputFileName[], gsl_rng r,
            closed */
         currentTime++;
     }
-
+    printf("%d\n", totalWaitTime);
     outputParams.currentTime = currentTime;
     outputParams.closingTime = simParams.closingTime;
     outputParams.totalWaitTime += totalWaitTime;
