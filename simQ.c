@@ -89,7 +89,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
-    for (currentTime = 0; currentTime < simParams.closingTime; currentTime++)
+
+    while ((customersAtServicePoint > 0 || size(customerQueue) > 0) || currentTime < simParams.closingTime)
     {
         /* Customers leave service point */
         customersServed += fulfillCustomer(simParams.numServicePoints,
@@ -103,62 +104,6 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         customersTimedOut += checkWaitLimit(&customerQueue);
 
         /* New Customers */
-        unsigned int newCustomers = gsl_ran_poisson(&r, simParams.meanNewCustomers);
-        int i;
-        for (i = 0; i < newCustomers; i++)
-        {
-            if (size(customerQueue) < simParams.maxQueueLength || \
-                simParams.maxQueueLength == -1)
-            {
-                int waitLimit = (int) gsl_ran_flat(&r, simParams.lowerLimitWaitTolerance,
-                                                   simParams.upperLimitWaitTolerance);
-                enqueue(customerQueue, waitLimit);
-                customersTotal++;
-            }
-            else {
-                customersUnfulfilled++;
-            }
-        }
-
-        customersAtServicePoint = 0;
-        for (i = 0; i < simParams.numServicePoints; i++)
-        {
-            if (servicePoints[i].id == 1)
-                customersAtServicePoint++;
-        }
-
-        /* Increment the wait time of all customers in the queue and
-        service points by 1 */
-        updateWait(customerQueue);
-        for (i = 0; i < simParams.numServicePoints; i++)
-        {
-            if (servicePoints[i].id == 1)
-                servicePoints[i].timeTaken++;
-        }
-
-        outputLog[currentTime][0] = currentTime;
-        outputLog[currentTime][1] = customersAtServicePoint;
-        outputLog[currentTime][2] = size(customerQueue);
-        outputLog[currentTime][3] = customersServed;
-        outputLog[currentTime][4] = customersUnfulfilled;
-        outputLog[currentTime][5] = customersTimedOut;
-
-    }
-
-    while ((customersAtServicePoint > 0 || size(customerQueue) > 0))
-    {
-        /* Customers leave service point */
-        customersServed += fulfillCustomer(simParams.numServicePoints,
-                                           servicePoints);
-
-        /* Customers arrive at service point */
-        totalWaitTime += startServingCustomer(simParams, servicePoints,
-                                              customerQueue, r);
-
-        /* Customer reaches wait limit */
-        customersTimedOut += checkWaitLimit(&customerQueue);
-
-        /* New Customers 
         if (currentTime < simParams.closingTime)
         {
             unsigned int newCustomers = gsl_ran_poisson(&r, simParams.meanNewCustomers);
@@ -178,7 +123,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
                 }
             }
         }
-        */
+        
 
 
         customersAtServicePoint = 0;
