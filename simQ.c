@@ -41,27 +41,10 @@ int main (int argc, char **argv)
     outputParams.totalTimeAfterClose = 0;
     outputParams.totalWaitTime = 0;
 
-    printf("Test1\n");
-
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
         runSim(simParams, outputFileName, *r, outputLog, &outputParams);
-
-    printf("Test2\n");
-
-    for (i = 0; i < outputParams.currentTime; i++)
-    {
-        if (i == outputParams.closingTime)
-            printf("----------- Post Office Closed -----------\n\n");
-        printf("Current Time:           %d\n", outputLog[i][0]);
-        printf("Customers being Served: %d\n", outputLog[i][1]);
-        printf("Customers in Queue:     %d\n", outputLog[i][2]);
-        printf("Customers Fulfilled:    %d\n", outputLog[i][3]);
-        printf("Customers Unfulfilled:  %d\n", outputLog[i][4]);
-        printf("Customers Timed-out:    %d\n", outputLog[i][5]);
-        printf("\n");
-    }
 
     /* Write to results output file */
     if (numSims == 1)
@@ -74,8 +57,6 @@ int main (int argc, char **argv)
         writeLogs(outputFileName, numSims, outputParams);
         printf("%d simulations ran successfully\n", numSims);
     }
-
-    printf("TestFINAL\n");
 
     gsl_rng_free(r);
     return 0;
@@ -192,10 +173,6 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     outputParams->totalcustomersUnfulfilled += customersUnfulfilled;
     outputParams->totalcustomersTimedOut += customersTimedOut;
     outputParams->totalTimeAfterClose += currentTime - simParams.closingTime;
-
-    printf("%d\n", outputParams->closingTime);
-    printf("%d\n", outputParams->currentTime);
-
 
     freeQueue(&customerQueue);
 }

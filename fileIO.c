@@ -190,7 +190,7 @@ void writeLogsOneSim(char outputFileName[], unsigned int outputLog[][6],
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(1);
     }
-    printf("TEST1\n");
+
     int i;
     printf("Current Time: %d\n", outputParams.currentTime);
     for (i = 0; i < outputParams.currentTime; i++)
@@ -205,7 +205,7 @@ void writeLogsOneSim(char outputFileName[], unsigned int outputLog[][6],
         fprintf(fp, "Customers Timed-out:    %d\n", outputLog[i][5]);
         fputs("\n", fp);
     }
-    printf("TEST3\n");
+
     fprintf(fp, "Time taken to serve remaining customers after the post \
 office has closed: %d\n", (outputParams.currentTime-outputParams.closingTime));
 
