@@ -4,5 +4,5 @@ closingTime: 30
 meanNewCustomers: 0.8
 lowerLimitWaitTolerance: 3
 upperLimitWaitTolerance: 7
-scaleServeTime: 2
+scaleServeTime: 1.5
 lowerLimitServeTime: 3
