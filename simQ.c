@@ -168,7 +168,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         outputLog[currentTime][5] = customersTimedOut;
 
         int j;
-        for (i=0; i < outputParams->currentTime; i++)
+        for (i=0; i < currentTime; i++)
         {
             for(j=0; j < 6; j++)
             {
