@@ -167,22 +167,22 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         outputLog[currentTime][4] = customersUnfulfilled;
         outputLog[currentTime][5] = customersTimedOut;
 
-        for (i = 0; i < outputParams.currentTime; i++)
-        {
-            if (i == outputParams.closingTime)
-                printf("----------- Post Office Closed -----------\n\n", fp);
-            printf("Current Time:           %d\n", outputLog[i][0]);
-            printf("Customers being Served: %d\n", outputLog[i][1]);
-            printf("Customers in Queue:     %d\n", outputLog[i][2]);
-            printf("Customers Fulfilled:    %d\n", outputLog[i][3]);
-            printf("Customers Unfulfilled:  %d\n", outputLog[i][4]);
-            printf("Customers Timed-out:    %d\n", outputLog[i][5]);
-            printf("\n");
-        }
-
         /* Increment Time interval of this simulation */
         currentTime++;
 
+    }
+
+    for (i = 0; i < currentTime; i++)
+    {
+        if (i == simParams.closingTime)
+            printf("----------- Post Office Closed -----------\n\n");
+        printf("Current Time:           %d\n", outputLog[i][0]);
+        printf("Customers being Served: %d\n", outputLog[i][1]);
+        printf("Customers in Queue:     %d\n", outputLog[i][2]);
+        printf("Customers Fulfilled:    %d\n", outputLog[i][3]);
+        printf("Customers Unfulfilled:  %d\n", outputLog[i][4]);
+        printf("Customers Timed-out:    %d\n", outputLog[i][5]);
+        printf("\n");
     }
 
     outputParams->currentTime = currentTime;
