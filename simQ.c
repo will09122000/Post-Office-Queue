@@ -167,7 +167,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         outputLog[currentTime][4] = customersUnfulfilled;
         outputLog[currentTime][5] = customersTimedOut;
 
-        printf("%d\n", sizeof(outputLog[0])/sizeof(outputLog[0][0]))
+        printf("%d\n", sizeof(outputLog[0])/sizeof(outputLog[0][0]));
 
         /* Increment Time interval of this simulation */
         currentTime++;
