@@ -81,7 +81,7 @@ INPUT getSimParameters(char inputFileName[])
     INPUT simParams;
     if (fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
-meanNewCustomers: %d\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
+meanNewCustomers: %f\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
 scaleServeTime: %d\nlowerLimitServeTime: %d\n",
            &simParams.maxQueueLength, &simParams.numServicePoints,
            &simParams.closingTime, &simParams.meanNewCustomers,
