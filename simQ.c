@@ -53,7 +53,7 @@ int main (int argc, char **argv)
 
     for (i=1; i < outputParams.currentTime; i++)
     {
-        for(j=0; j < 6; j++)
+        for(j=1; j < 6; j++)
         {
             printf("%d ", outputLog[i][j]);
         }
