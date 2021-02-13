@@ -9,7 +9,7 @@ struct simParams
     int maxQueueLength;
     int numServicePoints;
     int closingTime;
-    int meanNewCustomers;
+    float meanNewCustomers;
     int lowerLimitWaitTolerance;
     int upperLimitWaitTolerance;
     int scaleServeTime;
