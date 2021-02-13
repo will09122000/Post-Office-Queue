@@ -164,7 +164,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         /* Increment Time interval of this simulation */
         currentTime++;
 
-        printf("%d ", servicePoints[0]);
+        printf("%d ", servicePoints[0].id);
     }
 
     outputParams->currentTime = currentTime;
