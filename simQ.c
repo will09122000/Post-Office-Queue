@@ -41,10 +41,14 @@ int main (int argc, char **argv)
     outputParams.totalTimeAfterClose = 0;
     outputParams.totalWaitTime = 0;
 
+    printf("Test1\n");
+
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
         runSim(simParams, outputFileName, *r, outputLog, &outputParams);
+
+    printf("Test2\n");
 
     /* Write to results output file */
     if (numSims == 1)
@@ -98,6 +102,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     customerQueue->waitLimit = INT_MIN;
     customerQueue->waitCurrent = INT_MIN;
 
+    printf("Test3\n");
+
     int i;
     while (customersAtServicePoint > 0 || size(customerQueue) > 0 ||
            currentTime < simParams.closingTime)
@@ -106,12 +112,18 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         customersServed += fulfillCustomer(simParams.numServicePoints,
                                            servicePoints);
 
+        printf("Test4\n");
+
         /* Customers arrive at service point */
         totalWaitTime += startServingCustomer(simParams, servicePoints,
                                               customerQueue, r);
 
+        printf("Test5\n");
+
         /* Customer reaches wait limit */
         customersTimedOut += checkWaitLimit(&customerQueue);
+
+        printf("Test6\n");
 
         /* New Customers arrive iff the post office is open */
         if (currentTime < simParams.closingTime)
@@ -134,6 +146,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
                 }
             }
         }
+        printf("Test7\n");
 
         /* Count the number of customers at a service point */
         customersAtServicePoint = 0;
@@ -142,6 +155,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
             if (servicePoints[i].id == 1)
                 customersAtServicePoint++;
         }
+
+        printf("Test8\n");
 
         /* Increment the wait time of all customers in the queue and
         service points by 1 */
@@ -152,6 +167,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
             if (servicePoints[i].id == 1)
                 servicePoints[i].timeTaken++;
         }
+
+        printf("Test9\n");
 
         /* Save the customer data for this time interval to the 2D array */
         outputLog[currentTime][0] = currentTime;
