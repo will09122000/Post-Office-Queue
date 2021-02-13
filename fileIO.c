@@ -193,7 +193,7 @@ void writeLogsOneSim(char outputFileName[], unsigned int outputLog[][6],
     printf("TEST1\n");
     int i;
     printf("Current Time: %d\n", outputParams.currentTime);
-    for (i = 0; i < outputParams.currentTime-1; i++)
+    for (i = 0; i < outputParams.currentTime; i++)
     {
         if (i == outputParams.closingTime)
             printf("----------- Post Office Closed -----------\n\n");
