@@ -49,6 +49,15 @@ int main (int argc, char **argv)
         runSim(simParams, outputFileName, *r, outputLog, &outputParams);
 
     printf("Test2\n");
+    int j;
+
+    for (i=0; i < outputParams.currentTime; i++)
+    {
+        for(j=0; j < 6; j++)
+        {
+            printf("%d\n", outputLog[i][j]);
+        }
+    }
 
     /* Write to results output file */
     if (numSims == 1)
