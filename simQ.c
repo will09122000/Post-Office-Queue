@@ -135,20 +135,23 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
             }
         }
 
-        /* Count the number of customers at a service point and increment the
-        time it has taken to be served */
+        /* Count the number of customers at a service point */
         customersAtServicePoint = 0;
         for (i = 0; i < simParams.numServicePoints; i++)
         {
             if (servicePoints[i].id == 1)
-            {
-                servicePoints[i].timeTaken++;
                 customersAtServicePoint++;
-            }
         }
 
-        /* Increment the wait time of all customers in the queue by 1 */
+        /* Increment the wait time of all customers in the queue and
+        service points by 1 */
         updateWait(customerQueue);
+
+        for (i = 0; i < simParams.numServicePoints; i++)
+        {
+            if (servicePoints[i].id == 1)
+                servicePoints[i].timeTaken++;
+        }
 
         /* Save the customer data for this time interval to the 2D array */
         outputLog[currentTime][0] = currentTime;
