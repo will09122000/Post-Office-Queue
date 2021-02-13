@@ -9,8 +9,6 @@ int main (int argc, char **argv)
 {
     validateInputs(argc, argv);
 
-    printf("Test\n");
-
     /* Terminal Arguments */
     char * inputFileName = argv[1];
     unsigned int numSims = atoi(argv[2]);
@@ -43,6 +41,7 @@ int main (int argc, char **argv)
     outputParams.totalTimeAfterClose = 0;
     outputParams.totalWaitTime = 0;
 
+    printf("Test\n");
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
