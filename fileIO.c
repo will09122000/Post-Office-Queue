@@ -193,7 +193,7 @@ void writeLogsOneSim(char outputFileName[], unsigned int outputLog[][6],
     printf("TEST1\n");
     int i;
     printf("Current Time: %d\n", outputParams.currentTime);
-    for (i = 0; i < outputParams.currentTime; i++)
+    for (i = 0; i < outputParams.currentTime-1; i++)
     {
         printf("TEST2\n");
         if (i == outputParams.closingTime)
