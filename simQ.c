@@ -41,12 +41,11 @@ int main (int argc, char **argv)
     outputParams.totalTimeAfterClose = 0;
     outputParams.totalWaitTime = 0;
 
-    printf("Test\n");
     /* Run Simulation(s) */
     int i;
     for (i = 0; i < numSims; i++)
         runSim(simParams, outputFileName, *r, outputLog, &outputParams);
-
+    printf("Test\n");
     /* Write to results output file */
     if (numSims == 1)
     {
