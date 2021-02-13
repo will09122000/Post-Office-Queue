@@ -1,7 +1,7 @@
 maxQueueLength: 6
 numServicePoints: 3
 closingTime: 510
-meanNewCustomers: 0.5
+meanNewCustomers: 0.2
 lowerLimitWaitTolerance: 5
 upperLimitWaitTolerance: 15
 scaleServeTime: 2
