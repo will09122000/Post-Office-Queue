@@ -109,6 +109,7 @@ lowerLimitServeTime: 3\n");
 an integer greater than 0 and less than or equal to 2147483647.\n");
         exit(1);
     }
+    printf("%d\n", simParams.meanNewCustomers);
     if (simParams.numServicePoints < 1 || simParams.closingTime < 1 ||
         simParams.meanNewCustomers < 0 || simParams.lowerLimitWaitTolerance < 1 ||
         simParams.upperLimitWaitTolerance < 1 || simParams.scaleServeTime < 1 ||
