@@ -50,9 +50,9 @@ int main (int argc, char **argv)
 
     printf("Test2\n");
 
-    for (i = 0; i < currentTime; i++)
+    for (i = 0; i < outputParams.currentTime; i++)
     {
-        if (i == simParams.closingTime)
+        if (i == outputParams.closingTime)
             printf("----------- Post Office Closed -----------\n\n");
         printf("Current Time:           %d\n", outputLog[i][0]);
         printf("Customers being Served: %d\n", outputLog[i][1]);
@@ -192,6 +192,10 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
     outputParams->totalcustomersUnfulfilled += customersUnfulfilled;
     outputParams->totalcustomersTimedOut += customersTimedOut;
     outputParams->totalTimeAfterClose += currentTime - simParams.closingTime;
+
+    printf("%d\n", outputParams->closingTime);
+    printf("%d\n", outputParams->currentTime);
+
 
     freeQueue(&customerQueue);
 }
