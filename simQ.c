@@ -134,7 +134,6 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
                 }
             }
         }
-        printf("Test\n");
 
         /* Count the number of customers at a service point and increment the
         time it has taken to be served */
@@ -161,6 +160,8 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
 
         /* Increment Time interval of this simulation */
         currentTime++;
+
+        printf("%d ", servicePoints[0]);
     }
 
     outputParams->currentTime = currentTime;
