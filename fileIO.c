@@ -109,14 +109,16 @@ lowerLimitServeTime: 3\n");
 an integer greater than 0 and less than or equal to 2147483647.\n");
         exit(1);
     }
-    printf("%d\n", simParams.meanNewCustomers);
+
     if (simParams.numServicePoints < 1 || simParams.closingTime < 1 ||
         simParams.meanNewCustomers < 0 || simParams.lowerLimitWaitTolerance < 1 ||
         simParams.upperLimitWaitTolerance < 1 || simParams.scaleServeTime < 1 ||
         simParams.lowerLimitServeTime < 1)
     {
-        printf("Invalid parameters, all parameters except maxQueueLength should \
-be an integer greater than 0 and less than or equal to 2147483647.\n");
+        printf("Invalid parameters, all parameters should be an integer greater \
+greater than 0 and less than or equal to 2147483647.\nExceptions:\nmaxQueueLength \
+can be -1 if you do not want a maximum queue length\nmeanNewCustomers can be a \
+a float value");
         exit(1);
     }
 
