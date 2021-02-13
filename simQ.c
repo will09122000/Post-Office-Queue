@@ -45,7 +45,7 @@ int main (int argc, char **argv)
     int i;
     for (i = 0; i < numSims; i++)
         runSim(simParams, outputFileName, *r, outputLog, &outputParams);
-    printf("Test\n");
+
     /* Write to results output file */
     if (numSims == 1)
     {
@@ -134,6 +134,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
                 }
             }
         }
+        printf("Test\n");
 
         /* Count the number of customers at a service point and increment the
         time it has taken to be served */
