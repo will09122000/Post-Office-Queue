@@ -117,8 +117,8 @@ an integer greater than 0 and less than or equal to 2147483647.\n");
     {
         printf("Invalid parameters, all parameters should be an integer greater \
 greater than 0 and less than or equal to 2147483647.\nExceptions:\nmaxQueueLength \
-can be -1 if you do not want a maximum queue length\nmeanNewCustomers can be a \
-a float value");
+- can be -1 if you do not want a maximum queue length.\nmeanNewCustomers - can be a \
+a float value.\n");
         exit(1);
     }
 
