@@ -55,8 +55,9 @@ int main (int argc, char **argv)
     {
         for(j=0; j < 6; j++)
         {
-            printf("%d\n", outputLog[i][j]);
+            printf("%d", outputLog[i][j]);
         }
+        printf("\n");
     }
 
     /* Write to results output file */
