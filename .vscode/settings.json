@@ -16,6 +16,7 @@
         "queue.h": "c",
         "random": "c",
         "limits": "c",
-        "compare": "c"
+        "compare": "c",
+        "functional": "c"
     }
 }

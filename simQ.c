@@ -160,22 +160,14 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
         }
 
         /* Save the customer data for this time interval to the 2D array */
-        outputLog[currentTime][0] = 1;
-        outputLog[currentTime][1] = 2;
-        outputLog[currentTime][2] = 3;
-        outputLog[currentTime][3] = 4;
-        outputLog[currentTime][4] = 5;
-        outputLog[currentTime][5] = 6;
+        outputLog[currentTime][0] = currentTime;
+        outputLog[currentTime][1] = customersAtServicePoint;
+        outputLog[currentTime][2] = size(customerQueue);
+        outputLog[currentTime][3] = customersServed;
+        outputLog[currentTime][4] = customersUnfulfilled;
+        outputLog[currentTime][5] = customersTimedOut;
 
-        int j;
-        for (i=0; i < currentTime; i++)
-        {
-            for(j=0; j < 6; j++)
-            {
-                printf("%d ", outputLog[i][j]);
-            }
-            printf("\n");
-        }
+        printf("%d\n", sizeof(outputLog[0])/sizeof(outputLog[0][0]))
 
         /* Increment Time interval of this simulation */
         currentTime++;
