@@ -94,7 +94,7 @@ scaleServeTime: %d\nlowerLimitServeTime: %d\n",
 maxQueueLength: 8\n\
 numServicePoints: 3\n\
 closingTime: 30\n\
-meanNewCustomers: 1\n\
+meanNewCustomers: 0.8\n\
 lowerLimitWaitTolerance: 3\n\
 upperLimitWaitTolerance: 7\n\
 scaleServeTime: 2\n\
