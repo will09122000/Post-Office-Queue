@@ -1,4 +1,4 @@
-maxQueueLength: 8
+maxQueueLength: -1
 numServicePoints: 3
 closingTime: 30
 meanNewCustomers: 0.8
