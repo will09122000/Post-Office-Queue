@@ -9,6 +9,8 @@ int main (int argc, char **argv)
 {
     validateInputs(argc, argv);
 
+    printf("Test\n");
+
     /* Terminal Arguments */
     char * inputFileName = argv[1];
     unsigned int numSims = atoi(argv[2]);
