@@ -196,14 +196,14 @@ void writeLogsOneSim(char outputFileName[], unsigned int outputLog[][6],
     for (i = 0; i < outputParams.currentTime-1; i++)
     {
         if (i == outputParams.closingTime)
-            fprintf("----------- Post Office Closed -----------\n\n");
-        fprintf("Current Time:           %d\n", outputLog[i][0]);
-        fprintf("Customers being Served: %d\n", outputLog[i][1]);
-        fprintf("Customers in Queue:     %d\n", outputLog[i][2]);
-        fprintf("Customers Fulfilled:    %d\n", outputLog[i][3]);
-        fprintf("Customers Unfulfilled:  %d\n", outputLog[i][4]);
-        fprintf("Customers Timed-out:    %d\n", outputLog[i][5]);
-        fprintf("\n");
+            printf("----------- Post Office Closed -----------\n\n");
+        printf("Current Time:           %d\n", outputLog[i][0]);
+        printf("Customers being Served: %d\n", outputLog[i][1]);
+        printf("Customers in Queue:     %d\n", outputLog[i][2]);
+        printf("Customers Fulfilled:    %d\n", outputLog[i][3]);
+        printf("Customers Unfulfilled:  %d\n", outputLog[i][4]);
+        printf("Customers Timed-out:    %d\n", outputLog[i][5]);
+        printf("\n");
         printf("TEST2\n");
         if (i == outputParams.closingTime)
             fputs("----------- Post Office Closed -----------\n\n", fp);
