@@ -82,7 +82,7 @@ INPUT getSimParameters(char inputFileName[])
     if (fscanf(fp,
            "maxQueueLength: %d\nnumServicePoints: %d\nclosingTime: %d\n\
 meanNewCustomers: %f\nlowerLimitWaitTolerance: %d\nupperLimitWaitTolerance: %d\n\
-scaleServeTime: %d\nlowerLimitServeTime: %d\n",
+scaleServeTime: %f\nlowerLimitServeTime: %d\n",
            &simParams.maxQueueLength, &simParams.numServicePoints,
            &simParams.closingTime, &simParams.meanNewCustomers,
            &simParams.lowerLimitWaitTolerance, &simParams.upperLimitWaitTolerance,
@@ -97,7 +97,7 @@ closingTime: 30\n\
 meanNewCustomers: 0.8\n\
 lowerLimitWaitTolerance: 3\n\
 upperLimitWaitTolerance: 7\n\
-scaleServeTime: 2\n\
+scaleServeTime: 2.5\n\
 lowerLimitServeTime: 3\n");
         exit(1);
     }
@@ -112,13 +112,14 @@ an integer greater than 0 and less than or equal to 2147483647.\n");
 
     if (simParams.numServicePoints < 1 || simParams.closingTime < 1 ||
         simParams.meanNewCustomers < 0 || simParams.lowerLimitWaitTolerance < 1 ||
-        simParams.upperLimitWaitTolerance < 1 || simParams.scaleServeTime < 1 ||
+        simParams.upperLimitWaitTolerance < 1 || simParams.scaleServeTime < 0 ||
         simParams.lowerLimitServeTime < 1)
     {
-        printf("Invalid parameters, all parameters should be an integer greater \
-greater than 0 and less than or equal to 2147483647.\nExceptions:\nmaxQueueLength \
-- can be -1 if you do not want a maximum queue length.\nmeanNewCustomers - can be a \
-a float value.\n");
+        printf("Invalid parameters\n numServicePoints, closingTime, \
+lowerLimitWaitTolerance, upperLimitWaitTolerance, lowerLimitServeTime - should \
+be integers greater than 0 and less than or equal to 2147483647.\nmaxQueueLength \
+- follows the same as above but can also be '-1'\nmeanNewCustomers,  - should be \
+floats greater than 0 and less than or equal to 3.4E+38 up to 6 decimal places.\n");
         exit(1);
     }
 

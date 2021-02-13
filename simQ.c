@@ -232,7 +232,7 @@ unsigned int startServingCustomer(INPUT simParams, SERVICEPOINT servicePoints[],
             SERVICEPOINT servicePoint;
             servicePoint.timeTaken = 0;
             unsigned int timeToServe = (int) \
-            gsl_ran_rayleigh_tail(&r, 2.5,
+            gsl_ran_rayleigh_tail(&r, simParams.scaleServeTime,
                                   simParams.lowerLimitServeTime);
             servicePoint.timeDone = timeToServe;
             servicePoint.id = 1;

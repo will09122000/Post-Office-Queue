@@ -12,7 +12,7 @@ struct simParams
     float meanNewCustomers;
     int lowerLimitWaitTolerance;
     int upperLimitWaitTolerance;
-    int scaleServeTime;
+    float scaleServeTime;
     int lowerLimitServeTime;
 };
 
