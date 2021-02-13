@@ -62,6 +62,8 @@ int main (int argc, char **argv)
         printf("%d simulations ran successfully\n", numSims);
     }
 
+    printf("TestFINAL\n");
+
     gsl_rng_free(r);
     return 0;
 }
