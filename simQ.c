@@ -28,7 +28,7 @@ int main (int argc, char **argv)
 
     /* Worst case extra time after the post office doors shut */
     unsigned int buffer = (simParams.maxQueueLength + simParams.numServicePoints)\
-                 * simParams.numServicePoints * simParams.lowerLimitServeTime;
+                 * simParams.scaleServeTime * simParams.lowerLimitServeTime;
     
     unsigned int outputLog[(simParams.closingTime) + buffer][6];
 
