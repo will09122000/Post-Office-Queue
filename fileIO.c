@@ -22,17 +22,16 @@ void validateInputs(int argc, char **argv)
     /* Check the number of parameters is valid */
     if (argc != 4)
     {
-        printf("Invalid number of arguments, please ensure you have \
+        fprintf(stderr, "Invalid number of arguments, please ensure you have \
 [inputFileText.txt numberOfSimulations inputFileText.txt] in that order.\n");
-        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         error = 1;
     }
     
     /* Check the number of simulations is valid */
     if (atoi(argv[2]) < 1)
     {
-        fprintf(stderr, "Number of simulations (second argument) should be an integer \
-greater than 0 and less than or equal to 2147483647. \n");
+        fprintf(stderr, "Number of simulations (second argument) should be an \
+integer greater than 0 and less than or equal to 2147483647. \n");
         error = 1;
     }
 

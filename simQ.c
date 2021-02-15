@@ -94,8 +94,7 @@ void runSim(INPUT simParams, char outputFileName[], gsl_rng r,
 
     if (!(customerQueue = (NODE *) malloc(sizeof(NODE))))
     {
-        printf("Out of memory\n");
-        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
+        fprintf(stderr, "Out of memory\n");
         exit(1);
     }
     customerQueue->next = NULL;
