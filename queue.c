@@ -43,7 +43,12 @@ void enqueue(NODE * head, int waitLimit)
     while (current->next != NULL)
         current = current->next;
 
-    current->next = (NODE *) malloc(sizeof(NODE));
+    if (!(current->next = (NODE *) malloc(sizeof(NODE))))
+    {
+        printf("Out of memory\n");
+        exit(1);
+    }
+
     current->next->waitLimit = waitLimit;
     current->next->waitCurrent = 0;
     current->next->next = NULL;
