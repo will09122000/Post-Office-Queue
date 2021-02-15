@@ -46,6 +46,7 @@ void enqueue(NODE * head, int waitLimit)
     if (!(current->next = (NODE *) malloc(sizeof(NODE))))
     {
         printf("Out of memory\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(1);
     }
 

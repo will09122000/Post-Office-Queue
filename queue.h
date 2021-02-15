@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <errno.h>
 
 /* A struct that represents a customer in the queue. */
 struct node
