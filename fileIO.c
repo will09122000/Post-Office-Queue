@@ -24,6 +24,7 @@ void validateInputs(int argc, char **argv)
     {
         printf("Invalid number of arguments, please ensure you have \
 [inputFileText.txt numberOfSimulations inputFileText.txt] in that order.\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         error = 1;
     }
     
@@ -32,6 +33,7 @@ void validateInputs(int argc, char **argv)
     {
         printf("Number of simulations (second argument) should be an integer \
 greater than 0 and less than or equal to 2147483647. \n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         error = 1;
     }
 
