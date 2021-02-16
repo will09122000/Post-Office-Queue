@@ -26,9 +26,12 @@ int main (int argc, char **argv)
     r = gsl_rng_alloc(T);
     gsl_rng_set(r, time(0));
 
-    /* Worst case extra time after the post office doors shut */
-    unsigned int buffer = (abs(simParams.maxQueueLength) + simParams.numServicePoints)\
-                 * simParams.scaleServeTime * simParams.lowerLimitServeTime;
+    /* Worst case extra time after the post office closes */
+    unsigned int maxQueueLengthForBuffer;
+    if (simParams.maxQueueLength == -1)
+        maxQueueLengthForBuffer = abs(simParams.maxQueueLength) + simParams.closingTime;
+    unsigned int buffer = (maxQueueLengthForBuffer + simParams.numServicePoints)\
+                          * simParams.scaleServeTime * simParams.lowerLimitServeTime;
     
     unsigned int outputLog[(simParams.closingTime) + buffer][6];
 
